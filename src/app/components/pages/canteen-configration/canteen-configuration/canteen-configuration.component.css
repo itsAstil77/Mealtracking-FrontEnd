@@ -1,0 +1,367 @@
+
+.roles-edit-container {
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    height: 100%;
+
+    height: 100vh;       /* Fill the entire viewport */
+    overflow-y: auto;    /* Enable vertical scroll */
+    overflow-x: hidden;  /* Prevent horizontal scroll */
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+
+.roles-edit-header {
+    background-color: #e2e4e7;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: 'RedHatDisplay-Regular';
+}
+
+.roles-edit-form {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+}
+
+.canteen-item {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+    border:1px solid lightgray;
+    margin-top: 5px;
+    transition: background 0.3s, color 0.3s;
+    font-family: 'RedHatDisplay-Regular';
+    font-size: 14px;
+  
+}
+
+  .canteen-item.selected {
+    background-color: #7030a0;
+    color: white;
+  }
+  
+
+
+
+
+.container {
+    display: flex;
+    gap: 14px;
+    background-color: transparent;
+    border: none;
+    min-height: 700px;
+    max-width: 100%;
+   
+   
+}
+
+/* Left Section (Project Hierarchy) */
+.left-section {
+    width: 50%;
+    background-color: white;
+    padding: 15px;
+    border: 1px solid #d3d3d3; /* Adds border */
+    border-radius: 5px; /* Rounded corners */
+    min-height: 800px;
+}
+
+.center-section {
+    width: 50%;
+    background-color: white;
+    padding: 15px;
+    border: 1px solid #d3d3d3; /* Adds border */
+    border-radius: 5px; /* Rounded corners */
+    min-height: 800px;
+}
+
+.right-section {
+    width: 50%;
+    background-color: white;
+    padding: 15px;
+    border: 1px solid #d3d3d3; /* Adds border */
+    border-radius: 5px; /* Rounded corners */
+    min-height: 800px;
+}
+
+
+.right-section p{
+    font-size: medium;
+}
+
+.access-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+}
+
+.access-list li {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+
+.access-list input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+
+.left-section,
+.right-section ,
+.center-section{
+    border: 1px solid #d3d3d3; 
+    border-radius: 5px; 
+    padding: 15px; 
+
+}
+
+
+.left-section p,
+.right-section p,
+.center-section p {
+    font-size: smaller;
+    font-weight: bold;
+    border-bottom: 1px solid #d3d3d3; 
+    padding-bottom: 8px; 
+    margin-bottom: 12px;
+   width: 100%;
+    display: inline-block; 
+    font-family: 'RedHatDisplay-Regular';
+}
+
+
+
+
+
+/* Common Box Styling */
+.project-box, .sub-item-box, .canteen-box {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    width: 700px;
+    margin-left: 20px;
+  
+}
+
+/* Adjustments for Project-Level Boxes */
+.project-box {
+    border: 1px solid #ddd;
+    margin-left: 0; /* Keep projects aligned left */
+    width:100%;
+    font-family: 'RedHatDisplay-Regular';
+    font-size: 14px;
+}
+
+
+.sub-item-box {
+    margin-left: 20px; 
+}
+
+.canteen-box {
+    margin-left: 40px; 
+}
+ul {
+    list-style: none; 
+    padding: 0;
+    margin: 0;
+}
+
+
+
+.sub-item{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px 10px;
+   
+      cursor: pointer;
+      padding: 8px;
+    
+      border: 1px solid #ddd;
+      margin: 4px 0;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+  }
+
+
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+} 
+
+.save-button {
+    margin-left: 87%;
+    background-color: #7030a0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100px;
+    height: 40px;
+    font-family: 'RedHatDisplay-Regular';
+}
+
+
+.project-box .icons {
+    display: flex;
+    gap: 5px;
+} 
+
+.sub-item .icons {
+    display: flex;
+    gap: 5px;
+}
+
+.canteen-item .icons {
+    display: flex;
+    gap: 5px;
+}
+
+
+
+.project-box .icons img,
+.project-box span img {
+    width: 14px;
+    height: 14px;
+}
+
+.sub-item .icons img,
+.sub-item span img {
+    width: 14px;
+    height: 14px;
+}
+.canteen-item .icons img,
+.canteen-item span img {
+    width: 14px;
+    height: 14px;
+}
+
+.project-list ul ul {
+    margin-left: 15px;
+    padding-left: 15px;
+    border-left: 2px solid #d3d3d3;
+}
+/* .right-section {
+    width: 50%;
+    background-color: white;
+    padding: 15px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px; 
+    min-height: 800px;
+} */
+.right-panel {
+    flex: 1;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.access-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.access-table th, .access-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+    font-family: 'RedHatDisplay-Regular';
+}
+
+.access-table th {
+    background-color: #e2e4e7;
+    font-size: smaller;
+}
+
+.checkbox-cell {
+    text-align: center;
+    width: 80px;
+}
+
+.access-table input[type="checkbox"] {
+    transform: scale(1.2);
+}
+
+
+
+.department-list li {
+    display: block;
+    margin-top: 5px;
+}
+
+.department-item {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+    border:1px solid lightgray;
+    margin-top: 5px;
+    transition: background 0.3s, color 0.3s;
+    font-family: 'RedHatDisplay-Regular';
+    font-size: 14px;
+  
+}
+
+  .department-item.selected {
+    background-color: #7030a0;
+    color: white;
+  }
+  
+
+  .breadcrumb-wrapper {
+    /* padding: 10px 20px; */
+    /* background-color: #f5f5f5; */
+    font-size: 14px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px;
+
+  }
+  
+  .breadcrumb-link {
+    color: black;
+    text-decoration: none;
+    margin-right: 5px;
+    font-family: 'RedHatDisplay-Regular';
+  }
+  .breadcrumb-link:hover {
+    color: #7030a0;
+    font-weight: bold;
+    
+  }
+  .breadcrumb-separator {
+    margin: 0 5px;
+    color: #666;
+  }
+  
+  .breadcrumb-current {
+    color: #7030a0;
+    font-weight: bold;
+    font-family: 'RedHatDisplay-Regular';
+  }
+
+
+  

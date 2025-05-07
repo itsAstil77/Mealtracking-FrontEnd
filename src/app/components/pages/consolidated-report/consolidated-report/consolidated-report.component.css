@@ -1,0 +1,134 @@
+/* Navbar */
+.navbar {
+    width: 100%;
+    height: 60px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    /* color: black; */
+    font-size: 20px;
+    font-weight: bolder;
+    
+}
+
+
+
+
+
+/* Left Side */
+.navbar-left {
+    font-size: 16px;
+}
+
+/* Full-width table */
+table {
+    width: 100%; /* Table takes full screen width */
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+  }
+  
+  /* Table Header & Cells */
+  th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    text-align: center;
+  }
+  
+  /* Header Styling */
+  th {
+    background-color: white;
+    color: black;
+
+  }
+  
+  /* Alternating row colors for better readability */
+  /* tr:nth-child(even) {
+    background-color: #f9f9f9;
+  } */
+  
+  /* Image Styling */
+  img {
+    border-radius: 5px;
+  }
+  
+  /* Responsive Table */
+  @media (max-width: 768px) {
+    th, td {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+
+
+.icon-button {
+  background: #7030a0;
+  border: 1px solid #7030a0;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 40px; /* Slightly increased */
+  height: 40px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-button img {
+  width: 22px; /* Increased from 17px */
+  height: 22px;
+  filter: brightness(0) invert(1); 
+  font-weight: bold; /* Ensures bold effect */
+  
+}
+
+
+.navbar-right {
+  display: flex;
+  gap: 10px; /* Space between icons */
+}
+
+
+
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip-container .tooltip-text {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  
+  /* Positioning */
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  font-size: 12px;
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.totals-row {
+  background-color: #7030a0;
+  font-weight: bold;
+  color: white;
+}

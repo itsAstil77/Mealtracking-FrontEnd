@@ -1,0 +1,98 @@
+<!-- Simple Navbar -->
+<nav class="navbar">
+    <!-- Left Side -->
+    <div class="navbar-left">
+        <span class="navbar-title">{{ reportName || 'Report Details' }}</span>
+    </div>
+
+    <div class="navbar-right" >
+        <div class="tooltip-container">  
+        <button class="icon-button"><img src="assets/refresh.svg" alt="Refresh"></button>
+        <span class="tooltip-text">Refresh</span>
+        </div>
+        <div class="tooltip-container">
+        <!-- <button class="icon-button" ><img src="assets/plus-small.png" routerLink="/addreport"  alt="Add"></button> -->
+        <button class="icon-button" ><img src="assets/plus-small.png"  alt="Add"></button>
+
+        <span class="tooltip-text">Add</span>
+        </div>
+        <div class="tooltip-container">
+        <button class="icon-button"><img src="assets/download.svg" alt="Download"></button>
+        <span class="tooltip-text">Download</span>
+        </div>
+        <div class="tooltip-container">
+        <button class="icon-button"><img src="assets/columns-3.svg"></button>
+        <span class="tooltip-text">Pagination</span>
+        </div>
+    </div>
+
+ 
+
+</nav>
+
+
+<table class="company-table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>ID Number</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Canteen</th>
+        <th>Company</th>
+        <!-- <th>Total Meals</th> -->
+        <!-- <th>Unique Days Count</th> -->
+        <th *ngFor="let meal of mealHeaders">{{ meal }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of reportData">
+        <td>{{ item.type || '-' }}</td>
+        <td>{{ item.personId || '-' }}</td>
+        <td>{{ item.name || '-' }}</td>
+        <td>{{ item.location || '-' }}</td>
+        <td>{{ item.canteen || '-' }}</td>
+        <td>{{ item.company || '-' }}</td>
+        <!-- <td>{{ item.totalMeals }}</td> -->
+        <!-- <td>{{ item.uniqueDaysCount }}</td> -->
+        <td *ngFor="let meal of mealHeaders">
+            {{ item.mealCounts && item.mealCounts[meal] ? item.mealCounts[meal] : '-' }}
+        </td>
+      </tr>
+
+      <!-- <tr class="totals-row">
+        <td colspan="6" style="font-weight: bold;">Total</td>
+        <td>{{ summaryTotals.grandTotal || '-' }}</td>
+        <td>-</td>
+        <td *ngFor="let meal of mealHeaders">
+          {{
+            summaryTotals['total' + meal] !== undefined
+              ? summaryTotals['total' + meal]
+              : '-'
+          }}
+              
+        </td>
+      </tr> -->
+
+      <tr class="totals-row">
+        <td colspan="6" style="font-weight: bold;">Total</td>
+        <!-- <td>{{ summaryTotals.totalMealsServed || '-' }}</td> -->
+        <!-- <td>{{ summaryTotals.totalUniqueDays || '-' }}</td> -->
+        <td *ngFor="let meal of mealHeaders">
+          {{
+            summaryTotals.mealTypeCounts && summaryTotals.mealTypeCounts[meal] !== undefined
+              ? summaryTotals.mealTypeCounts[meal]
+              : '-'
+          }}
+        </td>
+      </tr>
+      
+
+
+    </tbody>
+  </table>
+  
+
+
+
+  

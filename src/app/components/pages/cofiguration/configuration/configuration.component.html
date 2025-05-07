@@ -1,0 +1,536 @@
+<!-- Simple Navbar -->
+<nav class="navbar">
+    <!-- Left Side -->
+    <div class="navbar-left">
+        <span class="navbar-title">{{ activePage === 'projects' ? 'Location List' : 'Device List' }}</span>
+    </div>
+
+    <!-- Center (Search Bar for Devices Only) -->
+    <!-- <div class="navbar-center" *ngIf="activePage === 'devices'">
+        <input type="text" placeholder="Search device" class="search-input">
+    </div> -->
+
+    <!-- Right Side -->
+    <div class="navbar-right">
+            <button class="nav-button" [ngClass]="{'active-button': activePage === 'projects'}" (click)="showProjects()">Location</button>
+            <button class="nav-button" [ngClass]="{'active-button': activePage === 'devices'}" (click)="openDeviceList()">Devices</button>
+            <button class="nav-button" [routerLink]="'/object'" [ngClass]="{'active-button': activePage === 'object'}">Object</button>
+            <button class="nav-button" [routerLink]="'/coupen'">Coupon</button>
+
+            <!-- <button class="nav-button" [routerLink]="'/canteen'" [ngClass]="{'active-button': activePage === 'canteen'}">Canteen</button>    -->
+    </div>
+
+    <!-- Right Side Icons (Show Only When Devices Page is Active) -->
+    <div class="navbar-right" *ngIf="showDeviceList">
+        <button class="icon-button"><img src="assets/refresh.png" alt="Refresh"></button>
+        <button class="icon-button" (click)="openDevicePopup()"><img src="assets/add.png" alt="Add"></button>
+        <button class="icon-button"><img src="assets/download.png" alt="Download"></button>
+        <button class="icon-button"><img src="assets/page.png"></button>
+    </div>
+</nav>
+
+
+
+
+<div class="content" *ngIf="activePage === 'projects'">
+    <button class="add-project" (click)="openLocationPopup()">Add Location</button>
+ 
+
+        <div class="project-list">  <!-- Keeping the CSS class name -->
+            <!-- <p>Location Hierarchy</p> -->
+            <ul>
+                <li *ngFor="let location of locations">
+                    <div class="project-box">  <!-- Keeping the CSS class name -->
+                        <span (click)="toggleDropdown(location)">
+                            <img src="assets/dropdown.svg" [class.rotate]="location.expanded" alt="Dropdown">
+                        </span>
+                        {{ location.name }}
+                        <span class="icons">
+                            <div class="tooltip-container">
+                            <img src="assets/plus-small.png" alt="Add"(click)="openAddCanteenPopup(location)" >
+                            <span class="tooltip-text">Add canteen</span>
+                            </div>
+                            <div class="tooltip-container">
+                            <img src="assets/edit.png" alt="Edit" (click)="openEditLocationPopup(location)" >
+                            <span class="tooltip-text">Update Location</span>
+                            </div>
+                            <div class="tooltip-container">
+                            <img src="assets/delete.png" alt="Add"  (click)="openDeleteLocPopup(location.id)"  >
+                            <span class="tooltip-text">Delete Location</span>
+                            </div>
+
+    <div class="status-container">
+      
+        <label class="switch">
+            <input type="checkbox"  [checked]="location.status" disabled>
+            <span class="slider"></span>
+           
+            
+          
+        </label>
+    </div>
+
+                           
+                        </span> 
+                    </div>
+
+                    <ul *ngIf="location.expanded">
+                        <li *ngFor="let canteen of location.canteens">
+                            <div class="canteen-item">
+                                <span (click)="selectCanteen(canteen)">
+                                    <img src="assets/dropdown.svg" [class.rotate]="canteen.expanded" alt="Dropdown">
+                                    
+                                </span>
+                               
+                                {{ canteen.name }}
+
+                                <span class="icons">
+                                    <div class="tooltip-container">
+                                    <img src="assets/edit.png" alt="Edit" (click)="openEditCanteenPopup(canteen)" >
+                                    <span class="tooltip-text">Edit Canteen</span>
+                                    </div>
+                                    <div class="tooltip-container">
+                                    <img src="assets/delete.png" alt="Add"  (click)="openDeleteCanteenPopup(canteen.id)" >
+                                    <span class="tooltip-text">Delete Canteen</span>
+                                    </div>
+                                    <div class="status-container">
+      
+                                        <label class="switch">
+                                            <input type="checkbox" [checked]="canteen.status" disabled >
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                </span> 
+                                <span *ngIf="isCanteenSelected(canteen.name)">
+                                    
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+</div>
+
+
+
+<!--Add Project -->
+<!-- <div class="modal" *ngIf="isModalOpen">
+    <div class="modal-content">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <h2>Add Project</h2>
+
+        <label for="projectName">Project Name</label>
+        <input type="text" id="projectNam1e" [(ngModel)]="projectData.name" class="input-field">
+
+        <label for="description">Description</label>
+        <input type="text" id="description" [(ngModel)]="projectData.description" class="input-field">
+
+        <div class="button-container">
+            <button class="apply-button" (click)="addProject()">AddProject</button>
+            <button class="clear-button" (click)="closeModal()">cancel</button>
+        </div>
+    </div>
+    </div> -->
+
+
+    <!-- Edit Project Modal -->
+<!-- <div class="modal-overlay3" *ngIf="isEditPopupOpen">
+    <div class="modal-content3">
+      <h2>Edit Project</h2>
+
+   <label>Project Name</label>
+   <input type="text" [(ngModel)]="projectName">
+
+   <label>Description</label>
+   <textarea [(ngModel)]="projectDescription" ></textarea>
+
+   
+      <div class="button-group3">
+        <button class="applybtn"(click)="updateProject()">Apply</button>
+        <button class="clearbtn"(click)="closeEdit()">Cancel</button>
+      </div>
+    </div>
+  </div> -->
+
+
+
+<!-- Show Devices Section Only If Active -->
+<div *ngIf="activePage === 'devices'" class="device-list-container">
+    <nav class="navbar1">
+        <!-- Left Side -->
+        <div class="navbar-left1">
+            <span class="navbar-title1">Device</span>
+        </div>
+    
+        <div class="navbar-right">
+            <div class="tooltip-container">
+            <button class="icon-button">
+               <img src="assets/refresh.png" alt="Refresh"></button>
+            <span class="tooltip-text">Refresh</span>
+            </div>
+            <div class="tooltip-container">
+            <button class="icon-button" (click)="openAddDevicePopup()" ><img src="assets/add.png" alt="Add"></button>
+            <span class="tooltip-text">Add</span>
+            </div>
+           
+        </div>
+    
+    </nav> 
+    <table>
+        <thead>
+            <tr>
+                <th>Sl No</th>
+                <th>DeviceName</th>
+                <th>UniqueId</th>
+                <!-- <th>ProjectName</th> -->
+                <th>CanteenName</th>
+                <th>LocationName</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr *ngFor="let device of devices; let i = index"> -->
+                <tr *ngFor="let device of pagedDeviceList; let i = index">
+
+                <td>{{ i + 1 }}</td>
+                <td>{{ device.deviceName }}</td>
+                <td>{{ device.uniqueId}}</td>
+                <!-- <td>{{ device.projectName }}</td> -->
+                <td>{{ device.canteenName}}</td>
+                <td>{{ device.locationName }}</td>
+             
+                <td>
+                    <div class="tooltip-container">
+                    <img src="assets/edit.png" alt="Edit" class="action-icon" (click)=" openDeviceEditPopup(device)">
+                    <span class="tooltip-text">Edit</span>
+                    </div>
+                    <div class="tooltip-container">
+                    <img src="assets/delete.png" alt="Delete" class="action-icon" (click)="openDeleteDevicePopup(device)">
+                    <span class="tooltip-text">Delete</span>
+                    </div>
+                </td>
+            </tr>
+            <tr class="pagination-row">
+                <td colspan="6">
+                  <div class="pagination-container">
+                    <label>Items per page:
+                      <select [(ngModel)]="deviceItemsPerPage" (change)="onDevicePageSizeChange()">
+                        <option *ngFor="let size of devicePageSizes" [value]="size">{{ size }}</option>
+                      </select>
+                    </label>
+              
+                    <span class="range-info">{{ deviceStartIndex }}–{{ deviceEndIndex }} of {{ deviceTotalItems }}</span>
+              
+                    <button (click)="goToPreviousDevicePage()" [disabled]="deviceCurrentPage === 1" class="arrow-btn">⏴</button>
+                    <button (click)="goToNextDevicePage()" [disabled]="deviceEndIndex >= deviceTotalItems" class="arrow-btn">⏵</button>
+                  </div>
+                </td>
+              </tr>
+              
+        </tbody>
+    </table>
+</div>
+<!-- </div> -->
+
+
+ <!-- Add Device  -->
+ <div class="modal-overlay1" *ngIf="isAddDevice">
+    <div class="modal-content1">
+        <h2>Add Device</h2>
+        <form>
+            <div class="form-grid1">
+            
+                <div class="form-group1">
+                    <label>Device Name</label>
+                    <input type="text" [(ngModel)]="newDevice.deviceName" name="deviceName" required>
+                </div>
+                <div class="form-group1">
+                    <label>Unique ID</label>
+                    <input type="text"  [(ngModel)]="newDevice.uniqueId" name="uniqueId" required>
+                </div>
+               
+
+                <div class="form-group1">
+                    <label>Location Name</label>
+                    <select [(ngModel)]="adddevice.location" name="locationName" (click)="loadLocations()">
+                        
+                        <option *ngFor="let location of locationDrop" [value]="location.id">
+                            {{ location.name }}
+                        </option>
+                      </select>
+                  </div>
+                
+                <div class="form-group1">
+                    <label>Canteen Name</label>
+                    <select [(ngModel)]="selectedCanteenId" name="canteen" (click)="loadCanteens()">
+                     
+                        <option *ngFor="let canteen of canteenDrop" [value]="canteen.id">
+                            {{ canteen.name }}
+                        </option>
+                    </select>
+                </div>
+              
+            </div> 
+
+            <!-- Buttons -->
+            <div class="button-group1">
+                <button type="button" class="cancel-btn1" (click)="closeAddDevicePopup()">Cancel</button>
+                <button type="submit" class="save-btn1"(click)="saveDevice()">AddDevice</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- edit device -->
+<div class="modal-overlay1" *ngIf="isPopupOpen">
+    <div class="modal-content1">
+        <h2>Edit Device</h2>
+        <form>
+            <div class="form-grid1">
+                <div class="form-group1">
+                    <label>Device Name</label>
+                    <input type="text" [(ngModel)]="selectedDevices.deviceName" name="deviceName" >
+                </div>
+                <div class="form-group1">
+                    <label>Unique ID</label>
+                    <input type="text" [(ngModel)]="selectedDevices.uniqueId" name="uniqueId" readonly>
+                </div>
+               
+                <div class="form-group1">
+                    <label>Location Name</label>
+                    <select [(ngModel)]="adddevice.location" name="locationName" (click)="loadLocations()">
+                        
+                        <option *ngFor="let location of locationDrop" [value]="location.id">
+                            {{ location.name }}
+                        </option>
+                      </select>
+                    </div>
+
+                <div class="form-group1">
+                    <label>Canteen Name</label>
+                    <select [(ngModel)]="selectedCanteenId" name="canteen" (click)="loadCanteens()">
+                     
+                        <option *ngFor="let canteen of canteenDrop" [value]="canteen.id">
+                            {{ canteen.name }}
+                        </option>
+                    </select>
+                </div>
+
+
+                
+            </div>
+
+            <!-- Buttons -->
+            <div class="button-group1">
+                <button type="button" class="cancel-btn1" (click)="closeDeviceEditPopup()">Cancel</button>
+                <button type="button" class="save-btn1" (click)="saveUpdatedDevice()">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+<!-- Delete  Popup for device -->
+<div class="delete-modal" *ngIf="showDeleteDevicePopup">
+    <div class="delete-modal-content">
+        <p>Are you sure you want to delete this device?</p>
+        <div class="delete-modal-buttons">
+            <button class="delete-yes-btn" (click)="confirmDeleteDevice()">Yes</button>
+            <button class="delete-no-btn" (click)="closeDeleteDevicePopup()">No</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Delete Confirmation Popup -->
+<div class="delete-modal" *ngIf="isDeletePopupVisible">
+    <div class="delete-modal-content">
+        <p>Are you sure you want to delete this item?</p>
+        <div class="delete-modal-buttons">
+            <button class="delete-yes-btn"(click)="performDelete()">Yes</button>
+            <button class="delete-no-btn" (click)="closeDeletePopup()">No</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="modal-overlay2" *ngIf="locShowPopup">
+    <div class="modal-content2">
+      <h2>Add Location</h2>
+  
+      <label>Location Name:</label>
+      <input type="text" [(ngModel)]="locationData.name" />
+  
+      <label>Description:</label>
+      <input type="text" [(ngModel)]="locationData.description" />
+<div class="status-container">
+      <label>Status:</label>
+      <label class="switch">
+          <input type="checkbox" [(ngModel)]="locationData.status">
+          <span class="slider"></span>
+
+      
+    
+        
+      </label>
+    </div>
+  
+      <div class="modal-buttons2">
+        <button class="subbtn" (click)="addLoc()">Apply</button>
+        <button class="resetbtn" (click)="canLoc()">Cancel</button>
+      </div>
+    </div>
+  </div>
+  
+
+<!-- Edit Location Modal -->
+<!-- <div class="modal-overlay2" *ngIf="EditlocShowPopup">
+    <div class="modal-content2">
+      <h2>Edit Location</h2>
+
+      <label>Location Name:</label>
+      <input type="text" [(ngModel)]="locationName" />
+  
+      <label>Description:</label>
+      <input type="text" />
+  
+      <div class="modal-buttons2">
+        <button class="subbtn" (click)="updateLoc()">Update</button>
+        <button class="resetbtn" (click)="canEditLoc()">Cancel</button>
+      </div>
+    </div>
+  </div> -->
+  
+
+
+<!-- Edit Location Modal -->
+<div class="modal-overlay2" *ngIf="EditlocShowPopup">
+    <div class="modal-content2">
+      <h2>Edit Location</h2>
+  
+      <label>Location Name:</label>
+      <input type="text" [(ngModel)]="locationData.name" />
+  
+      <label>Description:</label>
+      <input type="text" [(ngModel)]="locationData.description" /> 
+
+ <div class="status-container">
+      <label>Status:</label>
+      <label class="switch">
+          <input type="checkbox" [(ngModel)]="locationData.status">
+          <span class="slider"></span>
+          
+      </label>
+ </div>
+  
+      <div class="modal-buttons2">
+        <button class="subbtn" (click)="updateLoc()">Update</button>
+        <button class="resetbtn" (click)="canEditLoc()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+
+<!-- Delete Confirmation Modal for Location -->
+<div class="delete-modal" *ngIf="isDeleteLocPopupVisible">
+    <div class="delete-modal-content">
+        <p>Are you sure you want to delete this location?</p>
+        <div class="delete-modal-buttons">
+            <button class="delete-yes-btn" (click)="deleteLoc()">Yes</button>
+            <button class="delete-no-btn" (click)="closeDeleteLoc()">No</button>
+        </div>
+    </div>
+</div>
+
+
+  
+
+<!-- Popup Modal add canteen  -->
+<div class="modal-overlay3" *ngIf="addCanteenPopupVisible">
+  <div class="modal-content3">
+    <h2>Add Canteen</h2>
+    
+    <label for="canteenName">Canteen Name</label>
+    <input type="text" id="canteenName"[(ngModel)]="canteenData.name" >
+
+    <label for="description">Description</label>
+    <textarea id="description"[(ngModel)]="canteenData.description"></textarea>
+
+
+    <div class="status-container">
+        <label>Status:</label>
+        <label class="switch">
+            <input type="checkbox" [(ngModel)]="canteenData.status">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+   
+    <div class="button-group3">
+      <button class="applybtn" (click)="saveCanteenChanges()">AddCanteen</button>
+      <button class="clearbtn" (click)="closeCanteenPopup()">Close</button>
+    </div>
+    
+    
+  </div>
+</div>
+
+
+<!-- Popup Modal add canteen  -->
+<div class="modal-overlay3" *ngIf="editCanteenPopupVisible">
+    <div class="modal-content3">
+      <h2>Edit Canteen</h2>
+      
+      <label for="canteenName">Canteen Name</label>
+      <input type="text" id="canteenName" [(ngModel)]="canteenData.name" >
+  
+      <label for="description">Description</label>
+      <textarea id="description"  [(ngModel)]="canteenData.description"></textarea>
+
+<div class="status-container">
+      <label>Status:</label>
+      <label class="switch">
+          <input type="checkbox"  [(ngModel)]="canteenData.status" >
+          <span class="slider"></span>
+      </label>
+</div>
+  
+     
+      <div class="button-group3">
+        <button class="applybtn" (click)="editCanteen()">UpdateCanteen</button>
+        <button class="clearbtn" (click)="closeEditCanteen()">Close</button>
+      </div>
+      
+      
+    </div>
+  </div>
+
+
+
+  <!-- Delete Confirmation Modal for Location -->
+<div class="delete-modal" *ngIf="isDeleteCanteenPopupVisible">
+    <div class="delete-modal-content">
+        <p>Are you sure you want to delete this canteen?</p>
+        <div class="delete-modal-buttons">
+            <button class="delete-yes-btn" (click)="deleteCanteen()">Yes</button>
+            <button class="delete-no-btn" (click)="closeDeleteCanteen()">No</button>
+        </div>
+    </div>
+</div>
+             
+
+  
+  <router-outlet></router-outlet>

@@ -1,0 +1,876 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+
+  }
+
+/* Left Side */
+.navbar-left1 {
+    font-size: 15px;
+    font-family: 'RedHatDisplay-Regular';
+}
+
+/* Right Side */
+
+.navbar-right1 {
+    display: flex;
+    gap: 20px; /* Space between icons */
+}
+
+.navbar1{
+    /* margin-top: 20px; */
+    width: 100%;
+    height: 60px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    /* color: black; */
+    font-size: 20px;
+    font-weight: bolder;
+}
+  
+
+
+
+
+.icon-container {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    margin-left: 20px;
+    justify-content: center;
+} 
+
+.icon-button {
+    background: #7030a0;
+    border: 1px solid #7030a0;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 40px; /* Slightly increased */
+    height: 40px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-button img {
+    width: 16px; /* Increased from 17px */
+    height: 16px;
+    filter: brightness(0) invert(1); /* Converts icon color to white */
+    font-weight: bold; /* Ensures bold effect */
+}
+
+
+
+.navbar-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 100vw;
+    width: 100%; /* Make the container full-width */
+    /* padding: 20px;  */
+    text-align: center;
+  }
+
+
+
+
+
+  /* Navbar */
+.navbar {
+    width: 100%;
+    height: 60px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    /* color: black; */
+    font-size: 20px;
+    font-weight: bolder;
+    
+}
+
+.navbar-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+
+
+/* Left Side */
+.navbar-left {
+    font-size: 15px;
+    font-family: 'RedHatDisplay-Regular';
+}
+
+/* Right Side */
+
+.navbar-right {
+    display: flex;
+    gap: 10px; /* Space between icons */
+}
+
+/* Buttons */
+/* .nav-button {
+    background-color: #7030a0;
+    color: white;
+    padding: 8px 15px;
+    margin: 0 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 16px;
+    height: 35px;
+    width: 95px;
+    background: #ddd;
+   
+    border:none;
+} */
+
+.purple-btn {
+    background-color: #7030a0;
+    color: white;
+    border: none;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 35px;
+    width: 95px;
+    margin: 0 5px;
+    font-weight: bolder;
+    font-family: 'RedHatDisplay-Regular';
+   
+  }
+.nav-button{
+    background-color:lightgray;
+    color: black;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 35px;
+    width: 95px;
+    margin: 0 5px;
+    /* font-weight: bolder; */
+   
+}
+/* .nav-button:hover {
+    background-color: #7030a0;
+} */
+
+
+.nav-button.active {
+    background: #7030A0;
+    color: white;
+}
+
+
+
+  /* Full-width table */
+  /* table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+  } */
+
+
+/* Scrollable Table Container */
+.table-container {
+    width: 100%;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    /* margin-top: 10px; */
+  }
+  
+  /* Make table full-width */
+  .company-table {
+    width: 100%;
+    min-width: 1200px; /* Ensure it expands when more columns are added */
+    border-collapse: collapse;
+    background: white;
+    border: 1px solid #ccc;
+   
+  }
+  
+  
+  /* Table Header & Cells */
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'RedHatDisplay-Regular';
+
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  /* Header Styling */
+  th {
+    background-color: white;
+    color: black;
+   
+    
+  }
+  
+  /* Alternating row colors for better readability */
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  /* Image Styling */
+  img {
+    border-radius: 5px;
+  }
+  
+  /* Responsive Table */
+  @media (max-width: 768px) {
+    th, td {
+        padding: 8px;
+        font-size: 14px;
+    }
+    
+  }
+
+/*Action icon design */
+  .tab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+    padding: 8px 15px;
+    border-radius: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    color:black;
+    transition: background 0.3s ease-in-out;
+    gap:10px;
+}
+
+
+
+.tab i {
+    margin-left: 5px;
+    font-size: 12px;
+    color: gray;
+}
+
+
+
+/* Icons inside tabs */
+.tab-icon {
+    width: 18px;
+    height: 18px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Popup Background */
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Popup Content */
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 600px;
+    text-align: center;
+    font-family: 'RedHatDisplay-Regular';
+}
+
+/* Form Group */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.form-group label {
+   
+    margin-bottom: 5px;
+    font-family: 'RedHatDisplay-Regular';
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'RedHatDisplay-Regular';
+    font-size: 14px;
+}
+
+/* Buttons */
+.modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+
+.modal-buttons button {
+    background-color: #7030a0;
+    color: white;
+    border: none;
+    width:100px;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'RedHatDisplay-Regular';
+    font-size: 
+    14px;
+}
+
+.modal-buttons button:hover {
+    background-color: #5a2580;
+}
+
+.modal-buttons button:nth-child(2) {
+    background-color:gray;
+}
+
+
+
+/* delete popup code */
+
+.delete-btn {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+
+
+
+/* delete popupModal*/
+.delete-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+}
+
+/* Modal Content */
+.delete-modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 350px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal Title */
+.delete-modal-content p {
+    margin-bottom: 15px;
+    font-size: 15px;
+    color: #333;
+    font-family: 'RedHatDisplay-Regular';
+}
+
+/* Button Container */
+.delete-modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* Yes Button */
+.delete-yes-btn {
+    background-color: #7030a0;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background 0.3s ease;
+    width:80px;
+    font-family: 'RedHatDisplay-Regular';
+}
+
+
+
+/* No (Cancel) Button */
+.delete-no-btn {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background 0.3s ease;
+    width:80px;
+}
+
+
+
+
+
+
+
+
+
+/* Edit company popup */
+.edit-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+}
+
+/* Modal Content */
+.edit-modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 550px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal Title */
+.edit-modal-content h3 {
+    margin-bottom: 15px;
+    font-size: 15px;
+    color: #333;
+    font-family: 'RedHatDisplay-Regular';
+}
+
+/* Form Group */
+.edit-form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+/* Labels */
+.edit-form-group label {
+
+    margin-bottom: 5px;
+    font-family: 'RedHatDisplay-Regular';
+    font-size: 14px;
+}
+
+/* Input Fields */
+.edit-form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'RedHatDisplay-Regular';
+    font-size: 14px;
+}
+
+/* Button Container */
+.edit-modal-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* Apply Button */
+.edit-apply-btn {
+    background-color: #7030a0;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background 0.3s ease;
+    width:30%;
+    font-family: 'RedHatDisplay-Regular';
+    font-size: 14px;
+}
+
+
+/* Clear Button */
+.edit-clear-btn {
+    background-color: gray;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background 0.3s ease;
+    width:30%;
+}
+
+
+
+
+
+
+/* Switch Container */
+.toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centers horizontally */
+    gap: 10px;
+  }
+  
+  /* Switch Toggle */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+  }
+  
+  /* Hide the default checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* Slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+  }
+  
+  /* Slider circle */
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  /* Toggle ON (Checked) */
+  .switch input:checked + .slider {
+    background-color: #7030a0;
+  }
+  
+  .switch input:checked + .slider:before {
+    transform: translateX(20px);
+  }
+  
+  /* Dropdown Styling */
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus Effect */
+select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Dropdown Arrow Styling */
+select::-ms-expand {
+    display: none;
+}
+
+select:hover {
+    border-color: #007bff;
+}
+
+/* Optional: Disable selection when dropdown is disabled */
+select:disabled {
+    background-color: #f2f2f2;
+    cursor: not-allowed;
+}
+.time-picker {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.time-picker select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+
+
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+} 
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+  overflow: visible;
+  z-index: auto;
+
+}
+
+.tooltip-container .tooltip-text {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  visibility: hidden;
+  opacity: 0;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 9999;
+  width:70px;
+}
+
+
+
+
+
+
+/* 
+
+.pagination-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+   
+    font-size: 14px;
+    gap: 10px;
+    color: #333;
+  }
+  
+
+  
+  .pagination-container label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .pagination-container select {
+    padding: 4px 6px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .range-info {
+    min-width: 120px;
+    text-align: center;
+  }
+  
+  .arrow-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #7030a0;
+  }
+  
+  .arrow-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+    */
+
+
+
+    .pagination-container {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+       
+        font-size: 14px;
+        gap: 15px;
+        color: #333;
+        flex-wrap: wrap; 
+      }
+      
+      .pagination-container label {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin: 0;
+        white-space: nowrap;
+      }
+      
+      .pagination-container select {
+        padding: 4px 6px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        cursor: pointer;
+        width: 50px; 
+      }
+      
+      .range-info {
+        min-width: 100px;
+        text-align: center;
+        white-space: nowrap;
+      }
+      
+      .arrow-btn {
+        background-color: transparent;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        color: #7030a0;
+      }
+      
+      .arrow-btn:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+      
+
+
+
+.breadcrumb-wrapper {
+  /* padding: 10px 20px; */
+  /* background-color: #f5f5f5; */
+  font-size: 14px;
+  border-bottom: 1px solid #ccc;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-link {
+  color: black;
+  text-decoration: none;
+  margin-right: 5px;
+  font-family: 'RedHatDisplay-Regular';
+}
+.breadcrumb-link:hover {
+  color: #7030a0;
+  font-weight: bold;
+  
+}
+.breadcrumb-separator {
+  margin: 0 5px;
+  color: #666;
+}
+
+.breadcrumb-current {
+  color: #7030a0;
+  font-weight: bold;
+  font-family: 'RedHatDisplay-Regular';
+}
+
+
+
+
+
+.user-management-container {
+  border: 1px solid #ccc;
+  overflow: hidden;
+  width: 100%;
+  margin-top: 50px;
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+}
+
+.user-tabs {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+}
+
+.tab1 {
+  padding: 10px 20px;
+  cursor: pointer;
+  color: #6a1b9a;
+  border-bottom: 3px solid transparent;
+  /* font-weight: 500; */
+  font-size: 13px;
+  font-family: 'RedHatDisplay-Regular';
+}
+
+.tab1.active {
+  border-bottom: 3px solid #6a1b9a;
+  font-weight: bold;
+  font-family: 'RedHatDisplay-Regular';
+}

@@ -1,0 +1,491 @@
+
+
+.project-box .icons {
+    display: flex;
+    gap: 5px;
+} 
+
+.sub-item .icons {
+    display: flex;
+    gap: 5px;
+}
+
+.canteen-item .icons {
+    display: flex;
+    gap: 5px;
+}
+
+
+
+.project-box .icons img,
+.project-box span img {
+    width: 14px;
+    height: 14px;
+}
+
+.sub-item .icons img,
+.sub-item span img {
+    width: 14px;
+    height: 14px;
+}
+.canteen-item .icons img,
+.canteen-item span img {
+    width: 14px;
+    height: 14px;
+}
+
+.project-list ul ul {
+    margin-left: 15px;
+    padding-left: 15px;
+    border-left: 2px solid #d3d3d3;
+}
+.right-section {
+    width: 50%;
+    background-color: white;
+    padding: 15px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px; 
+    min-height: 800px;
+}
+.right-panel {
+    flex: 1;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.access-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.access-table th, .access-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+    font-family: 'RedHatDisplay-Regular';
+}
+
+.access-table th {
+    background-color: #e2e4e7;
+    font-size: 13px;
+
+}
+
+.checkbox-cell {
+    text-align: center;
+    width: 80px;
+}
+
+.access-table input[type="checkbox"] {
+    transform: scale(1.2);
+}
+
+
+
+
+
+/* popup css style for + meal tracking*/
+.modal-overlay2 {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000; 
+}
+
+
+.modal-content2 {
+    background: white;
+    width: 550px; 
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+   
+}
+  /* Close Button */
+  .close-btn2 {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  /* Input Fields */
+  input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+ 
+
+
+  /* Buttons */
+  .modal-buttons2 {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+   
+}
+
+.subbtn {
+    background-color: #7030a0;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 200px;
+    
+    
+}
+
+.resetbtn{
+    background-color: gray;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 200px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.roles-edit-container {
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    height: 100%;
+}
+
+
+.roles-edit-header {
+    background-color: #e2e4e7;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: 'RedHatDisplay-Regular';
+}
+
+.roles-edit-form {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    }
+
+ .form-group label {
+    font-size: 13px;
+    font-weight: normal;
+    margin-bottom: 5px;
+    color: #000;
+    font-family: 'RedHatDisplay-Regular';
+}
+
+.form-group input {
+    height: 30px;
+    padding: 5px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'RedHatDisplay-Regular';
+} 
+
+
+
+.project-list ul {
+    list-style-type: none;
+    padding-left: 0;
+   
+}
+
+/* Project, Sub-item, and Canteen Styling */
+.project-item, .sub-item, .canteen-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px 10px;
+    /* border-bottom: 1px solid #ccc; */
+}
+
+/* Dropdown Image Rotation */
+img[alt="Dropdown"] {
+    width: 10px;
+    height: 14px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.rotate {
+    transform: rotate(90deg);
+}
+
+/* Ensure Canteens Align Vertically */
+.canteen-list {
+    padding-left: 30px; /* Indent canteens inside Southie */
+}
+
+.canteen-list li {
+    display: block; /* Ensure each canteen appears on a new line */
+    margin-top: 5px;
+}
+
+.canteen-item {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+    border:1px solid lightgray;
+    margin-top: 5px;
+    transition: background 0.3s, color 0.3s;
+    /* background-color: #f8f9fa; */
+    font-size: 14px;
+    font-family: 'RedHatDisplay-Regular';
+}
+
+  .canteen-item.selected {
+    background-color: #7030a0;
+    color: white;
+  }
+  
+/* Pushes icons to the right */
+.icons {
+    margin-left: auto;
+}
+
+.icons img {
+    width: 16px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+
+
+
+.container {
+    display: flex;
+    gap: 14px;
+    background-color: transparent;
+    border: none;
+    min-height: 700px;
+    max-width: 100%;
+}
+
+/* Left Section (Project Hierarchy) */
+.left-section {
+    width: 50%;
+    background-color: white;
+    padding: 15px;
+    border: 1px solid #d3d3d3; /* Adds border */
+    border-radius: 5px; /* Rounded corners */
+    min-height: 800px;
+}
+
+
+
+.right-section {
+    width: 50%;
+    background-color: white;
+    padding: 15px;
+    border: 1px solid #d3d3d3; /* Adds border */
+    border-radius: 5px; /* Rounded corners */
+    min-height: 800px;
+}
+.right-section p{
+    font-size: medium;
+}
+
+.access-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between items */
+}
+
+.access-list li {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Space between checkbox and text */
+}
+
+
+/* Ensures checkboxes are properly positioned */
+.access-list input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+
+/* Add borders to Access Permission and Project Hierarchy */
+.left-section,
+.right-section {
+    border: 1px solid #d3d3d3; /* Light gray border */
+    border-radius: 5px; /* Optional: Adds rounded corners */
+    padding: 15px; /* Adjust padding for spacing */
+}
+
+/* Increase border width and underline for section titles */
+.left-section p,
+.right-section p {
+    font-size: 13px;
+    font-weight: bold;
+    border-bottom: 1px solid #d3d3d3; /* Thicker light gray underline */
+    padding-bottom: 8px; /* Space between text and underline */
+    margin-bottom: 12px; /* Space below underline */
+   width: 100%;
+    display: inline-block; /* Ensures underline is only as wide as the text */
+    font-family: 'RedHatDisplay-Regular';
+}
+
+
+
+
+
+/* Common Box Styling */
+.project-box, .sub-item-box, .canteen-box {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    width: 700px;
+    margin-left: 20px;
+    font-size: 14px;
+  
+}
+
+/* Adjustments for Project-Level Boxes */
+.project-box {
+    border: 1px solid #ddd;
+    margin-left: 0; /* Keep projects aligned left */
+    width:100%;
+    font-family: 'RedHatDisplay-Regular';
+    font-size: 14px;
+}
+
+/* Adjustments for Child-Level Boxes */
+.sub-item-box {
+    margin-left: 20px; /* Indent children (Southie, etc.) */
+}
+
+/* Adjustments for Canteens */
+.canteen-box {
+    margin-left: 40px; /* Further indent canteens */
+}
+ul {
+    list-style: none; /* Removes default bullets */
+    padding: 0;
+    margin: 0;
+}
+
+
+
+.sub-item{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px 10px;
+   
+      cursor: pointer;
+      padding: 8px;
+      /* background:white; */
+      border: 1px solid #ddd;
+      margin: 4px 0;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+  }
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.save-button {
+    background-color: #7030a0;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    width: 100px;
+    font-family: 'RedHatDisplay-Regular';
+    /* height: 40px; */
+}
+
+
+
+.breadcrumb-wrapper {
+    /* padding: 10px 20px; */
+    /* background-color: #f5f5f5; */
+    font-size: 14px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px;
+  }
+  
+  .breadcrumb-link {
+    color: black;
+    text-decoration: none;
+    margin-right: 5px;
+  }
+  .breadcrumb-link:hover {
+    color: #7030a0;
+    font-weight: bold;
+    
+  }
+  .breadcrumb-separator {
+    margin: 0 5px;
+    color: #666;
+  }
+  
+  .breadcrumb-current {
+    color: #7030a0;
+    font-weight: bold;
+  }

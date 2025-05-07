@@ -1,0 +1,122 @@
+<!-- Breadcrumb Section -->
+<div class="breadcrumb-wrapper">
+  <nav class="breadcrumb">
+    <a routerLink="/administration" class="breadcrumb-link">Administration</a>
+    <span class="breadcrumb-separator">›</span>
+    <a routerLink="/devices" class="breadcrumb-link"[routerLink]="'/user-management'" >User</a>
+    <span class="breadcrumb-separator">›</span>
+   
+    <span class="breadcrumb-current">Roles</span>
+  </nav>
+</div>
+<div class="container">
+    <!-- roles -->
+    <nav class="navbar1">
+        <!-- Left Side -->
+        <div class="navbar-left1">
+            <span class="navbar-title1">Roles</span>
+        </div>
+    
+        <div class="navbar-right">
+            <button class="nav-button" routerLink="/extrasrole" >Roles</button> 
+            <!-- <button class="nav-button1" routerLink="/user-management">Users</button> -->
+            <div class="tooltip-container">
+            <button class="icon-button"><img src="assets/refresh.png" alt="Refresh"></button>
+            <span class="tooltip-text">Refresh</span>
+            </div>
+            <div class="tooltip-container">
+            <button class="icon-button"><img src="assets/add.png" routerLink="/rolesadd" alt="Add"></button>
+            <span class="tooltip-text">Add</span>
+            </div>
+            
+        </div>
+        
+    
+    </nav> 
+    
+    <table class="company-table">
+        <thead>
+            <tr>
+                <th>Role Id</th>
+                <th>Role Name</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+            <!-- <tr *ngFor="let role of roles"> -->
+              <tr *ngFor="let role of pagedRoles">
+               
+                <td>{{ role.roleId }}</td>
+                <td>{{ role.roleName }}</td>
+                <td>{{role.description}}</td>
+                <td>
+                  <div class="tab">
+                    <div class="tooltip-container">
+                    <img src="assets/edit.png" alt="Edit" (click)="editRole(role.roleId)" class="tab-icon">
+                    <span class="tooltip-text">Edit</span>
+                    </div>
+                    <div class="tooltip-container">
+                    <img src="assets/delete.png" alt="Delete" (click)="openDeletePopup(role.roleId)" class="tab-icon">
+                    <span class="tooltip-text">Delete</span>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr class="pagination-row">
+                <td colspan="4">
+                  <div class="pagination-container">
+                    <label>Items per page:
+                      <select [(ngModel)]="roleItemsPerPage" (change)="onRoleItemsPerPageChange()">
+                        <option *ngFor="let size of rolePageSizeOptions" [value]="size">{{ size }}</option>
+                      </select>
+                    </label>
+              
+                    <span class="range-info">{{ roleStartItem }}–{{ roleEndItem }} of {{ roleTotalItems }}</span>
+              
+                    <button (click)="prevRolePage()" [disabled]="roleCurrentPage === 1" class="arrow-btn">⏴</button>
+                    <button (click)="nextRolePage()" [disabled]="roleEndItem >= roleTotalItems" class="arrow-btn">⏵</button>
+                  </div>
+                </td>
+              </tr>
+              
+        </tbody>
+    </table>
+    </div>
+
+
+<!-- Delete Role Confirmation Modal -->
+<!-- Delete Confirmation Popup -->
+<div class="modal" *ngIf="isDeletePopupOpen">
+    <div class="modal-content">
+      <p>Are you sure you want to delete this role?</p>
+  
+      <div class="modal-buttons">
+        <button (click)="deleteRole()">Yes</button>
+        <button (click)="closeDeletePopup()">No</button>
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- <div class="delete-modal"  *ngIf="isDeletePopupOpen">
+    <div class="delete-modal-content">
+        <p>Are you sure you want to delete this role</p>
+        <div class="delete-modal-buttons">
+            <button class="delete-yes-btn" (click)="deleteRole()">Yes</button>
+            <button class="delete-no-btn" (click)="closeDeletePopup()">No</button>
+        </div>
+    </div>
+</div> -->
+
+  
+  
+  
+
+    <router-outlet></router-outlet>
+    
+    
+    
+
+  

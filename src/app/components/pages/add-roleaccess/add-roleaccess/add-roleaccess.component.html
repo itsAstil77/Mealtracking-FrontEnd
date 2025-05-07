@@ -1,0 +1,132 @@
+<!-- Breadcrumb Section -->
+<div class="breadcrumb-wrapper">
+    <nav class="breadcrumb">
+      <a routerLink="/administration" class="breadcrumb-link">Administration</a>
+      <span class="breadcrumb-separator">›</span>
+      <a routerLink="/devices" class="breadcrumb-link"[routerLink]="'/user-management'" >User</a>
+      <span class="breadcrumb-separator">›</span>
+      <a routerLink="/devices" class="breadcrumb-link"[routerLink]="'/rolesmanagement'" >Role Access</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-current">Add Role-Access</span>
+    </nav>
+  </div>
+<div class="body"> 
+     <div class="roles-edit-container">
+        <div class="roles-edit-header">Add Role-Access</div>
+        
+    
+        <div class="roles-edit-form">
+            <div class="form-group">
+                <label for="roleName">Role Name</label>
+            
+                <!-- <input type="text" id="roleName" [(ngModel)]="roleName" placeholder="Enter Role Name"> -->
+
+                <select id="roleName" [(ngModel)]="roleName" (click)="fetchRoles()">
+                  
+                    <option *ngFor="let role of roleDrop" [value]="role.roleName">{{ role.roleName }}</option>
+                </select>
+
+                   
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <!-- <input type="text" id="description" value="SuperAdmin"> -->
+                <input type="text" id="description" [(ngModel)]="description">
+            </div>
+        </div>
+    </div>
+   
+    <div class="container">
+    
+    
+    
+        <div class="right-section">
+            <table class="access-table">
+                <thead>
+                    <!-- <tr>
+                        <th>Access Permission</th>
+                        <th>View</th>
+                        <th>Edit</th>
+                    </tr> -->
+
+                    <tr>
+                        <th>Access Permission</th>
+                        <th>Enable</th>
+                      </tr>
+                </thead>
+              
+                <tbody>
+                    <tr *ngFor="let module of ['dashboard', 'events', 'processAutomation', 'reports', 'administration']">
+                      <td>{{ module }}</td>
+                      <td class="checkbox-cell">
+                        <input type="checkbox" [(ngModel)]="allowedModules[module]">
+                      </td>
+                    </tr>
+                  </tbody>
+            </table> 
+
+            <div class="button-container">
+                <button class="submit-btn"(click)="saveRole()">Save</button>
+            </div>
+        </div>
+    
+        
+    </div> 
+
+</div>
+    <!-- </body> -->
+
+    <router-outlet></router-outlet>
+
+
+
+    <!-- <div class="left-section">
+         
+                
+                <div class="project-list">
+                    <p>Project Hierarchy</p>
+                    <ul>
+                        <li *ngFor="let project of projects">
+                            <div class="project-box">
+                                <span (click)="toggleDropdown(project)">
+                                    <img src="assets/dropdown.svg" [class.rotate]="project.expanded" alt="Dropdown">
+                                </span>
+                                {{ project.name }}
+                                <span class="icons">
+                                    <img src="assets/plus-small.png" alt="Add" (click)="showPopup = true">
+                                    <img src="assets/edit.png" alt="Edit" (click)="openEditPopup()">
+                                    <img src="assets/delete.png" alt="Delete" (click)="openDeletePopup(project)">
+                                </span>
+                            </div>
+                            <ul *ngIf="project.expanded">
+                                <li *ngFor="let child of project.children">
+                                    <div class="project-box">
+                                        <span (click)="toggleDropdown(child)">
+                                            <img src="assets/dropdown.svg" [class.rotate]="child.expanded" alt="Dropdown">
+                                        </span>
+                                        {{ child.name }}
+                                        <span class="icons">
+                                            <img src="assets/plus-small.png" alt="Add" (click)="showEditCanteenPopup()">
+                                            <img src="assets/edit.png" alt="Edit" (click)="showEditCanteenPopup()">
+                                            <img src="assets/delete.png" alt="Delete" (click)="openDeletePopup(project)">
+                                        </span>
+                                    </div>
+                                    <ul *ngIf="child.expanded" class="canteen-list">
+                                        <li *ngFor="let canteen of child.canteens">
+                                            <div class="project-box">
+                                                <span (click)="toggleDropdown(canteen)">
+                                                    <img src="assets/dropdown.svg" [class.rotate]="canteen.expanded" alt="Dropdown">
+                                                </span>
+                                                {{ canteen.name }}
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+         
+        </div> -->
+    
+       

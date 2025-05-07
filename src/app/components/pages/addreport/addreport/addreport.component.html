@@ -1,0 +1,222 @@
+
+<div class="roles-edit-container">
+
+    <div class="roles-edit-header">Generate Report</div>
+  
+    <form class="roles-edit-form">
+
+
+      <div class="form-group">
+        <label for="reportName">Type</label>
+        <input type="text" id="reportName" [(ngModel)]="employeeName" name="reportName" required />
+      </div>
+      
+      <!-- Start Date -->
+<div class="form-group">
+    <label for="startDate">Start Date</label>
+    <input type="date" id="startDate" [(ngModel)]="startDate" name="startDate" />
+  </div>
+  
+  <!-- End Date -->
+  <div class="form-group">
+    <label for="endDate">End Date</label>
+    <input type="date" id="endDate" [(ngModel)]="endDate" name="endDate" />
+  </div>
+
+  <!-- Canteen Dropdown with Label -->
+<div class="form-group">
+    <label for="canteenDropdown">Select Canteen</label>
+    <div id="canteenDropdown" class="dropdown-container" (click)="toggleCanteenDropdown()">
+      <div class="dropdown-selected"> 
+        {{ getSelectedCanteenNames() }}
+      </div>
+      <div class="dropdown-options" *ngIf="canteenDropdownOpen">
+        <div *ngFor="let canteen of canteens">
+          <label>
+         
+            <input
+              type="checkbox"
+              [value]="canteen.id"
+              (change)="onCanteenToggle($event, canteen.id)"
+              [checked]="selectedCanteens.includes(canteen.id)"
+            />
+            {{ canteen.name }}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Meal Type Dropdown with Label -->
+  <div class="form-group">
+    <label for="mealDropdown">Select Meal Type</label>
+    <div id="mealDropdown" class="dropdown-container" (click)="toggleMealDropdown()">
+      <div class="dropdown-selected">
+        {{ getSelectedMealNames() }}
+      </div>
+      <div class="dropdown-options" *ngIf="mealDropdownOpen">
+        <div *ngFor="let meal of meals">
+          <label>
+            <input
+              type="checkbox"
+              [value]="meal.id"
+              (change)="onMealToggle($event, meal.id)"
+              [checked]="selectedMeals.includes(meal.id)"
+            />
+            {{ meal.mealType }}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+      <!-- Buttons -->
+      <div class="form-buttons">
+        <button type="submit" (click)="applyReport()">View Report</button>
+        <button type="submit" (click)="clearReport()">Clear</button>
+      </div>
+    </form>
+  </div>
+
+  
+
+
+
+<nav class="navbar" *ngIf="showTable">
+
+  <div class="navbar-left">
+      <span class="navbar-title">{{ reportName || 'Report Details' }}</span>
+  </div>
+
+  <div class="navbar-right" >
+     
+      <div class="tooltip-container">
+      <button class="icon-button"><img src="assets/download.png" (click)="showTable ? downloadNormalCSV() : downloadConsolidatedCSV()" alt="Download"></button>
+      <span class="tooltip-text">Download</span>
+      </div>
+      <div class="tooltip-container">
+      <button class="icon-button"><img src="assets/page.png"></button>
+      <span class="tooltip-text">Pagination</span>
+      </div>
+  </div>
+</nav>
+
+
+<table *ngIf="showTable">
+<thead>
+  <tr>
+    <th>Type</th>
+    <th>Date</th>
+    <th>ID Number</th>
+    <th>Name</th>
+   
+    <th>Location</th>
+    <th>Canteen</th>
+    <th>Device Name</th>
+
+    <th>Role</th>
+    <th>Company</th>
+
+    <th>Start Date</th>
+    <th>End Date</th>
+ 
+    <th>Card Badge Number</th>
+    <th *ngFor="let meal of mealHeaders">{{ meal }}</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let item of reportData">
+    <td>{{item.type}}</td>
+    <td>{{item.date? (item.date | date: 'dd-MM-yyyy') : '-' }}</td>
+    <td>{{ item.idNumber || item.contractorId || '-' }}</td>
+    <td>{{ item.name || item.contractorName || item.visitorName || '-' }}</td>
+
+    <td>{{ item.location || '-' }}</td>
+    <td>{{ item.canteen || '-' }}</td>
+    <td>{{ item.deviceName || '-' }}</td>
+ 
+    <td>{{ item.role || '-' }}</td>
+    <td>{{ item.company || item.companyName || item.visitorCompany || '-' }}</td>
+    <td>{{ item.startDate ? (item.startDate | date: 'dd-MM-yyyy') : '-' }}</td>
+    <td>{{ item.endDate ? (item.endDate | date: 'dd-MM-yyyy') : '-' }}</td>
+  
+    <td>{{ item.cardBadgeNumber || '-' }}</td>
+
+    <td *ngFor="let meal of mealHeaders">
+      {{ item.mealType && item.mealType[meal] ? item.mealType[meal] : '-' }}
+    </td>
+  </tr>
+</tbody>
+</table>
+
+
+
+<!-- Simple Navbar -->
+<nav class="navbar" *ngIf="showTable1">
+  <!-- Left Side -->
+  <div class="navbar-left">
+      <span class="navbar-title">{{ reportName || 'Consolidated Report Details' }}</span>
+  </div>
+
+  <div class="navbar-right" >
+     
+      <div class="tooltip-container">
+      <button class="icon-button"><img src="assets/download.png"  (click)="showTable ? downloadNormalCSV() : downloadConsolidatedCSV()" alt="Download"></button>
+      <span class="tooltip-text">Download</span>
+      </div>
+      <div class="tooltip-container">
+      <button class="icon-button"><img src="assets/page.png"></button>
+      <span class="tooltip-text">Pagination</span>
+      </div>
+  </div>
+
+
+
+</nav>
+
+
+<table  *ngIf="showTable1">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>ID Number</th>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Canteen</th>
+      <th>Company</th>
+    
+      <th *ngFor="let meal of mealHeaders">{{ meal }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of reportData">
+      <td>{{ item.type || '-' }}</td>
+      <td>{{ item.personId || '-' }}</td>
+      <td>{{ item.name || '-' }}</td>
+      <td>{{ item.location || '-' }}</td>
+      <td>{{ item.canteen || '-' }}</td>
+      <td>{{ item.company || '-' }}</td>
+
+      <td *ngFor="let meal of mealHeaders">
+          {{ item.mealCounts && item.mealCounts[meal] ? item.mealCounts[meal] : '-' }}
+      </td>
+    </tr>
+
+
+    <tr class="totals-row">
+      <td colspan="6" style="font-weight: bold;">Total</td>
+   
+      <td *ngFor="let meal of mealHeaders">
+        {{
+          summaryTotals.mealTypeCounts && summaryTotals.mealTypeCounts[meal] !== undefined
+            ? summaryTotals.mealTypeCounts[meal]
+            : '-'
+        }}
+      </td>
+    </tr>
+    
+
+
+  </tbody>
+</table>

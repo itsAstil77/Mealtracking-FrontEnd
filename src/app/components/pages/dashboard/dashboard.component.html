@@ -1,0 +1,503 @@
+<!-- <div class="container"> -->
+    
+ <!-- <div class="main-section">
+      
+         <div class="tabs-navbar">
+            <div class="tab"  [ngClass]="{'active-tab': selectedCanteen === 'canteen1'}"
+             (click)="selectedCanteen = 'canteen1'">
+                canteen 1
+                <div class="tooltip-container">
+                <img src="assets/edit.png" alt="Edit" class="tab-icon" (click)="openPopup('Canteen 1')">
+                <span class="tooltip-text">Edit</span>
+                </div>
+                <div class="tooltip-container">
+                <img src="assets/delete.png" (click)="toggleRemovePopup()" alt="Delete" class="tab-icon">
+                <span class="tooltip-text">Delete</span>
+                </div>
+            </div>
+            <div class="tab"   [ngClass]="{'active-tab': selectedCanteen === 'canteen2'}"  
+                (click)="selectedCanteen = 'canteen2'">
+                canteen 2
+                <div class="tooltip-container">
+                <img src="assets/edit.png" alt="Edit" class="tab-icon"(click)="openPopup('Canteen 2')">
+                <span class="tooltip-text">Edit</span>
+                </div>
+                <div class="tooltip-container">
+                <img src="assets/delete.png" (click)="toggleRemovePopup()" alt="Delete" class="tab-icon">
+                <span class="tooltip-text">Delete</span>
+                </div>
+            </div>
+            <div class="tab"   [ngClass]="{'active-tab': selectedCanteen === 'canteen3'}"
+             (click)="selectedCanteen = 'canteen3'">
+                  canteen 3
+                  <div class="tooltip-container">
+                <img src="assets/edit.png" alt="Edit" class="tab-icon"(click)="openPopup('Canteen 3')">
+                <span class="tooltip-text">Edit</span>
+                  </div>
+                  <div class="tooltip-container">
+                <img src="assets/delete.png" (click)="toggleRemovePopup()" alt="Delete" class="tab-icon">
+                <span class="tooltip-text">Delete</span>
+                  </div>
+
+            </div>
+            <div class="tooltip-container">
+            <div class="add-tab"  (click)="showDashboardPopup()">+</div>
+            <span class="tooltip-text">Add</span>
+            </div>
+        </div> 
+    </div> 
+
+    
+
+
+    <div class="dashboard" *ngIf="selectedCanteen === 'canteen1'">
+ 
+        <div class="section">
+            <div class="section-title">Todays Count </div>
+            <div class="grid">
+                <div class="box">
+                    <img src="assets/breakfast.png" alt="Breakfast Icon" class="icon">
+                    <p>Breakfast</p>
+                    <h3>450</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/lunch.png" alt="lunch Icon" class="icon">
+                    <p>Lunch</p>
+                    <h3>178</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/dinner.png" alt="dinner Icon" class="icon">
+                    <p>Dinner</p>
+                    <h3 class="not-started">556</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/count.png" alt="count Icon" class="icon">
+                    <p>Total</p>
+                    <h3><strong>1079</strong></h3>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="section">
+            <div class="section-title">Last Week Count</div>
+           
+            <div class="grid">
+                <div class="box">
+                    <img src="assets/breakfast.png" alt="Breakfast Icon" class="icon">
+                    <p>Breakfast</p>
+                    <h3>329</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/lunch.png" alt="lunch Icon" class="icon">
+                    <p>Lunch</p>
+                    <h3>450</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/dinner.png" alt="dinner Icon" class="icon">
+                    <p>Dinner</p>
+                    <h3>300</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/count.png" alt="count Icon" class="icon">
+                    <p>Total</p>
+                    <h3><strong>1079</strong></h3>
+                </div>
+            </div>
+        </div>
+
+
+     <div class="section">
+            <div class="section-title">Last Month Count </div>
+          
+            <div class="grid">
+                <div class="box">
+                    <img src="assets/breakfast.png" alt="Breakfast Icon" class="icon">
+                    <p>Breakfast</p>
+                    <h3>156</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/lunch.png" alt="lunch Icon" class="icon">
+                    <p>Lunch</p>
+                    <h3>200</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/dinner.png" alt="dinner Icon" class="icon">
+                    <p>Dinner</p>
+                    <h3>948</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/count.png" alt="count Icon" class="icon">
+                    <p>Total</p>
+                    <h3><strong>5614</strong></h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+    <div class="dashboard" *ngIf="selectedCanteen === 'canteen2'">
+     
+        <div class="section">
+            <div class="section-title">Todays Count</div>
+            <div class="grid">
+                <div class="box">
+                    <img src="assets/breakfast.png" alt="Breakfast Icon" class="icon">
+                    <p>Breakfast</p>
+                    <h3>145</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/lunch.png" alt="lunch Icon" class="icon">
+                    <p>Lunch</p>
+                    <h3>178</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/dinner.png" alt="dinner Icon" class="icon">
+                    <p>Dinner</p>
+                    <h3 class="not-started">167</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/count.png" alt="count Icon" class="icon">
+                    <p>Total</p>
+                    <h3><strong>1079</strong></h3>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="section">
+            <div class="section-title">Last Week Count</div>
+           
+            <div class="grid">
+                <div class="box">
+                    <img src="assets/breakfast.png" alt="Breakfast Icon" class="icon">
+                    <p>Breakfast</p>
+                    <h3>329</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/lunch.png" alt="lunch Icon" class="icon">
+                    <p>Lunch</p>
+                    <h3>450</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/dinner.png" alt="dinner Icon" class="icon">
+                    <p>Dinner</p>
+                    <h3>300</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/count.png" alt="count Icon" class="icon">
+                    <p>Total</p>
+                    <h3><strong>1079</strong></h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Last Month Count</div>
+          
+            <div class="grid">
+                <div class="box">
+                    <img src="assets/breakfast.png" alt="Breakfast Icon" class="icon">
+                    <p>Breakfast</p>
+                    <h3>566</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/lunch.png" alt="lunch Icon" class="icon">
+                    <p>Lunch</p>
+                    <h3>210</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/dinner.png" alt="dinner Icon" class="icon">
+                    <p>Dinner</p>
+                    <h3>194</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/count.png" alt="count Icon" class="icon">
+                    <p>Total</p>
+                    <h3><strong>5614</strong></h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+   
+    <div class="dashboard" *ngIf="selectedCanteen === 'canteen3'">
+     
+        <div class="section">
+            <div class="section-title">Todays Count</div>
+            <div class="grid">
+                <div class="box">
+                    <img src="assets/breakfast.png" alt="Breakfast Icon" class="icon">
+                    <p>Breakfast</p>
+                    <h3>405</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/lunch.png" alt="lunch Icon" class="icon">
+                    <p>Lunch</p>
+                    <h3>78</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/dinner.png" alt="dinner Icon" class="icon">
+                    <p>Dinner</p>
+                    <h3 class="not-started">091</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/count.png" alt="count Icon" class="icon">
+                    <p>Total</p>
+                    <h3><strong>1079</strong></h3>
+                </div>
+            </div>
+            
+        </div>
+
+     
+        <div class="section">
+            <div class="section-title">Last Week Count</div>
+           
+            <div class="grid">
+                <div class="box">
+                    <img src="assets/breakfast.png" alt="Breakfast Icon" class="icon">
+                    <p>Breakfast</p>
+                    <h3>329</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/lunch.png" alt="lunch Icon" class="icon">
+                    <p>Lunch</p>
+                    <h3>450</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/dinner.png" alt="dinner Icon" class="icon">
+                    <p>Dinner</p>
+                    <h3>300</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/count.png" alt="count Icon" class="icon">
+                    <p>Total</p>
+                    <h3><strong>1079</strong></h3>
+                </div>
+            </div>
+        </div>
+
+     
+        <div class="section">
+            <div class="section-title">Last Month Count</div>
+          
+            <div class="grid">
+                <div class="box">
+                    <img src="assets/breakfast.png" alt="Breakfast Icon" class="icon">
+                    <p>Breakfast</p>
+                    <h3>566</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/lunch.png" alt="lunch Icon" class="icon">
+                    <p>Lunch</p>
+                    <h3>210</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/dinner.png" alt="dinner Icon" class="icon">
+                    <p>Dinner</p>
+                    <h3>948</h3>
+                </div>
+                <div class="box">
+                    <img src="assets/count.png" alt="count Icon" class="icon">
+                    <p>Total</p>
+                    <h3><strong>5614</strong></h3>
+                </div>
+            </div>
+        </div>
+
+    </div> -->
+
+    
+
+
+  
+    <div class="main-section">
+        <div class="tabs-navbar">
+          <div 
+            *ngFor="let dashboard of dashboards" 
+            class="tab"
+            [ngClass]="{'active-tab': selectedCanteen === dashboard.dashboardid}"
+            (click)="selectCanteen(dashboard.dashboardid)">
+            
+            {{ dashboard.dashboardName }}
+            
+            <div class="tooltip-container">
+              <img src="assets/edit.png" alt="Edit" class="tab-icon" (click)="openPopup(dashboard.dashboardName)">
+              <span class="tooltip-text">Edit</span>
+            </div>
+            
+            <div class="tooltip-container">
+              <img src="assets/delete.png" (click)="openDeletePopup(dashboard.dashboardid)" alt="Delete" class="tab-icon">
+              <span class="tooltip-text">Delete</span>
+            </div>
+          </div>
+      
+          <div class="tooltip-container">
+            <div class="add-tab" (click)="showDashboardPopup()">+</div>
+          
+            <span class="tooltip-text">Add</span>
+          </div>
+        </div>
+    </div>
+        
+
+
+
+      <!-- Dashboard Content -->
+      <div *ngIf="getSelectedCanteenData() as selectedData">
+        <!-- Today's Count -->
+        <div class="section">
+          <div class="section-title">Today's Count</div>
+          <div class="grid">
+            <div *ngFor="let meal of getMealTypes(selectedData.mealTypeCounts.today)" class="box">
+              <img src="assets/{{ meal.toLowerCase().replace(' ', '_') }}.png" alt="{{ meal }} Icon" class="icon"  (error)="setDefaultImage($event)">
+              <p>{{ meal }}</p>
+              <h3>{{ selectedData.mealTypeCounts.today[meal] || 0 }}</h3>
+            </div>
+
+            <div class="box">
+                <img src="assets/count.png" alt="count Icon" class="icon">
+                <p>Total</p>
+                <h2><strong>{{ selectedData.totalToday || 0 }}</strong></h2>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Last Week Count -->
+        <div class="section">
+          <div class="section-title">Last Week Count</div>
+          <div class="grid">
+            <div *ngFor="let meal of getMealTypes(selectedData.mealTypeCounts.thisWeek)" class="box">
+              <img src="assets/{{ meal.toLowerCase().replace(' ', '_') }}.png" alt="{{ meal }} Icon" class="icon" (error)="setDefaultImage($event)">
+              <p>{{ meal }}</p>
+              <h3>{{ selectedData.mealTypeCounts.thisWeek[meal] || 0 }}</h3>
+            </div>
+
+            <div class="box">
+                <img src="assets/count.png" alt="count Icon" class="icon">
+                <p>Total</p>
+                <h2><strong>{{ selectedData.totalThisWeek || 0 }}</strong></h2>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Last Month Count -->
+        <div class="section">
+          <div class="section-title">Last Month Count</div>
+          <div class="grid">
+            <div *ngFor="let meal of getMealTypes(selectedData.mealTypeCounts.thisMonth)" class="box">
+              <img src="assets/{{ meal.toLowerCase().replace(' ', '_') }}.png" alt="{{ meal }} Icon" class="icon"  (error)="setDefaultImage($event)">
+              <p>{{ meal }}</p>
+              <h3>{{ selectedData.mealTypeCounts.thisMonth[meal] || 0 }}</h3>
+            </div>
+            <div class="box">
+                <img src="assets/count.png" alt="count Icon" class="icon">
+                <p>Total</p>
+                <h2><strong>{{ selectedData.totalThisMonth || 0 }}</strong></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+  
+
+    <!-- Popup Modal -->
+<div class="popup" [class.show]="isPopupVisible">
+    <div class="popup-content">
+        <span class="close-btn" (click)="closePopup()">&times;</span>
+        <h3 class="popup-title">Edit Dashboard</h3>
+        <hr class="popup-divider">
+        <input type="text" [(ngModel)]="selectedCanteen" class="popup-input">
+        <div class="popup-buttons">
+            <button class="save-btn" (click)="saveChanges()">Save</button>
+            <button class="cancel-btn" (click)="closePopup()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+
+
+  <div class="delete-modal" *ngIf="isRemovePopupVisible">
+    <div class="delete-modal-content">
+        <p>Are you sure you want to delete this user?</p>
+        <div class="delete-modal-buttons">
+            <button class="delete-yes-btn" (click)="deleteDashboard()">Yes</button>
+            <button class="delete-no-btn" (click)="confirmRemoval()" >No</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Popup Overlay -->
+
+<div class="dashboard-popup-overlay" *ngIf="isDashboardPopupVisible">
+    <div class="dashboard-popup">
+        <div class="dashboard-popup-header">
+            <p>add dashboard</p>
+            <span class="dashboard-close-btn" (click)="closeDashboardPopup()">&times;</span>
+        </div>
+        <div class="dashboard-popup-body">
+            <input type="text" [(ngModel)]="dashboardName" placeholder="Dashboard Name">
+        </div>
+
+  <div class="container">
+    <div class="left-section">
+      <div class="project-list">  
+     
+
+        <p>Select Canteen</p>
+        <ul>
+            <li *ngFor="let location of locations">
+                <div class="project-box">  
+                    <span (click)="toggleDropdown(location)">
+                        <img src="assets/dropdown.svg" [class.rotate]="location.expanded">
+                    </span>
+                    {{ location.name }}
+                </div>
+                <ul *ngIf="location.expanded">
+                    <li *ngFor="let canteen of location.canteens">
+                        <div class="canteen-item" 
+                            [class.selected]="selectedCanteens.has(canteen.id)"
+                            (click)="selectCanteen1(canteen)">
+                            {{ canteen.name }}
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="dashboard-popup-footer">
+        <button class="dashboard-save-btn" (click)="saveDashboard()">Save</button>
+        <button class="dashboard-cancel-btn" (click)="closeDashboardPopup()">Cancel</button>
+    </div>
+    </div>
+ 
+  </div>
+       
+    </div>
+</div>
+
+
+
+
+
+
+  <router-outlet></router-outlet>
+

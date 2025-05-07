@@ -1,0 +1,294 @@
+
+.roles-edit-header {
+  font-size: 17px;
+  font-weight: bold;
+  color: #5b2c8b;
+  margin-bottom: 25px;
+  text-align: center;
+  font-family: 'RedHatDisplay-Regular';
+}
+.roles-edit-container {
+  background-color: #fff;
+  padding: 24px;
+
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  /* overflow-x: auto; */
+}
+
+.roles-edit-form {
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.form-group {
+  width: 100%;
+  flex: 1 1 200px; /* grow/shrink with min width */
+  min-width: 200px;
+}
+
+@media (max-width: 768px) {
+  .roles-edit-container {
+    padding: 16px;
+  }
+
+  .form-group {
+    flex-direction: column;
+  }
+}
+
+
+label {
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: #333;
+  font-family: 'RedHatDisplay-Regular';
+}
+
+input[type="text"],
+select,
+input[type="date"],
+input[type="password"] {
+  padding: 4px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  width: 300px;
+  font-family: 'RedHatDisplay-Regular';
+  height: 37px;
+}
+
+select[multiple] {
+  height: 120px;
+}
+
+
+.form-buttons{
+  gap:10px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+  padding-right: 20px;
+} 
+
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'RedHatDisplay-Regular';
+}
+
+button[type="submit"] {
+  background-color: #5b2c8b;
+  color: #fff;
+}
+
+
+
+.dropdown-container {
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 7px;
+  background-color: #fff;
+  cursor: pointer;
+  width: 300px;
+  font-family: 'RedHatDisplay-Regular';
+  height:37px;
+
+}
+
+.dropdown-selected {
+  min-height: 20px;
+  font-family: 'RedHatDisplay-Regular';
+  font-size: 14px;
+
+}
+
+
+
+.dropdown-options {
+  position: absolute;
+  width: 130px;
+  max-height: 130px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  z-index: 1000;
+  margin-top: 2px;
+  border-radius: 0 0 4px 4px;
+}
+
+.dropdown-options div {
+  padding: 8px 10px;
+}
+
+.dropdown-options div:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown-options label {
+  display: block;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.dropdown-options input[type="checkbox"] {
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+
+
+  /* Navbar */
+.navbar {
+  margin-top: 10px;
+  width: 100%;
+  height: 60px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  font-size: 20px;
+  font-weight: bolder;
+  
+}
+
+/* Left Side */
+.navbar-left {
+  font-size: 15px;
+  font-family: 'RedHatDisplay-Regular';
+  
+}
+
+
+
+/* Full-width table */
+table {
+  width: 100%; /* Table takes full screen width */
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+}
+
+/* Table Header & Cells */
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+  text-align: center;
+  font-size: 14px;
+  font-family: 'RedHatDisplay-Regular';
+}
+
+/* Header Styling */
+th {
+  background-color: white;
+  color: black;
+
+}
+
+/* Alternating row colors for better readability */
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Image Styling */
+img {
+  border-radius: 5px;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+  th, td {
+      padding: 8px;
+      font-size: 14px;
+  }
+}
+
+
+
+.icon-button {
+background: #7030a0;
+border: 1px solid #7030a0;
+border-radius: 50%;
+padding: 5px;
+cursor: pointer;
+transition: 0.3s;
+width: 40px; /* Slightly increased */
+height: 40px;
+color: white;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.icon-button img {
+width: 16px; /* Increased from 17px */
+height: 16px;
+filter: brightness(0) invert(1); 
+font-weight: bold; /* Ensures bold effect */
+
+}
+
+
+.navbar-right {
+display: flex;
+gap: 10px; /* Space between icons */
+}
+
+
+
+
+.tooltip-container {
+position: relative;
+display: inline-block;
+cursor: pointer;
+}
+
+.tooltip-container .tooltip-text {
+visibility: hidden;
+width: 120px;
+background-color: black;
+color: #fff;
+text-align: center;
+padding: 5px;
+border-radius: 5px;
+
+/* Positioning */
+position: absolute;
+bottom: 100%;
+left: 50%;
+transform: translateX(-50%);
+opacity: 0;
+transition: opacity 0.3s ease-in-out;
+font-size: 12px;
+}
+
+.tooltip-container:hover .tooltip-text {
+visibility: visible;
+opacity: 1;
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,198 @@
+<!-- Breadcrumb Section -->
+<div class="breadcrumb-wrapper">
+  <nav class="breadcrumb">
+    <a routerLink="/administration" class="breadcrumb-link">Administration</a>
+    <span class="breadcrumb-separator">›</span>
+    <a routerLink="/devices" class="breadcrumb-link"[routerLink]="'/configuration'" [queryParams]="{ page: 'devices' }">Devices</a>
+    <span class="breadcrumb-separator">›</span>
+    <span class="breadcrumb-current">Coupon</span>
+  </nav>
+</div>
+
+
+<!-- Simple Navbar -->
+<nav class="navbar">
+    <!-- Left Side -->
+    <div class="navbar-left">
+        <span class="navbar-title">Coupon</span>
+    </div>
+
+
+    <div class="navbar-center">
+      <label>
+        <input type="radio" name="couponFilter" value="all" [(ngModel)]="selectedCouponFilter" (change)="applyFilterAndPagination()" />
+        All
+      </label>
+      <label style="margin-left: 10px;">
+        <input type="radio" name="couponFilter" value="notAssigned" [(ngModel)]="selectedCouponFilter" (change)="applyFilterAndPagination()" />
+        Not Assigned
+      </label>
+      <label style="margin-left: 10px;">
+        <input type="radio" name="couponFilter" value="assigned" [(ngModel)]="selectedCouponFilter" (change)="applyFilterAndPagination()" />
+        Assigned
+      </label>
+    </div>
+
+
+    <div class="navbar-right" >
+      <div class="search-box-wrapper">
+        <input
+          type="text"
+          [(ngModel)]="searchText"
+          (input)="applyFilterAndPagination()"
+          placeholder="Search coupons..."
+          class="search-input"
+        />
+      </div>
+      
+        <button class="nav-button" [routerLink]="'/canteen-configuration'">Assign</button>
+        <div class="tooltip-container">  
+        <button class="icon-button"><img src="assets/refresh.png" alt="Refresh"></button>
+        <span class="tooltip-text">Refresh</span>
+        </div>
+        <div class="tooltip-container">
+        <button class="icon-button" ><img src="assets/add.png" (click)="openCoupen()"  alt="Add"></button>
+        <span class="tooltip-text">Add</span>
+        </div>
+        <div class="tooltip-container">
+        <button class="icon-button"><img src="assets/download.png" alt="Download"></button>
+        <span class="tooltip-text">Download</span>
+        </div>
+        <div class="tooltip-container">
+        <button class="icon-button"><img src="assets/page.png"></button>
+        <span class="tooltip-text">Pagination</span>
+        </div>
+    </div>
+
+ 
+
+</nav>
+
+
+<table class="company-table">
+    <thead>
+        <tr>
+            <th>Coupon Code</th>
+            <th>Description</th>
+            <th>Created At</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th *ngIf="selectedCouponFilter === 'assigned'">Assigned To</th>
+            <th *ngIf="selectedCouponFilter === 'assigned'">Assigned At</th>
+          
+            <th>Status</th>
+            
+    </thead>
+    <tbody>
+     
+            <tr *ngFor="let coupon of pagedCouponList">
+
+            <td>{{ coupon.couponCode }}</td>
+            <td>{{ coupon.description }}</td>
+            <td>{{coupon.createdat  | date: 'dd-MM-yyyy  HH:mm'}}</td>
+           
+            <td>{{ coupon.startDate | date: 'dd-MM-yyyy' }}</td>
+<td>{{ coupon.endDate | date: 'dd-MM-yyyy' }}</td>
+<td *ngIf="selectedCouponFilter === 'assigned'">
+  {{ coupon.assignedEmployee || 'N/A' }}
+</td>
+<td *ngIf="selectedCouponFilter === 'assigned'">
+  {{ coupon.assignedat ? (coupon.assignedat | date: 'dd-MM-yyyy HH:mm') : 'N/A' }}
+</td>
+
+          
+            <!-- <td>{{ coupon.status ? 'Active' : 'Inactive' }}</td> -->
+            <td> 
+                <div class="toggle-container">
+                    <label class="switch">
+                        <input type="checkbox"   [checked]="coupon.status" disabled>
+                        <span class="slider"></span>
+                    </label>
+                </div> 
+                      
+                  </td>
+           
+        </tr>
+        <tr class="pagination-row">
+            <td colspan="8">
+              <div class="pagination-container">
+                <label>Items per page:
+                  <select [(ngModel)]="couponItemsPerPage" (change)="onCouponPageSizeChange()">
+                    <option *ngFor="let size of couponPageSizes" [value]="size">{{ size }}</option>
+                  </select>
+                </label>
+          
+                <span class="range-info">{{ couponStartIndex }}–{{ couponEndIndex }} of {{ couponTotalItems }}</span>
+          
+                <button (click)="goToPreviousCouponPage()" [disabled]="couponCurrentPage === 1" class="arrow-btn">⏴</button>
+                <button (click)="goToNextCouponPage()" [disabled]="couponEndIndex >= couponTotalItems" class="arrow-btn">⏵</button>
+              </div>
+            </td>
+          </tr>
+          
+        
+    </tbody>
+</table>
+
+
+
+
+<div class="modal" *ngIf="isAddCoupen">
+    <div class="modal-content">
+      <p>Add Coupen</p>
+  
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>Coupon Code:</label>
+          <input type="text" [(ngModel)]="couponCode" readonly>
+        </div>
+        
+
+        <!-- Report Name -->
+        <div class="form-group">
+          <label>Descrption:</label>
+          <input type="text" [(ngModel)]="description">
+        </div>
+
+        <div class="form-group">
+          <label>count:</label>
+          <input type="text" [(ngModel)]="count">
+        </div>
+
+        <!-- Start Date -->
+        <div class="form-group">
+          <label>Start Date:</label>
+          <input type="date" [(ngModel)]="startDate">
+        </div>
+  
+        <!-- End Date -->
+        <div class="form-group">
+          <label>End Date:</label>
+          <input type="date" [(ngModel)]="endDate">
+        </div>
+
+       
+
+        
+           
+
+          <div class="form-group">
+            <label>Status:</label>
+            <label class="switch">
+                <input type="checkbox" [(ngModel)]="status">
+                <span class="slider"></span>
+            </label>
+        </div>
+       
+     
+      </div>
+  
+      <!-- Modal Buttons -->
+      <div class="modal-buttons">
+        <button (click)="addCoupen()">Apply</button>
+        <button (click)="closePopup()">Close</button>
+      </div>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
