@@ -1,0 +1,124 @@
+
+<!-- Breadcrumb Section -->
+<div class="breadcrumb-wrapper">
+    <nav class="breadcrumb">
+      <a routerLink="/administration" class="breadcrumb-link">Administration</a>
+      <span class="breadcrumb-separator">›</span>
+      <a routerLink="/devices" class="breadcrumb-link"[routerLink]="'/user-management'" >User</a>
+      <span class="breadcrumb-separator">›</span>
+     
+      <span class="breadcrumb-current">Role Access</span>
+    </nav>
+  </div>
+
+
+<!-- Simple Navbar -->
+<nav class="navbar">
+    <!-- Left Side -->
+    <div class="navbar-left">
+        <span class="navbar-title">UserManagement Roleaccess</span>
+    </div>
+
+ 
+
+    <!-- Right Side Icons (Show Only When Devices Page is Active) -->
+    <div class="navbar-right" >
+        <button class="purple-btn">Roleaccess</button>
+        <!-- <button class="nav-btn" routerLink="/user-management">Users</button> -->
+        <div class="tooltip-container">  
+        <button class="icon-button"><img src="assets/refresh.png" alt="Refresh"></button>
+        <span class="tooltip-text">Refresh</span>
+        </div>
+        <div class="tooltip-container">  
+        <button class="icon-button" ><img src="assets/add.png"  routerLink="/add-roleaccess" alt="Add"></button>
+        <span class="tooltip-text">Add</span>
+        </div>
+        <div class="tooltip-container">  
+        <button class="icon-button"><img src="assets/download.png" alt="Download"></button>
+        <span class="tooltip-text">Download</span>
+        </div>
+        <div class="tooltip-container">  
+        <button class="icon-button"><img src="assets/page.png"></button>
+        <span class="tooltip-text">Pagination</span>
+        </div>
+    </div>
+</nav>
+
+
+<table class="company-table">
+    <thead>
+        <tr>
+      
+            <th>Rolename</th>
+            <!-- <th>Description</th> -->
+            <th>Accesspermission</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <!-- <tr *ngFor="let role of roles"> -->
+            <tr *ngFor="let role of pagedPermissionRoles">
+
+            <td>{{ role.roleName }}</td>
+            <!-- <td>{{role.description}}</td> -->
+            <td>
+                <ul>
+                    <li *ngFor="let module of getAllowedModules(role.allowedModules)">
+                        {{ module }}
+                    </li>
+                </ul>
+            </td>
+            <td>
+                <div class="tab">
+                    <!-- <img src="assets/edit.png" routerLink="/roles" class="tab-icon" alt="Edit"> -->
+                    <div class="tooltip-container">  
+                    <img src="assets/edit.png" (click)="editRole(role.roleId)" class="tab-icon" alt="Edit">
+                    <span class="tooltip-text">Edit</span>
+                    </div>
+
+                    <!-- <img src="assets/delete.png" (click)="showDeletePopup(role.id)" class="tab-icon" alt="Delete"> -->
+                </div>
+            </td>
+        </tr>
+
+        <tr class="pagination-row">
+            <td colspan="3">
+              <div class="pagination-container">
+                <label>Items per page:
+                  <select [(ngModel)]="permissionRoleItemsPerPage" (change)="onPermissionRolePageSizeChange()">
+                    <option *ngFor="let size of permissionRolePageSizeOptions" [value]="size">{{ size }}</option>
+                  </select>
+                </label>
+          
+                <span class="range-info">{{ permissionRoleStartItem }}–{{ permissionRoleEndItem }} of {{ permissionRoleTotalItems }}</span>
+          
+                <button (click)="prevPermissionRolePage()" [disabled]="permissionRoleCurrentPage === 1" class="arrow-btn">⏴</button>
+                <button (click)="nextPermissionRolePage()" [disabled]="permissionRoleEndItem >= permissionRoleTotalItems" class="arrow-btn">⏵</button>
+              </div>
+            </td>
+          </tr>
+          
+    </tbody>
+</table>
+
+
+<!-- Delete Confirmation Popup -->
+<div class="delete-modal" *ngIf="isDeletePopupVisible">
+    <div class="delete-modal-content">
+        <p>Are you sure you want to delete this item?</p>
+        <div class="delete-modal-buttons">
+            <button class="delete-yes-btn" (click)="confirmDelete()">Yes</button>
+            <button class="delete-no-btn" (click)="hideDeletePopup()">No</button>
+        </div>
+    </div>
+</div>
+
+
+
+<router-outlet></router-outlet>
+
+
+
+
+   

@@ -1,0 +1,1081 @@
+<!-- Breadcrumb Section -->
+<div class="breadcrumb-wrapper">
+  <nav class="breadcrumb">
+    <a routerLink="/administration" class="breadcrumb-link">Administration</a>
+    <span class="breadcrumb-separator">›</span>
+    <a routerLink="/devices" class="breadcrumb-link"[routerLink]="'/configuration'" [queryParams]="{ page: 'devices' }">Devices</a>
+    <span class="breadcrumb-separator">›</span>
+    <span class="breadcrumb-current">Objects</span>
+  </nav>
+</div>
+<!-- <div class="container"> -->
+
+    <nav class="navbar">
+        <!-- Left Side -->
+        <div class="navbar-left">
+            <span class="navbar-title">Object List</span>
+        </div>
+    
+ 
+    
+        <!-- Right Side -->
+        <div class="navbar-right">
+          
+         
+          <!-- <button class="nav-button" [routerLink]="'/configuration'" [queryParams]="{ page: 'projects' }">Location</button>
+          <button class="nav-button" [routerLink]="'/configuration'" [queryParams]="{ page: 'devices' }">Device</button> -->
+          <button class="purple-btn">Object</button>
+            <button class="nav-button"routerLink="/access">Others</button>
+        
+            
+        </div>
+</nav>  
+
+<!-- <div class="user-management-container"> -->
+
+  <div class="user-tabs">
+    <div 
+      class="tab1" 
+      [ngClass]="{ active: selectedRole === 'Employee' }" 
+      (click)="selectedRole = 'Employee'">
+      Employee
+    </div>
+    <div 
+      class="tab1" 
+      [ngClass]="{ active: selectedRole === 'Visitor' }" 
+      (click)="selectedRole = 'Visitor'">
+      Visitor
+    </div>
+    <div 
+      class="tab1" 
+      [ngClass]="{ active: selectedRole === 'subcontractor' }" 
+      (click)="selectedRole = 'subcontractor'">
+      Contractor
+  </div>
+
+  </div>
+  
+<nav class="navbar1" *ngIf="selectedRole === 'Employee'">
+   
+    <div class="navbar-left1">
+        <span class="navbar-title1">Employee</span>
+    </div>
+
+    <div class="navbar-right">
+      <div class="tooltip-container">
+        <button class="icon-button"><img src="assets/refresh.png" alt="Refresh"></button>
+        <span class="tooltip-text">Refresh</span>
+      </div>
+        <div class="tooltip-container">
+        <button class="icon-button"><img src="assets/add.png" (click)="openPopup()" alt="Add"></button>
+        <span class="tooltip-text">Add</span>
+        </div>
+        <div class="tooltip-container">
+        <button class="icon-button"><img src="assets/download.png" alt="Download"></button>
+        <span class="tooltip-text">Download</span>
+        </div>
+        <div class="tooltip-container">
+        <button class="icon-button"><img src="assets/page.png"></button>
+        <span class="tooltip-text">Pagination</span>
+        </div>
+    </div>
+
+</nav> 
+
+     <table class="company-table" *ngIf="selectedRole === 'Employee'">
+      <thead>
+     
+        <tr>
+          <th>Idnumber</th>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Email</th>
+          <th>StartDate</th>
+          <th>EndDate</th>
+          <th>Phoneno</th>
+          <th>Dep</th>
+          <th>Role</th>
+        
+          <!-- <th>Imageurl</th> -->
+       
+          <th>Location</th> 
+        
+          <th>Cardbadgenumber</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr *ngFor="let emp of employees"> -->
+          <tr *ngFor="let emp of pagedEmployees">
+
+          <td>{{ emp.idNumber }}</td>
+          <td>{{ emp.firstname}}</td>
+          <td>{{ emp.lastname}}</td>
+          <td>{{emp.email}}</td>
+          <td>{{ emp.startDate? (emp.startDate | date: 'dd-MM-yyyy') : '-'}}</td>
+          <td>{{ emp.endDate? (emp.endDate | date: 'dd-MM-yyyy') : '-'}}</td>
+          <td>{{ emp.phone_no}}</td>
+          <td>{{ emp.dept}}</td>
+          <td>{{ emp.role}}</td>
+          <!-- <td>{{ emp.designation}}</td> -->
+          
+          <!-- <td>{{ emp.imageUrl}}</td> -->
+          <!-- <td>{{ emp.company}}</td> -->
+          <td>{{emp.location}}</td>
+          <!-- <td>{{ emp.referenceid}}</td> -->
+          <td>{{ emp.cardBadgeNumber}}</td>
+
+          <td> 
+            <div class="toggle-container">
+                <label class="switch">
+                    <input type="checkbox" [checked]="emp.status" disabled  >
+                    <span class="slider"></span>
+                </label>
+            </div> 
+                  
+              </td>
+              <td>
+                <div class="tab">
+                  <div class="tooltip-container">     
+                  <img src="assets/edit.png" alt="Edit"  (click)="openEditPopup(emp)"  class="tab-icon">
+                  <span class="tooltip-text">Edit</span>
+                </div>
+                  <div class="tooltip-container">
+                  <img src="assets/delete.png" (click)="confirmDelete(emp)"  alt="Delete" class="tab-icon">
+                  <span class="tooltip-text">Delete</span>
+                </div>
+    
+              </div>
+              </td>
+          
+          <!-- <td><img [src]="emp.imageUrl" alt="Employee Image" width="50"></td> -->
+   </tr>
+
+  <tr class="pagination-row">
+    <td colspan="13">
+      <div class="pagination-container">
+        <label>Items per page:
+          <select [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange()">
+            <option *ngFor="let size of pageSizeOptions" [value]="size">{{ size }}</option>
+          </select>
+        </label>
+  
+        <span class="range-info">{{ startItem }}–{{ endItem }} of {{ totalItems }}</span>
+  
+        <button (click)="prevPage()" [disabled]="currentPage === 1" class="arrow-btn">⏴</button>
+        <button (click)="nextPage()" [disabled]="endItem >= totalItems" class="arrow-btn">⏵</button>
+      </div>
+    </td>
+  </tr>
+  
+
+      </tbody>
+    </table> 
+
+
+    <!-- </div> -->
+
+
+
+ 
+
+
+ <!-- emp add popup -->
+ <div class="modal" *ngIf="isPopupOpen">
+  <div class="modal-content">
+    <p>Add Employee</p>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label>ID Number:</label>
+        <input type="text" [(ngModel)]="formData.idNumber">
+      </div>
+
+      <div class="form-group">
+        <label>Firstname:</label>
+        <input type="text" [(ngModel)]="formData.firstname">
+      </div>
+
+      <div class="form-group">
+        <label>Lastname:</label>
+        <input type="text" [(ngModel)]="formData.lastname">
+      </div>
+
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="text" [(ngModel)]="formData.email">
+      </div>
+
+      <div class="form-group">
+        <label>Start Date:</label>
+        <input type="date" [(ngModel)]="formData.startDate">
+       
+      </div>
+
+      <div class="form-group">
+        <label>End Date:</label>
+        <input type="date" [(ngModel)]="formData.endDate">   
+      </div>
+
+      <!-- <div class="form-group">
+        <label>Start Date:</label>
+        <input type="date" id="startDate" [(ngModel)]="formData.startDate" (focus)="removePlaceholder('startDate')" (blur)="setPlaceholder('startDate')">
+      </div>
+      
+      <div class="form-group">
+        <label>End Date:</label>
+        <input type="date" id="endDate" [(ngModel)]="formData.endDate" (focus)="removePlaceholder('endDate')" (blur)="setPlaceholder('endDate')">
+      </div>
+       -->
+
+      <div class="form-group">
+        <label>Phone No:</label>
+        <input type="text" [(ngModel)]="formData.phone_no">
+      </div>
+
+    <div class="form-group">
+        <label>Department:</label>
+        <select [(ngModel)]="formData.dept">
+          <option *ngFor="let dept of departments" [value]="dept.departmentName">{{ dept.departmentName }}</option>
+        </select>
+      </div>
+
+
+    <div class="form-group">
+      <label>Role Name</label>
+      <select [(ngModel)]="formData.role" name="roleName" (click)="fetchRoles()">
+          <option *ngFor="let role of roles" [value]="role.roleName">
+              {{ role.roleName }}
+          </option>
+      </select>
+  </div>
+
+
+
+
+
+
+<div class="form-group">
+  <label>Location Name</label>
+  <select [(ngModel)]="formData.location" (click)="loadLocations()">
+     
+      <option *ngFor="let location of locationDrop" [value]="location.name">
+          {{ location.name }}
+      </option>
+  </select>
+</div>
+
+   
+
+      <div class="form-group">
+        <label>Card Badge Number:</label>
+        <input type="text" [(ngModel)]="formData.cardBadgeNumber">
+      </div>
+
+
+      <div class="form-group full-width">
+        <label>Employee Image:</label>
+        <!-- <input type="file" (change)="onFileSelected($event)"> -->
+        <input type="file">
+      </div>
+
+
+      <div class="form-group">
+        <label>Status:</label>
+        <label class="switch">
+          <input type="checkbox" [(ngModel)]="formData.status">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+
+    <div class="modal-buttons">
+      <button  (click)="applyChanges()">Apply</button>
+      <button (click)="closePopup()">Close</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- Edit employee popup -->
+
+    <div class="modal" *ngIf="isEditemp">
+      <div class="modal-content">
+        <p>Edit Employee</p>
+    
+        <div class="form-grid">
+          <div class="form-group">
+            <label>ID Number:</label>
+            <input type="text" [(ngModel)]="formData.idNumber">
+          </div>
+    
+          <div class="form-group">
+            <label>Firstname:</label>
+            <input type="text" [(ngModel)]="formData.firstname">
+          </div>
+    
+          <div class="form-group">
+            <label>Lastname:</label>
+            <input type="text" [(ngModel)]="formData.lastname">
+          </div>
+          <div class="form-group">
+            <label>Email:</label>
+            <input type="text" [(ngModel)]="formData.email">
+          </div>
+    
+          <div class="form-group">
+            <label>Start Date:</label>
+            <input type="date" [(ngModel)]="formData.startDate">
+          </div>
+    
+          <div class="form-group">
+            <label>End Date:</label>
+            <input type="date" [(ngModel)]="formData.endDate">
+          </div>
+    
+          <div class="form-group">
+            <label>Phone No:</label>
+            <input type="text" [(ngModel)]="formData.phone_no">
+          </div>
+    
+        
+
+          <div class="form-group">
+            <label>Department:</label>
+            <select [(ngModel)]="formData.dept">
+              <option *ngFor="let dept of departments" [value]="dept.departmentName">{{ dept.departmentName }}</option>
+            </select>
+          </div>
+    
+
+
+       
+      
+    
+
+<!-- 
+          <div class="form-group">
+            <label>Image URL:</label>
+            <input type="text" [(ngModel)]="formedit.imageUrl">
+          </div> -->
+
+
+     
+
+
+
+
+
+<div class="form-group">
+  <label>Role Name</label>
+  <select [(ngModel)]="formData.role" name="roleName" (click)="fetchRoles1()">
+     
+      <option *ngFor="let role of roles" [value]="role.roleName">
+          {{ role.roleName }}
+      </option>
+  </select>
+</div>
+
+<div class="form-group">
+  <label>Location Name</label>
+  <select [(ngModel)]="formData.location" name="locationName" (click)="loadLocations()">
+      
+      <option *ngFor="let location of locationDrop" [value]="location.name">
+          {{ location.name }}
+      </option>
+    </select>
+</div>
+
+    
+      
+    
+          <div class="form-group">
+            <label>Card Badge Number:</label>
+            <input type="text" [(ngModel)]="formData.cardBadgeNumber">
+          </div>
+
+          <div class="form-group full-width">
+            <label>Employee Image:</label>
+            <!-- <input type="file" (change)="onFileSelected($event)"> -->
+            <input type="file">
+          </div>
+
+
+          <div class="form-group">
+            <label>Status:</label>
+            <label class="switch">
+              <input type="checkbox" [(ngModel)]="formData.status" >
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+    
+
+        <div class="modal-buttons">
+          <button (click)="updateEmployee()">Apply</button>
+          <button (click)="closeEditPopup()">Close</button>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+<!-- visitor -->
+
+    <nav class="navbar1" *ngIf="selectedRole === 'Visitor'">
+        <!-- Left Side -->
+        <div class="navbar-left1">
+            <span class="navbar-title1">Visitor</span>
+        </div>
+    
+        <div class="navbar-right">
+          <div class="tooltip-container">  
+            <button class="icon-button"><img src="assets/refresh.png" alt="Refresh"></button>
+            <span class="tooltip-text">Refresh</span>
+          </div>
+          <div class="tooltip-container">  
+            <button class="icon-button"><img src="assets/add.png" (click)="openEditCompanyPopup()" alt="Add"></button>
+            <span class="tooltip-text">Add</span>
+          </div>
+          <div class="tooltip-container">  
+            <button class="icon-button"><img src="assets/download.png" alt="Download"></button>
+            <span class="tooltip-text">Download</span>
+          </div>
+          <div class="tooltip-container">  
+            <button class="icon-button"><img src="assets/page.png"></button>
+            <span class="tooltip-text">Pagination</span>
+          </div>
+        </div>
+    
+    </nav> 
+
+
+    <!-- <div class="table-container2"> -->
+
+    <table class="company-table" *ngIf="selectedRole === 'Visitor'">
+        <thead>
+       
+          <tr>
+            
+            <th>VisitorName</th>
+            <th>Visitor Id</th>
+            <th>Email</th>
+            <th>StartDate</th>
+            <th>EndDate</th>
+            <!-- <th>Role</th> -->
+            <th>VisitorCompany</th>
+            <th>ContactNo</th>
+            <th>Remarks</th>
+            <!-- <th>Status</th> -->
+            <th>Action</th>
+         
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let visitor of visitors"> -->
+            <tr *ngFor="let visitor of pagedVisitors">
+
+          
+            <td>{{ visitor.visitorName }}</td>
+            <td>{{visitor.idNumber}}</td>
+
+            <td>{{ visitor.email }}</td>
+            <td>{{ visitor.startDate ? (visitor.startDate | date: 'dd-MM-yyyy') : '-'}}</td>
+            <td>{{ visitor.endDate ? (visitor.endDate | date: 'dd-MM-yyyy') : '-' }}</td>
+            <!-- <td>{{visitor.role}}</td> -->
+            <td>{{ visitor.visitorCompany }}</td>
+            <td>{{ visitor.contactNo }}</td>
+            <td>{{visitor.remarks}}</td>
+            
+            
+            <!-- <td>
+              <div class="toggle-container">
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div> 
+            </td> -->
+            <td>
+              <div class="tab">
+                <div class="tooltip-container">            
+                <img src="assets/edit.png" alt="Edit"  (click)="openEditvisitorPopup(visitor)" class="tab-icon">
+                <span class="tooltip-text">Edit</span>
+                </div>
+                <div class="tooltip-container">     
+                <img src="assets/delete.png" (click)="showVisitorDeletePopup(visitor.id)" alt="Delete" class="tab-icon">
+                <span class="tooltip-text">Delete</span>
+                </div>
+  
+            </div>
+            </td>
+          </tr>
+          <tr class="pagination-row">
+            <td colspan="13">
+              <div class="pagination-container">
+                <label>Items per page:
+                  <select [(ngModel)]="visitorItemsPerPage" (change)="onVisitorItemsPerPageChange()">
+                    <option *ngFor="let size of visitorPageSizeOptions" [value]="size">{{ size }}</option>
+                  </select>
+                </label>
+          
+                <span class="range-info">{{ visitorStartItem }}–{{ visitorEndItem }} of {{ visitorTotalItems }}</span>
+          
+                <button (click)="prevVisitorPage()" [disabled]="visitorCurrentPage === 1" class="arrow-btn">⏴</button>
+                <button (click)="nextVisitorPage()" [disabled]="visitorEndItem >= visitorTotalItems" class="arrow-btn">⏵</button>
+              </div>
+            </td>
+          </tr>
+          
+          
+           
+        </tbody>
+      </table>
+    <!-- </div> -->
+
+
+
+
+
+
+<div class="modal" *ngIf="isEditCompanyPopupVisible">
+  <div class="modal-content">
+    <p>Add Visitor</p>
+
+    <div class="form-grid">
+     
+
+      <div class="form-group">
+        <label>Visitor Name:</label>
+        <input type="text" [(ngModel)]="visitorForm.visitorName">
+      </div>
+      <div class="form-group">
+        <label>Visitor Id:</label>
+        <input type="text" [(ngModel)]="visitorForm.idNumber">
+      </div>
+
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="email" [(ngModel)]="visitorForm.email">
+      </div>
+
+      <div class="form-group">
+        <label>Start Date:</label>
+        <input type="date" [(ngModel)]="visitorForm.startDate">
+      </div>
+
+      <div class="form-group">
+        <label>End Date:</label>
+        <input type="date" [(ngModel)]="visitorForm.endDate">
+      </div>
+
+      <!-- <div class="form-group">
+        <label>Role Name</label>
+        <select [(ngModel)]="visitorForm.role" name="roleName" (click)="fetchRoles()">
+            <option *ngFor="let role of roles" [value]="role.roleName">
+                {{ role.roleName }}
+            </option>
+        </select>
+    </div> -->
+
+      <div class="form-group">
+        <label>Visitor Company:</label>
+        <input type="text" [(ngModel)]="visitorForm.visitorCompany">
+      </div>
+
+      <div class="form-group">
+        <label>Contact No:</label>
+        <input type="text" [(ngModel)]="visitorForm.contactNo">
+      </div>
+
+
+    <div class="form-group">
+      <label>Remarks:</label>
+      <input type="text" [(ngModel)]="visitorForm.remarks">
+    </div>
+    <!-- <div class="form-group full-width">
+      <label>Visitor Image:</label>
+      <input type="file" (change)="onFileSelected($event)">
+      <input type="file">
+    </div> -->
+
+  </div>
+
+    <!-- <div class="form-group">
+      <label>Status:</label>
+      <label class="switch">
+          <input type="checkbox">
+          <span class="slider"></span>
+      </label>
+  </div> -->
+
+
+
+    <div class="modal-buttons">
+      <button (click)="applyVisitor()">Apply</button>
+      <button (click)="closeEditCompanyPopup()">Close</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- Edit Visitor Popup -->
+<div class="modal" *ngIf="isEditvisitorPopupVisible">
+  <div class="modal-content">
+    <p>Edit Visitor</p>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Visitor Name:</label>
+        <input type="text" [(ngModel)]="visitorForm.visitorName">
+      </div>
+      <div class="form-group">
+        <label>Visitor Id:</label>
+        <input type="text" [(ngModel)]="visitorForm.idNumber">
+      </div>
+
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="email" [(ngModel)]="visitorForm.email">
+      </div>
+
+      <div class="form-group">
+        <label>Start Date:</label>
+        <input type="date" [(ngModel)]="visitorForm.startDate">
+      </div>
+
+      <div class="form-group">
+        <label>End Date:</label>
+        <input type="date" [(ngModel)]="visitorForm.endDate">
+      </div>
+
+      <!-- <div class="form-group">
+        <label>Role Name</label>
+        <select [(ngModel)]="visitorForm.role" name="roleName" (click)="fetchRoles()">
+            <option *ngFor="let role of roles" [value]="role.roleName">
+                {{ role.roleName }}
+            </option>
+        </select>
+    </div> -->
+
+      <div class="form-group">
+        <label>Visitor Company:</label>
+        <input type="text" [(ngModel)]="visitorForm.visitorCompany">
+      </div>
+
+      <div class="form-group">
+        <label>Contact No:</label>
+        <input type="text" [(ngModel)]="visitorForm.contactNo">
+      </div>
+
+      <div class="form-group">
+        <label>Remarks:</label>
+        <input type="text" [(ngModel)]="visitorForm.remarks">
+      </div>
+      <!-- <div class="form-group full-width">
+        <label>Visitor Image:</label>
+        <input type="file" (change)="onFileSelected($event)">
+        <input type="file">
+      </div> -->
+
+    </div>
+
+    <!-- <div class="form-group">
+      <label>Status:</label>
+      <label class="switch">
+          <input type="checkbox" >
+          <span class="slider"></span>
+      </label>
+  </div> -->
+
+    <div class="modal-buttons">
+      <button (click)="applyEditVisitor()">Apply</button>
+      <button (click)="closeEditvisitorPopup()">Close</button>
+    </div>
+  </div>
+</div>
+
+
+  
+  
+
+ 
+
+
+<!-- subcontractor -->
+
+    <nav class="navbar1"  *ngIf="selectedRole === 'subcontractor'">
+        <!-- Left Side -->
+        <div class="navbar-left1">
+            <span class="navbar-title1">Contractor</span>
+        </div>
+    
+        <div class="navbar-right">
+          <div class="tooltip-container">  
+            <button class="icon-button"><img src="assets/refresh.png" alt="Refresh"></button>
+            <span class="tooltip-text">Refresh</span>
+          </div>
+          <div class="tooltip-container">  
+            <button class="icon-button"><img src="assets/add.png"(click)="openPopup1()"alt="Add"></button>
+            <span class="tooltip-text">Add</span>
+          </div>
+            <div class="tooltip-container">  
+            <button class="icon-button"><img src="assets/download.png" alt="Download"></button>
+            <span class="tooltip-text">Download</span>
+            </div>
+            <div class="tooltip-container">  
+            <button class="icon-button"><img src="assets/page.png"></button>
+            <span class="tooltip-text">Pagination</span>
+          </div>
+        </div>
+    
+    </nav> 
+
+
+    <!-- <div class="table-container3"> -->
+      <table class="company-table"  *ngIf="selectedRole === 'subcontractor'">
+          <thead>
+              <tr>
+                  <th>Contractor Name</th>
+                  <th>Contractor ID</th>
+                  <th>Role</th>
+                  <th>Company Name</th>
+                  <th>Project Name</th>
+                  <th>Address</th>
+                  <th>Phone No</th>
+                  <th>Nationality</th>
+                  <th>Vehicle Name</th>
+                  <th>Vehicle ID</th>
+                  <!-- <th>Image Url</th> -->
+                  <th>Action</th>
+              </tr>
+          </thead>
+          <tbody>
+              <!-- <tr *ngFor="let subcontractor of subContractors"> -->
+                <tr *ngFor="let subcontractor of pagedSubContractors">
+
+
+                  <td>{{ subcontractor.contractorName }}</td>
+                  <td>{{ subcontractor.contractorId }}</td>
+                  <td>{{ subcontractor.role}}</td>
+                  <td>{{ subcontractor.companyName}}</td>
+                
+                  <td>{{ subcontractor.projectName }}</td>
+                  <td>{{ subcontractor.address }}</td>
+                  <td>{{ subcontractor.phoneNo }}</td>
+                  <td>{{ subcontractor.nationality }}</td>
+                  <td>{{ subcontractor.vehicleName }}</td>
+                  <td>{{ subcontractor.vehicleId }}</td>
+                  <!-- <td><img [src]="subcontractor.imageUrl" alt="Contractor Image" width="50"></td> -->
+                  <td>
+                      <div class="tab">
+                     
+                        <div class="tooltip-container">  
+                          <img src="assets/edit.png" alt="Edit" (click)="openPopupsub(subcontractor)" class="tab-icon">
+                          <span class="tooltip-text">Edit</span>
+                        </div>
+                          <div class="tooltip-container">   
+                          <img src="assets/delete.png" alt="Delete"  (click)="openDeleteConfirmation(subcontractor.id)" class="tab-icon">
+                          <span class="tooltip-text">Delete</span>
+                          </div>
+                      </div>
+                  </td>
+              </tr>
+              <tr class="pagination-row">
+                <td colspan="11">
+                  <div class="pagination-container">
+                    <label>Items per page:
+                      <select [(ngModel)]="subItemsPerPage" (change)="onSubItemsPerPageChange()">
+                        <option *ngFor="let size of subPageSizeOptions" [value]="size">{{ size }}</option>
+                      </select>
+                    </label>
+              
+                    <span class="range-info">{{ subStartItem }}–{{ subEndItem }} of {{ subTotalItems }}</span>
+              
+                    <button (click)="prevSubPage()" [disabled]="subCurrentPage === 1" class="arrow-btn">⏴</button>
+                    <button (click)="nextSubPage()" [disabled]="subEndItem >= subTotalItems" class="arrow-btn">⏵</button>
+                  </div>
+                </td>
+              </tr>
+              
+              
+          </tbody>
+      </table>
+<!-- </div> -->
+  <!-- </div> -->
+  
+<!-- </div> -->
+
+              
+<!-- add sub con popup -->
+
+      <div class="modal" *ngIf="isPopupOpen1">
+        <div class="modal-content">
+          <p>Add Contractor</p>
+      
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Contractor Name:</label>
+              <input type="text" [(ngModel)]="formData1.contractorName">
+            </div>
+      
+            <div class="form-group">
+              <label>Contractor ID:</label>
+              <input type="text" [(ngModel)]="formData1.contractorId">
+            </div>
+      
+<!--       
+            <div class="form-group">
+              <label>Company Name:</label>
+              <select [(ngModel)]="formData1.companyName" name="pname" (click)="fetchCompany()">
+                <option *ngFor="let companyName of companyName" [value]="companyName.companyName">
+                  {{ companyName.companyName }}
+                </option>
+              </select>
+            </div> -->
+
+            <div class="form-group">
+              <label>Role Name</label>
+              <select [(ngModel)]="formData1.role" name="roleName" (click)="fetchRoles()">
+                  <option *ngFor="let role of roles" [value]="role.roleName">
+                      {{ role.roleName }}
+                  </option>
+              </select>
+          </div>
+
+            <div class="form-group">
+              <label>Contractor Company:</label>
+              <select [(ngModel)]="formData1.companyName" name="companyName" (click)="fetchCompanies()">
+                <option *ngFor="let company of companyList" [value]="company.subcompany">
+                  {{ company.subcompany }}
+                </option>
+              </select>
+            </div>
+            
+
+            <!-- <div class="form-group">
+              <label>Contractor Company:</label>
+              <select [(ngModel)]="formData1.subcompany" name="subcompany" (click)="fetchCompanies()">
+                <option *ngFor="let company of companyList" [value]="company.subcompany">
+                  {{ company.subcompany }}
+                </option>
+              </select>
+            </div> -->
+
+            
+            
+
+            
+            
+
+            <div class="form-group">
+              <label>Project Name:</label>
+              <select [(ngModel)]="formData1.projectName" name="pname" (click)="fetchProjects()">
+                <option *ngFor="let projectName of name" [value]="projectName.name">
+                  {{ projectName.name }}
+                </option>
+              </select>
+            </div>
+            
+
+      
+            <div class="form-group">
+              <label>Address:</label>
+              <input type="text" [(ngModel)]="formData1.address">
+            </div>
+      
+            <div class="form-group">
+              <label>Phone No:</label>
+              <input type="text" [(ngModel)]="formData1.phoneNo">
+            </div>
+      
+            <div class="form-group">
+              <label>Nationality:</label>
+              <input type="text" [(ngModel)]="formData1.nationality">
+            </div>
+      
+            <div class="form-group">
+              <label>Vehicle Name:</label>
+              <input type="text" [(ngModel)]="formData1.vehicleName">
+            </div>
+      
+            <div class="form-group">
+              <label>Vehicle ID:</label>
+              <input type="text" [(ngModel)]="formData1.vehicleId">
+            </div>
+      
+            <div class="form-group full-width">
+              <label>Contractor Image:</label>
+              <!-- <input type="file" (change)="onFileSelected($event)"> -->
+              <input type="file">
+            </div>
+      
+            <!-- <div class="form-group">
+              <label>Image URL:</label>
+              <input type="text" [(ngModel)]="formData1.imageUrl">
+            </div> -->
+          
+          </div>
+          <div class="modal-buttons">
+            <button (click)="submitSubContractor()">Apply</button>
+            <button (click)="closePopup1()">Close</button>
+          </div>
+        
+      </div>
+      </div>
+
+
+
+<!-- Edit Subcontractor Modal -->
+<div class="modal" *ngIf="isPopupOpensub">
+  <div class="modal-content">
+    <p>Edit Contractor</p>
+    
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Contractor Name:</label>
+        <input type="text" [(ngModel)]="formsub.contractorName">
+      </div>
+
+      <div class="form-group">
+        <label>Contractor ID:</label>
+        <input type="text" [(ngModel)]="formsub.contractorId">
+      </div>
+
+
+      <!-- <div class="form-group">
+        <label>Company Name:</label>
+        <select [(ngModel)]="formsub.companyName"  >
+          <option *ngFor="let companyName of companyName" [value]="companyName.companyName">
+            {{ companyName.companyName }}
+          </option>
+        </select>
+      </div> -->
+
+      <div class="form-group">
+        <label>Role Name</label>
+        <select [(ngModel)]="formsub.role" name="roleName" (click)="fetchRoles()">
+            <option *ngFor="let role of roles" [value]="role.roleName">
+                {{ role.roleName }}
+            </option>
+        </select>
+    </div> 
+
+      <div class="form-group">
+      <label>Company Name:</label>
+      <select [(ngModel)]="formsub.companyName" name="companyName" (click)="fetchCompanies()">
+        <option *ngFor="let company of companyList" [value]="company.subcompany">
+          {{ company.subcompany }}
+        </option>
+      </select>
+      </div>
+      
+
+      <div class="form-group">
+        <label>Project Name:</label>
+        <select [(ngModel)]="formsub.projectName" >
+          <option *ngFor="let projectName of name" [value]="projectName.name">
+            {{ projectName.name }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Address:</label>
+        <input type="text" [(ngModel)]="formsub.address">
+      </div>
+
+      <div class="form-group">
+        <label>Phone No:</label>
+        <input type="text" [(ngModel)]="formsub.phoneNo">
+      </div>
+
+      <div class="form-group">
+        <label>Nationality:</label>
+        <input type="text" [(ngModel)]="formsub.nationality">
+      </div>
+
+      <div class="form-group">
+        <label>Vehicle Name:</label>
+        <input type="text" [(ngModel)]="formsub.vehicleName">
+      </div>
+
+      <div class="form-group">
+        <label>Vehicle ID:</label>
+        <input type="text" [(ngModel)]="formsub.vehicleId">
+      </div>
+
+      <div class="form-group full-width">
+        <label>Contractor Image:</label>
+        <!-- <input type="file" (change)="onFileSelected($event)"> -->
+        <input type="file">
+      </div>
+    </div>
+
+    <div class="modal-buttons">
+      <button (click)="applyChangessub()">Apply</button>
+      <button (click)="closePopupsub()">Close</button>
+    </div>
+  </div>
+</div>
+
+      
+
+
+<!-- Delete Confirmation Popup emp -->
+<div class="delete-modal" *ngIf="isDeletePopupVisible">
+  <div class="delete-modal-content">
+      <p>Are you sure you want to delete this item?</p>
+      <div class="delete-modal-buttons">
+          <button class="delete-yes-btn" (click)="deleteEmployee()" >Yes</button>
+          <button class="delete-no-btn" (click)="hideDeletePopup()">No</button>
+      </div>
+  </div>
+</div>
+     
+
+
+
+<!-- Delete Confirmation Popup  visitor-->
+<div class="delete modal" *ngIf="isVisitorDeletePopupVisible">
+  <div class="delete-modal-content">
+    <p>Are you sure you want to delete this visitor?</p>
+    <div class="delete-modal-buttons">
+      <button  class="delete-yes-btn" (click)="deleteVisitor()">Yes</button>
+      <button  class="delete-no-btn" (click)="hideVisitorDeletePopup()">No</button>
+    </div>
+  </div>
+</div>
+
+      
+
+ <!-- Delete Confirmation Modal -->
+<div class="delete-modal" *ngIf="isDeletesubPopupVisible">
+  <div class="delete-modal-content">
+    <p>Are you sure you want to delete this subcontractor?</p>
+    <div class="delete-modal-buttons">
+      <button class="delete-yes-btn" (click)="confirmDeleteSubContractor()">Yes</button>
+      <button class="delete-no-btn" (click)="closeDeleteConfirmation()">No</button>
+    </div>
+  </div>
+</div>
+
+  <router-outlet></router-outlet>

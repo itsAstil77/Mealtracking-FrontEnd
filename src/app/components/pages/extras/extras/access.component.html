@@ -1,0 +1,775 @@
+<!-- Breadcrumb Section -->
+<div class="breadcrumb-wrapper">
+  <nav class="breadcrumb">
+    <a routerLink="/administration" class="breadcrumb-link">Administration</a>
+    <span class="breadcrumb-separator">›</span>
+    <a routerLink="/devices" class="breadcrumb-link"[routerLink]="'/configuration'" [queryParams]="{ page: 'devices' }">Devices</a>
+    <span class="breadcrumb-separator">›</span>
+    <a routerLink="/object" class="breadcrumb-link"routerLink="/object">Object</a>
+    <span class="breadcrumb-separator">›</span>
+    <span class="breadcrumb-current">Others</span>
+  </nav>
+</div>
+<div class="container">
+    <nav class="navbar">
+        <!-- Left Side -->
+        <div class="navbar-left">
+            <span class="navbar-title">Others</span>
+        </div>
+    
+ 
+    
+        <!-- Right Side -->
+        <div class="navbar-right">
+            <!-- <button class="nav-button" [routerLink]="'/configuration'" [queryParams]="{ page: 'projects' }">Project</button>
+          <button class="nav-button" [routerLink]="'/configuration'" [queryParams]="{ page: 'devices' }">Device</button>
+            <button class="nav-button"routerLink="/object">Object</button> -->
+            <!-- <button class="nav-button"routerLink="/access">Extras</button> -->
+            <button class="purple-btn">Others</button>
+            <!-- <button class="nav-button"routerLink="/configuration">Roles</button> -->
+            
+        </div>
+</nav>  
+
+
+<!-- <div class="user-management-container"> -->
+
+  <div class="user-tabs">
+    <div 
+      class="tab1" 
+      [ngClass]="{ active: selectedRole === 'Company' }" 
+      (click)="selectedRole = 'Company'">
+      Company
+    </div>
+    <div 
+      class="tab1" 
+      [ngClass]="{ active: selectedRole === 'Department' }" 
+      (click)="selectedRole = 'Department'">
+      Department
+    </div>
+    <div 
+      class="tab1" 
+      [ngClass]="{ active: selectedRole === 'Contractor Project' }" 
+      (click)="selectedRole = 'Contractor Project'">
+      Contractor Project
+    </div>
+    <div 
+      class="tab1" 
+      [ngClass]="{ active: selectedRole === 'Meal Type configuration' }" 
+      (click)="selectedRole = 'Meal Type configuration'">
+      Meal Type configuration
+    </div>
+    <div 
+      class="tab1" 
+      [ngClass]="{ active: selectedRole === 'Contractor Company' }" 
+      (click)="selectedRole = 'Contractor Company'">
+      Contractor Company
+    </div>
+
+
+  </div>
+
+<nav class="navbar1" *ngIf="selectedRole === 'Company'">
+    <!-- Left Side -->
+    <div class="navbar-left1">
+        <span class="navbar-title1">Company</span>
+    </div>
+
+    <div class="navbar-right">
+        <div class="tooltip-container">
+        <button class="icon-button"><img src="assets/refresh.png" alt="Refresh"></button>
+        <span class="tooltip-text">Refresh</span>
+        </div>
+        <div class="tooltip-container">
+        <button class="icon-button"><img src="assets/add.png" (click)="openPopup()" alt="Add"></button>
+        <span class="tooltip-text">Add</span>
+        </div>
+        
+    </div>
+    
+</nav>
+
+<div class="table-container" *ngIf="selectedRole === 'Company'">
+<table class="company-table" >
+    <thead>
+      <tr>
+        <th>Company Name</th>
+        <th>Description</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr *ngFor="let company of companies"> -->
+        <tr *ngFor="let company of pagedCompanies">
+
+        <td>{{ company.companyName }}</td>
+        <td>{{ company.description }}</td>
+        <td>
+          <div class="tab">
+            <div class="tooltip-container">
+            <img src="assets/edit.png" (click)="openEditCompanyPopup(company)"alt="Edit" class="tab-icon">
+            <span class="tooltip-text">Edit</span>
+            </div>
+            <div class="tooltip-container">
+            <img src="assets/delete.png"  (click)="showDeletePopup(company)"  alt="Delete" class="tab-icon">
+            <span class="tooltip-text">Delete</span>
+            </div>
+         
+          </div>
+        </td>
+      </tr>
+      <tr class="pagination-row">
+        <td colspan="3">
+          <div class="pagination-container">
+            <label>Items per page:
+              <select [(ngModel)]="companyItemsPerPage" (change)="onCompanyItemsPerPageChange()">
+                <option *ngFor="let size of companyPageSizeOptions" [value]="size">{{ size }}</option>
+              </select>
+            </label>
+      
+            <span class="range-info">{{ companyStartItem }}–{{ companyEndItem }} of {{ companyTotalItems }}</span>
+      
+            <button (click)="prevCompanyPage()" [disabled]="companyCurrentPage === 1" class="arrow-btn">⏴</button>
+            <button (click)="nextCompanyPage()" [disabled]="companyEndItem >= companyTotalItems" class="arrow-btn">⏵</button>
+          </div>
+        </td>
+      </tr>
+      
+
+     
+      
+    </tbody>
+  </table>
+</div>
+  
+
+<nav class="navbar1" *ngIf="selectedRole === 'Department'">
+    <!-- Left Side -->
+    <div class="navbar-left1">
+        <span class="navbar-title1">Department</span>
+    </div>
+
+    <div class="navbar-right">
+        <div class="tooltip-container">
+        <button class="icon-button"><img src="assets/refresh.png" alt="Refresh"></button>
+        <span class="tooltip-text">Refresh</span>
+        </div>
+        <div class="tooltip-container">
+        <button class="icon-button"><img src="assets/add.png"  (click)="showDepartmentPopup()" alt="Add"></button>
+        <span class="tooltip-text">Add</span>
+        </div>
+       
+    </div>
+
+</nav> 
+
+
+
+<table class="company-table"  *ngIf="selectedRole === 'Department'">
+    <thead>
+        <tr>
+            <th>Department Name</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- <tr *ngFor="let dept of departments"> -->
+          <tr *ngFor="let dept of pagedDepartments">
+
+            <td>{{ dept.departmentName }}</td>
+            <td>{{ dept.description }}</td>
+            <td>
+                <div class="tab">
+                    <div class="tooltip-container">
+                    <img src="assets/edit.png" (click)="showEditDepartmentPopup(dept)" alt="Edit" class="tab-icon">
+                    <span class="tooltip-text">Edit</span>
+                    </div>
+                    <div class="tooltip-container">
+                    <img src="assets/delete.png" (click)="showDeleteDepartmentPopup(dept)"alt="Delete" class="tab-icon">
+                    <span class="tooltip-text">Delete</span>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr class="pagination-row">
+          <td colspan="3">
+            <div class="pagination-container">
+              <label>Items per page:
+                <select [(ngModel)]="departmentItemsPerPage" (change)="onDepartmentItemsPerPageChange()">
+                  <option *ngFor="let size of departmentPageSizeOptions" [value]="size">{{ size }}</option>
+                </select>
+              </label>
+    
+              <span class="range-info">{{ departmentStartItem }}–{{ departmentEndItem }} of {{ departmentTotalItems }}</span>
+    
+              <button (click)="prevDepartmentPage()" [disabled]="departmentCurrentPage === 1" class="arrow-btn">⏴</button>
+              <button (click)="nextDepartmentPage()" [disabled]="departmentEndItem >= departmentTotalItems" class="arrow-btn">⏵</button>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+<!-- roles -->
+<nav class="navbar1" *ngIf="selectedRole === 'Contractor Project'">
+   
+    <div class="navbar-left1">
+        <span class="navbar-title1">Contractor Project</span>
+    </div>
+
+    <div class="navbar-right">
+        <div class="tooltip-container">
+        <button class="icon-button"><img src="assets/refresh.png" alt="Refresh"></button>
+        <span class="tooltip-text">Refresh</span>
+        </div>
+        <div class="tooltip-container">
+        <button class="icon-button"><img src="assets/add.png" (click)="openProjectPopup()" alt="Add"></button>
+        <span class="tooltip-text">Add</span>
+        </div>
+        
+    </div>
+    
+
+</nav> 
+
+<table class="company-table" *ngIf="selectedRole === 'Contractor Project'">
+    <thead>
+        <tr>
+            <th>ProjectName</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let project of projects">
+            <td>{{ project.name }}</td>
+            <td>{{ project.description }}</td>
+            <td>
+                <div class="tab">
+                    <div class="tooltip-container">
+                     <img src="assets/edit.png" alt="Edit" (click)="openUpdateProject(project)"class="tab-icon">
+                     <span class="tooltip-text">Edit</span>
+                    </div>
+                     <div class="tooltip-container">
+                 <img src="assets/delete.png" alt="Delete" (click)="openDeleteProjectPopup(project.id)" class="tab-icon">
+                 <span class="tooltip-text">Delete</span>
+                     </div> 
+                </div>
+            </td>
+        </tr>
+
+          <!-- Pagination row -->
+    <tr class="pagination-row">
+      <td colspan="3">
+        <div class="pagination-container">
+          <label>Items per page:
+            <select [(ngModel)]="projectItemsPerPage" (change)="onProjectItemsPerPageChange()">
+              <option *ngFor="let size of projectPageSizeOptions" [value]="size">{{ size }}</option>
+            </select>
+          </label>
+
+          <span class="range-info">{{ projectStartItem }}–{{ projectEndItem }} of {{ projectTotalItems }}</span>
+
+          <button (click)="prevProjectPage()" [disabled]="projectCurrentPage === 1" class="arrow-btn">⏴</button>
+          <button (click)="nextProjectPage()" [disabled]="projectEndItem >= projectTotalItems" class="arrow-btn">⏵</button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+<div class="modal" *ngIf="isProjectPopupOpen">
+    <div class="modal-content">
+        <p>Add project </p>
+
+        <div class="form-group">
+            <label>project Name:</label>
+            <input type="text" [(ngModel)]="projectName">
+        </div>
+
+        <div class="form-group">
+            <label>Description:</label>
+            <input type="text" [(ngModel)]="projectDescription">
+        </div>
+
+        <div class="modal-buttons">
+            <button (click)="addProject()">Apply</button>
+            <button (click)="closeProject()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" *ngIf="isProUpOpen">
+    <div class="modal-content">
+        <p>Update Project</p>
+
+        <div class="form-group">
+            <label>Project Name:</label>
+            <input type="text" [(ngModel)]="updatedProjectName">
+        </div>
+
+        <div class="form-group">
+            <label>Description:</label>
+            <input type="text" [(ngModel)]="updatedProjectDescription">
+        </div>
+
+        <div class="modal-buttons">
+            <button (click)="updateProject()">Apply</button>
+            <button (click)="closeUpdateProject()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="delete-modal" *ngIf="isDeletePopupProVisible">
+    <div class="delete-modal-content">
+        <p>Are you sure you want to delete this item?</p>
+        <div class="delete-modal-buttons">
+            <button class="delete-yes-btn"(click)="confirmProjectDelete()">Yes</button>
+            <button class="delete-no-btn"  (click)="hideProjectDeletePopup()">No</button>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar1" *ngIf="selectedRole === 'Meal Type configuration'">
+   
+    <div class="navbar-left1">
+        <span class="navbar-title1">Meal Type configuration</span>
+    </div>
+
+    <div class="navbar-right">
+        <div class="tooltip-container">
+        <button class="icon-button"><img src="assets/refresh.png" alt="Refresh"></button>
+        <span class="tooltip-text">Refresh</span>
+        </div>
+        <div class="tooltip-container">
+        <button class="icon-button"><img src="assets/add.png" (click)="openMealModal()"></button>
+        <span class="tooltip-text">Add</span>
+        </div>
+        
+    </div>
+    
+
+</nav> 
+
+<table class="company-table" *ngIf="selectedRole === 'Meal Type configuration'" >
+    <thead>
+        <tr>
+            <th>MealType</th>
+            <th>Description</th>
+            <th>StartTime</th>
+            <th>EndTime</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- <tr *ngFor="let meal of mealConfig"> -->
+          <tr *ngFor="let meal of pagedMeals">
+
+            <td>{{ meal.mealType }}</td>
+            <td>{{meal.description}}</td>
+            <td>{{ meal.startTime }}</td>
+            <td>{{ meal.endTime }}</td>
+            <td>
+                <label class="switch">
+                    <input type="checkbox" [checked]="meal.isActive" disabled>
+                    <span class="slider"></span>
+                </label>
+            </td>
+            <td>
+                <div class="tab">
+                <div class="tooltip-container">
+                    <img src="assets/edit.png" alt="Edit"(click)="openEditModal(meal)" class="tab-icon">
+                    <span class="tooltip-text">Edit</span>
+                 </div>
+                <div class="tooltip-container">
+                    <img src="assets/delete.png" alt="Delete" (click)="showDeleteMealPopup(meal.id)" class="tab-icon">
+                    <span class="tooltip-text">Delete</span>
+                </div>
+                    
+                </div>
+            </td>
+        </tr>
+        <tr class="pagination-row">
+          <td colspan="6">
+            <div class="pagination-container">
+              <label>Items per page:
+                <select [(ngModel)]="mealItemsPerPage" (change)="onMealItemsPerPageChange()">
+                  <option *ngFor="let size of mealPageSizeOptions" [value]="size">{{ size }}</option>
+                </select>
+              </label>
+        
+              <span class="range-info">{{ mealStartItem }}–{{ mealEndItem }} of {{ mealTotalItems }}</span>
+        
+              <button (click)="prevMealPage()" [disabled]="mealCurrentPage === 1" class="arrow-btn">⏴</button>
+              <button (click)="nextMealPage()" [disabled]="mealEndItem >= mealTotalItems" class="arrow-btn">⏵</button>
+            </div>
+          </td>
+        </tr>
+        
+    </tbody>
+    
+</table>
+
+
+
+
+<!-- popup for + Add company -->
+<div class="modal" *ngIf="isPopupOpen">
+    <div class="modal-content">
+        <p>Add Company</p>
+
+        <div class="form-group">
+            <label>Company Name:</label>
+            <input type="text" [(ngModel)]="formData.companyName">
+        </div>
+
+        <div class="form-group">
+            <label>Description:</label>
+            <input type="text" [(ngModel)]="formData.description">
+        </div>
+
+        <div class="modal-buttons">
+            <button (click)="applyChanges()">Apply</button>
+            <button (click)="closePopup()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- Popup Modal add Department + -->
+<div class="modal" *ngIf="isDepartmentPopupVisible">
+    <div class="modal-content">
+        <p>Add Department</p>
+
+        <div class="form-group">
+            <label>Department Name:</label>
+            <input type="text" [(ngModel)]="departmentData.departmentName">
+        </div>
+
+        <div class="form-group">
+            <label>Description:</label>
+            <input type="text" [(ngModel)]="departmentData.description">
+        </div>
+
+        <div class="modal-buttons">
+            <button (click)="submitDepartmentForm()">Apply</button>
+            <button (click)="hideDepartmentPopup()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Delete Confirmation Popup company -->
+<div class="delete-modal" *ngIf="isDeletePopupVisible">
+    <div class="delete-modal-content">
+        <p>Are you sure you want to delete this item?</p>
+        <div class="delete-modal-buttons">
+            <button class="delete-yes-btn"(click)="confirmDelete()">Yes</button>
+            <button class="delete-no-btn"  (click)="hideDeletePopup()">No</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Edit Company Popup -->
+<div class="modal" *ngIf="isEditCompanyPopupVisible">
+    <div class="modal-content">
+      <p>Edit Company</p>
+  
+      <div class="form-group">
+        <label>Company Name:</label>
+        <input type="text" [(ngModel)]="selectedCompany.companyName">
+      </div>
+  
+      <div class="form-group">
+        <label>Description:</label>
+        <input type="text" [(ngModel)]="selectedCompany.description">
+      </div>
+  
+      <div class="modal-buttons">
+        <button (click)="applyEditChanges()">Apply</button>
+        <button (click)="closeEditCompanyPopup()">Cancel</button>
+      </div>
+    </div>
+  </div>
+  
+
+<!-- Edit Department Popup -->
+<div class="edit-modal" *ngIf="isEditDepartmentPopupOpen">
+    <div class="edit-modal-content">
+      <h3>Edit Department</h3>
+      <div class="edit-form-group">
+        <label>Department Name:</label>
+        <input type="text" [(ngModel)]="departmentFormData.departmentName">
+      </div>
+      <div class="edit-form-group">
+        <label>Description:</label>
+        <input type="text" [(ngModel)]="departmentFormData.description">
+      </div>
+      <div class="edit-modal-buttons">
+        <button class="edit-apply-btn" (click)="applyDepartmentChanges()">Apply</button>
+        <button class="edit-clear-btn" (click)="hideEditDepartmentPopup()">Clear</button>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="delete-modal" *ngIf="isDeleteDepartmentPopupVisible">
+    <div class="delete-modal-content">
+        <p>Are you sure you want to delete this item</p>
+        <div class="delete-modal-buttons">
+            <button class="delete-yes-btn" (click)="confirmDepartmentDelete()">Yes</button>
+            <button class="delete-no-btn" (click)="hideDeleteDepartmentPopup()">No</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+ <!-- ✅ Meal Add Modal -->
+<div class="modal" *ngIf="isMealAdd">
+    <div class="modal-content">
+        <p>Meal Configuration</p>
+
+        <div class="form-group">
+            <label>Meal Type:</label>
+            <input type="text" [(ngModel)]="mealData.mealType">
+        </div>
+
+        <div class="form-group">
+            <label>Description:</label>
+            <input type="text" [(ngModel)]="mealData.description">
+        </div>
+
+          <div class="form-group">
+            <label>Start Time:</label>
+            <input type="text" [(ngModel)]="mealData.startTime"
+              (click)="clearSection('startTime', getClickPosition($event), $event)"
+              maxlength="8"/>
+          </div>
+          
+          <div class="form-group">
+            <label>End Time:</label>
+            <input type="text" [(ngModel)]="mealData.endTime"
+              (click)="clearSection('endTime', getClickPosition($event), $event)"
+              maxlength="8"/>
+          </div>
+          
+          
+        <div class="form-group">
+            <label>Status:</label>
+            <label class="switch">
+                <input type="checkbox" [(ngModel)]="mealData.isActive">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="modal-buttons">
+            <button (click)="submitMealForm()">Add</button>
+            <button (click)="closeModal()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Edit Modal -->
+<div class="modal" *ngIf="isMealEdit">
+    <div class="modal-content">
+      <p>Edit Meal Configuration</p>
+  
+      <div class="form-group">
+        <label>Meal Type:</label>
+        <input type="text" [(ngModel)]="mealData.mealType">
+      </div>
+
+      <div class="form-group">
+        <label>Description:</label>
+        <input type="text" [(ngModel)]="mealData.description">
+    </div>
+  
+      <div class="form-group">
+        <label>Start Time:</label>
+        <input type="text" [(ngModel)]="mealData.startTime">
+      </div>
+  
+      <div class="form-group">
+        <label>End Time:</label>
+        <input type="text" [(ngModel)]="mealData.endTime">
+      </div>
+  
+      <div class="form-group">
+        <label>Status:</label>
+        <label class="switch">
+          <input type="checkbox" [(ngModel)]="mealData.isActive">
+          <span class="slider"></span>
+        </label>
+      </div>
+  
+      <div class="modal-buttons">
+        <button (click)="updateMeal()">Update</button>
+        <button (click)="closeEditModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="delete-modal" *ngIf="isDelMeal">
+    <div class="delete-modal-content">
+        <p>Are you sure you want to delete this item</p>
+        <div class="delete-modal-buttons">
+            <button class="delete-yes-btn" (click)="delMeal()">Yes</button>
+            <button class="delete-no-btn" (click)="hideMeal()">No</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Navbar -->
+<nav class="navbar1" *ngIf="selectedRole === 'Contractor Company'">
+    <div class="navbar-left1">
+      <span class="navbar-title1">Contractor Company</span>
+    </div>
+    <div class="navbar-right">
+      <div class="tooltip-container">
+        <button class="icon-button" (click)="getAllCompanies()">
+          <img src="assets/refresh.png" alt="Refresh">
+        </button>
+        <span class="tooltip-text">Refresh</span>
+      </div>
+      <div class="tooltip-container">
+        <button class="icon-button" (click)="openCompanyAddModal()">
+          <img src="assets/add.png" alt="Add">
+        </button>
+        <span class="tooltip-text">Add</span>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Company Table -->
+  <table class="company-table" *ngIf="selectedRole === 'Contractor Company'">
+    <thead>
+      <tr>
+        <th>Company Name</th>
+        <th>Description</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr *ngFor="let concompany of concompanies"> -->
+        <tr *ngFor="let concompany of pagedConCompanyList">
+
+
+        <td>{{ concompany.subcompany }}</td>
+        <td>{{ concompany.description }}</td>
+        <td>
+          <div class="tab">
+            <div class="tooltip-container">
+              <img src="assets/edit.png" alt="Edit" class="tab-icon" (click)="openCompanyEditModal(concompany)">
+              <span class="tooltip-text">Edit</span>
+            </div>
+            <div class="tooltip-container">
+              <img src="assets/delete.png" alt="Delete" class="tab-icon" (click)="openCompanyDeleteModal(concompany.id)">
+              <span class="tooltip-text">Delete</span>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr class="pagination-row">
+        <td colspan="3">
+          <div class="pagination-container">
+            <label>Items per page:
+              <select [(ngModel)]="conCompanyItemsPerPage" (change)="onConCompanyPageSizeChange()">
+                <option *ngFor="let size of conCompanyPageSizes" [value]="size">{{ size }}</option>
+              </select>
+            </label>
+      
+            <span class="range-info">{{ conCompanyStartIndex }}–{{ conCompanyEndIndex }} of {{ conCompanyTotalItems }}</span>
+      
+            <button (click)="goToPreviousConCompanyPage()" [disabled]="conCompanyCurrentPage === 1" class="arrow-btn">⏴</button>
+            <button (click)="goToNextConCompanyPage()" [disabled]="conCompanyEndIndex >= conCompanyTotalItems" class="arrow-btn">⏵</button>
+          </div>
+        </td>
+      </tr>
+      
+      
+    </tbody>
+  </table>
+
+<!-- </div> -->
+  
+  <!-- Add Modal -->
+  <div class="modal" *ngIf="isAddModalOpen">
+    <div class="modal-content">
+      <p>Add Contractor Company</p>
+  
+      <div class="form-group">
+        <label>Company Name:</label>
+        <input type="text" [(ngModel)]="formCon.subcompany">
+      </div>
+  
+      <div class="form-group">
+        <label>Description:</label>
+        <input type="text" [(ngModel)]="formCon.description">
+      </div>
+  
+      <div class="modal-buttons">
+        <button (click)="submitCompanyForm()">Apply</button>
+        <button (click)="closeCompanyModals()">Cancel</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Update Modal -->
+  <div class="modal" *ngIf="isEditModalOpen">
+    <div class="modal-content">
+      <p>Update Contractor Company</p>
+  
+      <div class="form-group">
+        <label>Company Name:</label>
+        <input type="text" [(ngModel)]="formCon.subcompany">
+      </div>
+  
+      <div class="form-group">
+        <label>Description:</label>
+        <input type="text" [(ngModel)]="formCon.description">
+      </div>
+  
+      <div class="modal-buttons">
+        <button (click)="submitCompanyForm()">Apply</button>
+        <button (click)="closeCompanyModals()">Cancel</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Delete Confirmation Modal -->
+  <div class="delete-modal" *ngIf="isDeleteModalOpen">
+    <div class="delete-modal-content">
+      <p>Are you sure you want to delete this Contractor Company?</p>
+      <div class="delete-modal-buttons">
+        <button class="delete-yes-btn" (click)="confirmCompanyDelete()">Yes</button>
+        <button class="delete-no-btn" (click)="closeCompanyModals()">No</button>
+      </div>
+    </div>
+  </div>
+  
+  
+
+
+<router-outlet></router-outlet>

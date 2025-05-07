@@ -1,0 +1,144 @@
+<!-- Breadcrumb Section -->
+<div class="breadcrumb-wrapper">
+  <nav class="breadcrumb">
+    <a routerLink="/administration" class="breadcrumb-link">Administration</a>
+    <span class="breadcrumb-separator">›</span>
+    <a routerLink="/devices" class="breadcrumb-link"[routerLink]="'/configuration'" [queryParams]="{ page: 'devices' }">Devices</a>
+    <span class="breadcrumb-separator">›</span>
+    <a routerLink="/devices" class="breadcrumb-link"[routerLink]="'/coupen'" >Coupon</a>
+    <span class="breadcrumb-separator">›</span>
+    <span class="breadcrumb-current">Assign Coupon</span>
+  </nav>
+</div>
+<div class="roles-edit-container">
+    <div class="roles-edit-header">Assign Coupon
+        <button class="save-button" (click)="assignCoupons()">Save</button>
+    </div>
+
+    <div class="roles-edit-form">
+      
+    </div> 
+  
+    <div class="container">
+        <div class="left-section">
+            <div class="project-list">  
+              <p>Select Canteen</p>
+              <ul>
+                  <li *ngFor="let location of locations">
+                      <div class="project-box">  
+                          <span (click)="toggleDropdown(location)">
+                              <img src="assets/dropdown.svg" [class.rotate]="location.expanded">
+                          </span>
+                          {{ location.name }}
+                      </div>
+                     
+
+                      <!-- <ul *ngIf="location.expanded">
+                        <li *ngFor="let canteen of location.canteens">
+                          <div class="canteen-item" 
+                               [class.selected]="selectedCanteenId === canteen.id"
+                               (click)="selectCanteen(canteen)">
+                            {{ canteen.name }}
+                          </div>
+                        </li>
+                      </ul> -->
+
+
+                      <ul *ngIf="location.expanded">
+                        <li *ngFor="let canteen of location.canteens">
+                          <div class="canteen-item"
+                               [class.selected]="selectedCanteenId === canteen.id"
+                               (click)="selectCanteen(location, canteen)">
+                            {{ canteen.name }}
+                          </div>
+                      
+                          <!-- Only show departments if this canteen is selected -->
+                          <ul *ngIf="selectedCanteenId === canteen.id && canteen.departments?.length">
+                            <li *ngFor="let dept of canteen.departments">
+                              <div
+                                class="department-item"
+                                [class.selected]="selectedDepartmentId === dept.id"
+                                (click)="selectDepartment(dept)"
+                              >
+                                {{ dept.departmentName }}
+                              </div>
+                            </li>
+                          </ul>
+                          
+                        </li>
+                      </ul>
+                      
+                      
+                  </li>
+              </ul>
+          </div>
+          </div>
+
+          <div class="center-section">
+            <div class="project-list">  
+              <p>Select Employee</p>
+              <table class="access-table">
+                <thead>
+                  <tr>
+                    <th>Select</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>IdNumber</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let emp of employees">
+                    <td><input type="checkbox"    [checked]="selectedEmployeeId === emp.id"
+                      (change)="onEmployeeCheckboxChange(emp.id)" (change)="toggleEmployeeSelection($event, emp.id)" />
+
+                    </td>
+                    <td>{{ emp.firstname }}</td>
+                    <td>{{ emp.lastname }}</td>
+                    <td>{{ emp.idNumber }}</td>
+                    <td>{{ emp.startDate | date }}</td>
+                    <td>{{ emp.endDate | date }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+  
+        <div class="right-section">
+            <p>Select Coupon</p>
+            <table class="access-table">
+         
+                <thead>
+                    <tr>
+                        <th>select</th>
+                        <th>Coupon Code</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Created At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let coupon of coupons">
+                        <td><input type="checkbox" (change)="onCouponCheckboxChange($event, coupon.id)" />
+                        </td>
+                        <td>{{ coupon.couponCode }}</td>
+                        <td>{{ coupon.startDate | date }}</td>
+                        <td>{{ coupon.endDate | date }}</td>
+                        <td>{{ coupon.createdat | date }}</td>
+                      </tr>
+                </tbody>
+            </table>
+            <div class="button-container">
+            
+          </div>
+        </div>
+    </div>
+  
+   
+  </div>
+  
+<router-outlet></router-outlet>
+
+

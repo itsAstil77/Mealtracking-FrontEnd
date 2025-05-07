@@ -1,0 +1,77 @@
+<!-- Simple Navbar -->
+<nav class="navbar">
+    <!-- Left Side -->
+    <div class="navbar-left">
+        <span class="navbar-title">{{ reportName || 'Report Details' }}</span>
+    </div>
+
+    <div class="navbar-right" >
+        <div class="tooltip-container">  
+        <button class="icon-button"><img src="assets/refresh.svg" alt="Refresh"></button>
+        <span class="tooltip-text">Refresh</span>
+        </div>
+        <div class="tooltip-container">
+        <!-- <button class="icon-button" ><img src="assets/plus-small.png" routerLink="/addreport"  alt="Add"></button> -->
+        <button class="icon-button" ><img src="assets/plus-small.png"  alt="Add"></button>
+
+        <span class="tooltip-text">Add</span>
+        </div>
+        <div class="tooltip-container">
+        <button class="icon-button"><img src="assets/download.svg" alt="Download"></button>
+        <span class="tooltip-text">Download</span>
+        </div>
+        <div class="tooltip-container">
+        <button class="icon-button"><img src="assets/columns-3.svg"></button>
+        <span class="tooltip-text">Pagination</span>
+        </div>
+    </div>
+
+ 
+
+</nav>
+<table class="company-table">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Date</th>
+      <th>ID Number</th>
+      <th>Name</th>
+     
+      <th>Location</th>
+      <th>Canteen</th>
+      <th>Device Name</th>
+  
+      <th>Role</th>
+      <th>Company</th>
+
+      <th>Start Date</th>
+      <th>End Date</th>
+   
+      <th>Card Badge Number</th>
+      <th *ngFor="let meal of mealHeaders">{{ meal }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of reportData">
+      <td>{{item.type}}</td>
+      <td>{{item.date}}</td>
+      <td>{{ item.idNumber || item.contractorId || '-' }}</td>
+      <td>{{ item.name || item.contractorName || item.visitorName || '-' }}</td>
+  
+      <td>{{ item.location || '-' }}</td>
+      <td>{{ item.canteen || '-' }}</td>
+      <td>{{ item.deviceName || '-' }}</td>
+   
+      <td>{{ item.role || '-' }}</td>
+      <td>{{ item.company || item.companyName || item.visitorCompany || '-' }}</td>
+      <td>{{ item.startDate ? (item.startDate | date: 'dd-MM-yyyy') : '-' }}</td>
+      <td>{{ item.endDate ? (item.endDate | date: 'dd-MM-yyyy') : '-' }}</td>
+    
+      <td>{{ item.cardBadgeNumber || '-' }}</td>
+
+      <td *ngFor="let meal of mealHeaders">
+        {{ item.mealType && item.mealType[meal] ? item.mealType[meal] : '-' }}
+      </td>
+    </tr>
+  </tbody>
+</table>

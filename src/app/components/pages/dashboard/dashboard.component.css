@@ -1,0 +1,1280 @@
+/* Reset Default Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* margin-left: 100px; */
+   
+   
+   
+  }
+  
+  /* Full Container */
+  /* .container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: none;
+    
+  } */
+  
+  /* Navbar */
+  .navbar {
+    width: 100%;
+    min-height: 60px;
+    background-color: #7030a0;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+
+
+  
+  /* Toggle Button */
+  .menu-button {
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+
+
+   /* Navbar Title */
+   .navbar-title {
+    text-align: center;
+    flex-grow: 1;
+    color: white;
+    font-weight: bold;
+    font-size: 26px;
+  }
+  
+  /* Logo */
+  .navbar-logo {
+    height: 50px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    margin-right: 20px;
+  }
+  
+  /* Wrapper (Sidebar + Content) */
+  .wrapper {
+    display: flex;
+    flex: 1;
+    transition: margin-left 0.3s ease-in-out;
+
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 70px; /* Default: Small width with only icons */
+    height: 100vh;
+    background-color: #7030a0;
+    color: white;
+    padding: 20px 10px;
+    transition: width 0.4s ease-in-out;
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Expand sidebar when not collapsed */
+  .sidebar:not(.collapsed) {
+    width: 250px;
+  }
+  
+  /* Sidebar Menu */   
+  .menu {
+    font-size: 12px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .menu-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    color: white;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .menu-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Icons */
+  .menu-icon {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(1); /* White icons */
+    transition: margin 0.3s ease-in-out;    
+    margin-left: 15px;
+    
+  }
+  
+  /* Text */
+  .menu-text {
+    margin-left: 15px;
+    font-size: 17px; 
+    font-weight: bold;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  /* Hide text when sidebar is collapsed */
+  .sidebar.collapsed .menu-text {
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+  }
+  
+  /* Move icons left when sidebar is collapsed */
+  .sidebar.collapsed .menu-icon {
+    margin-left: -5px;
+  }
+  
+  /* Content */
+  .content {
+    flex-grow: 1;
+    background-color: #ecf0f1;
+    padding: 20px;
+  }
+  
+
+  
+/* Full-Width Tabs Navbar (Below Top Navbar, After Sidebar) */
+.tabs-navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 10px 15px;
+    border-bottom: 2px solid #ddd;
+}
+
+.main-section{
+  width: 100%;
+}
+
+
+/* Tabs Styling */
+.tab {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 8px 15px;
+    border-radius: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bolder;
+    color:black;
+    transition: background 0.3s ease-in-out;
+    font-family: 'RedHatDisplay-Regular';
+}
+
+
+
+.tab i {
+    margin-left: 5px;
+    font-size: 12px;
+    color: gray;
+}
+
+/* "+" Button */
+ .add-tab {
+    background-color: #7030a0;
+    color: white;
+    font-size: 16px;
+    border-radius: 50%;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* Icons inside tabs */
+.tab-icon {
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.active-tab {
+  background-color: #7030a0 !important;
+  color: white !important;
+}
+
+
+
+/* White icons when the tab is active */
+.active-tab .tab-icon {
+  filter: brightness(0) invert(1);
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  width: 500px;
+  height: 250px;
+  padding: 30px;
+  z-index: 1000;
+}
+
+.popup.show {
+  display: block;
+}
+
+
+
+.popup-content {
+  text-align: left;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Edit Dashboard Title */
+.popup-content h2 {
+  font-size: 16px;
+  font-weight: 400 !important; /* Removed bold */
+  color: #888; /* Light color */
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+
+/* Horizontal Line */
+.popup-content hr {
+  width: 100%; /* Full width */
+  border: none;
+  border-top: 1px solid #ccc; /* Light grey line */
+  margin: 10px 0;
+}
+
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  gap: 20px; /* Add space between buttons */
+}
+
+.save-btn {
+  background: #7030a0;
+  color: white;
+ 
+}
+
+.cancel-btn {
+  background: #777;
+  color: white;
+}
+
+.save-btn, .cancel-btn {
+  width: 120px; /* Increase button width */
+  height: 45px; /* Increase button height */
+  font-size: 14px; /* Increase text size */
+  border: none; /* Remove border */
+  border-radius: 8px; /* Smooth rounded corners */
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.popup-title {
+  font-size: 14px;  
+  text-align: left;
+  margin-bottom: 10px;
+  display: block;
+ 
+}
+
+.save-btn:hover, .cancel-btn:hover {
+  opacity: 0.8; /* Add hover effect */
+}
+
+.popup-divider {
+  border: none;
+  height: 1px;
+  background-color: #ddd; /* Light gray color */
+  margin: 10px 20px; /* Adjust spacing */
+  width:100%;
+}
+
+.popup-input {
+  width: 100%; /* Make input full width */
+  padding: 10px; /* Increase padding */
+  font-size: 16px; /* Increase text size */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light background color */
+  outline: none;
+}
+
+.popup-input:focus {
+  border-color: #7030a0; /* Highlight color when focused */
+}
+
+
+/* Sub-menu styling */
+.sub-menu {
+  list-style: none;
+  padding-left: 20px;
+  margin-top: 5px;
+}
+
+.sub-menu-item {
+  padding: 8px;
+  color: white;
+  cursor: pointer;
+  font-weight: normal;  /* Remove bold */
+  font-size: 16px; /* Slightly larger for readability */
+  transition: background 0.3s ease-in-out;
+}
+
+.sub-menu-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Arrow Icon */
+.arrow {
+  margin-left: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+
+
+
+
+
+.dashboard-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-popup {
+  background: white;
+  /* height: 400px; */
+  padding: 20px;
+  border-radius: 8px;
+  width: 600px;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.dashboard-popup-header p{
+  font-size: medium;
+}
+
+.dashboard-close-btn {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.dashboard-popup-body input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.dashboard-popup-footer {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.dashboard-save-btn {
+  background:#7030a0;
+  color: white;
+  width:200px;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.dashboard-cancel-btn {
+  background: gray;
+  color: white;
+  border: none;
+  width:200px;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
+
+
+/* Navbar */
+.navbar {
+  width: 100%;
+  height: 60px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  /* color: black; */
+  font-size: 20px;
+  
+}
+
+
+/* Left Side */
+.navbar-left {
+  font-size: 16px;
+}
+
+
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers the content */
+  gap: 20px;
+  width: 100%;
+  transition: margin-left 0.3s ease-in-out; /* Smooth transition for sidebar */
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers section content */
+  gap: 10px;
+  width: 100%;
+}
+
+.section-title {
+  color: black;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center; /* Center aligns the title */
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+
+  font-size: 18px;
+   
+    color:#7030a0;
+    font-family: 'RedHatDisplay-Regular';
+}
+
+.grid {
+  display: flex;
+  justify-content: center; 
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  flex-wrap: wrap;
+  gap: 70px;
+  width: 80% 
+}
+
+
+.box {
+  background-color: white;
+  color: black;
+  width: 220px; 
+  height: 180px; 
+  border-radius: 5px;
+  flex-grow: 1;
+  min-width: 150px;
+  border: 1px solid #7030a0;
+  box-shadow: 
+  rgba(112, 48, 160, 0.25) 0px 50px 100px -20px, 
+  rgba(112, 48, 160, 0.3) 0px 30px 60px -30px, 
+  rgba(112, 48, 160, 0.35) 0px -2px 6px 0px inset;
+
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+
+/* .grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 70px;
+}
+
+
+
+.box {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #7030a0;
+  box-shadow: 
+  rgba(112, 48, 160, 0.25) 0px 50px 100px -20px, 
+  rgba(112, 48, 160, 0.3) 0px 30px 60px -30px, 
+  rgba(112, 48, 160, 0.35) 0px -2px 6px 0px inset;
+  height: 180px; 
+  width: 220px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
+
+
+
+
+
+
+
+
+
+
+.box p, .box h3 {
+  margin: 0;
+  padding: 5px;
+
+}
+/* .box p{
+  font-size: 16px;
+    font-weight: bold;
+    color:#7030a0;
+    font-family: 'Red Hat Display';
+} */
+
+/* h3 {
+  margin: 5px 0;
+  font-size: 28px;
+    font-weight: bold;
+    color:#7030a0;
+    font-family: 'Red Hat Display';
+} */
+
+
+/* Top-right aligned label */
+.box p {
+  position: absolute;
+  top: 1px;
+  /* right: 10px; */
+  font-size: 18px;
+  font-weight: bold;
+  color: #7030a0;
+  font-family: 'Red Hat Display';
+  transform: translateY(10px);
+  margin: 0;
+  right:10px;
+  font-family: 'RedHatDisplay-Regular';
+  /* padding-right: 30px; */
+}
+
+.box h3 {
+  margin: 0;
+  font-size: 30px;
+  /* font-weight: bold; */
+  color: #7030a0;
+  font-family: 'RedHatDisplay-Regular';
+  text-align: center;
+  /* transform: translateY(40px); */
+}
+
+.box h2 {
+  margin: 0;
+  font-size: 40px;
+  font-weight: bold;
+  color: #7030a0;
+  font-family: 'RedHatDisplay-Regular';
+  text-align: center;
+  /* transform: translateY(40px); */
+}
+
+
+.not-started {
+  font-size: 28px;
+  font-weight: bold;
+  color:#7030a0;
+  font-family: 'Red Hat Display';
+}
+
+/* Responsive Fix for Sidebar Collapse */
+@media (max-width: 1200px) {
+  .grid {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .box {
+    width: 45%; /* Two boxes per row */
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    width: 100%;
+  }
+
+  .box {
+    width: 100%; /* Stacks items for mobile */
+  }
+}
+.icon {
+  width: 40px;  /* Adjust size */
+  height: auto; /* Maintain aspect ratio */
+  position: absolute; /* Place icon inside the box */
+  top: 3px;  /* Distance from the top */
+  left: 10px; /* Distance from the left */
+}
+
+
+
+
+
+
+
+/* delete popupModal*/
+.delete-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+}
+
+/* Modal Content */
+.delete-modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal Title */
+.delete-modal-content p {
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: #333;
+}
+
+/* Button Container */
+.delete-modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* Yes Button */
+.delete-yes-btn {
+  background-color: #7030a0;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background 0.3s ease;
+  width:80px;
+}
+
+
+
+/* No (Cancel) Button */
+.delete-no-btn {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background 0.3s ease;
+  width:80px;
+}
+
+
+.dashboard{
+  background-color: white;
+  height: 850px; 
+}
+
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+} 
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+  overflow: visible;
+  z-index: auto;
+
+}
+
+.tooltip-container .tooltip-text {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  visibility: hidden;
+  opacity: 0;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 9999;
+  width:70px;
+}
+
+
+.total-count1 {
+  font-size: 64px; /* Increase font size as needed */
+  font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.project-box .icons {
+  display: flex;
+  gap: 5px;
+} 
+
+.sub-item .icons {
+  display: flex;
+  gap: 5px;
+}
+
+.canteen-item .icons {
+  display: flex;
+  gap: 5px;
+}
+
+
+
+.project-box .icons img,
+.project-box span img {
+  width: 14px;
+  height: 14px;
+}
+
+.sub-item .icons img,
+.sub-item span img {
+  width: 14px;
+  height: 14px;
+}
+.canteen-item .icons img,
+.canteen-item span img {
+  width: 14px;
+  height: 14px;
+}
+
+.project-list ul ul {
+  margin-left: 15px;
+  padding-left: 15px;
+  border-left: 2px solid #d3d3d3;
+}
+.right-section {
+  width: 50%;
+  background-color: white;
+  padding: 15px;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px; 
+  min-height: 800px;
+}
+.right-panel {
+  flex: 1;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.access-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.access-table th, .access-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+  font-size: smaller;
+}
+
+.access-table th {
+  background-color: #e2e4e7;
+  font-size: smaller;
+}
+
+.checkbox-cell {
+  text-align: center;
+  width: 80px;
+}
+
+.access-table input[type="checkbox"] {
+  transform: scale(1.2);
+}
+
+
+
+
+
+/* popup css style for + meal tracking*/
+.modal-overlay2 {
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000; 
+}
+
+
+.modal-content2 {
+  background: white;
+  width: 550px; 
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+ 
+}
+/* Close Button */
+.close-btn2 {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Input Fields */
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+
+
+/* Buttons */
+.modal-buttons2 {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+ 
+}
+
+.subbtn {
+  background-color: #7030a0;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 200px;
+  
+  
+}
+
+.resetbtn{
+  background-color: gray;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 200px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.roles-edit-container {
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  height: 100%;
+}
+
+
+.roles-edit-header {
+  background-color: #e2e4e7;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.roles-edit-form {
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  }
+
+.form-group label {
+  font-size: 13px;
+  font-weight: normal;
+  margin-bottom: 5px;
+  color: #000;
+}
+
+.form-group input {
+  height: 30px;
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+} 
+
+
+
+.project-list ul {
+  list-style-type: none;
+  padding-left: 0;
+ 
+}
+
+/* Project, Sub-item, and Canteen Styling */
+.project-item, .sub-item, .canteen-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5px 10px;
+  /* border-bottom: 1px solid #ccc; */
+}
+
+/* Dropdown Image Rotation */
+img[alt="Dropdown"] {
+  width: 10px;
+  height: 14px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.rotate {
+  transform: rotate(90deg);
+}
+
+/* Ensure Canteens Align Vertically */
+.canteen-list {
+  padding-left: 30px; /* Indent canteens inside Southie */
+}
+
+.canteen-list li {
+  display: block; /* Ensure each canteen appears on a new line */
+  margin-top: 5px;
+}
+
+.canteen-item {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 5px;
+  border:1px solid lightgray;
+  margin-top: 5px;
+  transition: background 0.3s, color 0.3s;
+  /* background-color: #f8f9fa; */
+}
+
+.canteen-item.selected {
+  background-color: #7030a0;
+  color: white;
+}
+
+/* Pushes icons to the right */
+.icons {
+  margin-left: auto;
+}
+
+.icons img {
+  width: 16px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+
+
+
+.container {
+  display: flex;
+  gap: 14px;
+  background-color: transparent;
+  border: none;
+  /* height: 400px; */
+  max-width: 100%;
+}
+
+/* Left Section (Project Hierarchy) */
+.left-section {
+  width: 100%;
+  background-color: white;
+  padding: 15px;
+  border: 1px solid #d3d3d3; /* Adds border */
+  border-radius: 5px; /* Rounded corners */
+  /* min-height: 400px; */
+}
+
+
+
+.right-section {
+  width: 50%;
+  background-color: white;
+  padding: 15px;
+  border: 1px solid #d3d3d3; /* Adds border */
+  border-radius: 5px; /* Rounded corners */
+  min-height: 800px;
+}
+.right-section p{
+  font-size: medium;
+}
+
+.access-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between items */
+}
+
+.access-list li {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Space between checkbox and text */
+}
+
+
+/* Ensures checkboxes are properly positioned */
+.access-list input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+
+/* Add borders to Access Permission and Project Hierarchy */
+.left-section,
+.right-section {
+  border: 1px solid #d3d3d3; /* Light gray border */
+  border-radius: 5px; /* Optional: Adds rounded corners */
+  padding: 15px; /* Adjust padding for spacing */
+}
+
+/* Increase border width and underline for section titles */
+.left-section p,
+.right-section p {
+  font-size: medium;
+  /* font-weight: bold; */
+  border-bottom: 1px solid #d3d3d3; /* Thicker light gray underline */
+  padding-bottom: 8px; /* Space between text and underline */
+  margin-bottom: 12px; /* Space below underline */
+ width: 100%;
+  display: inline-block; /* Ensures underline is only as wide as the text */
+}
+
+
+
+
+
+/* Common Box Styling */
+.project-box, .sub-item-box, .canteen-box {
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  width: 700px;
+  margin-left: 20px;
+
+}
+
+/* Adjustments for Project-Level Boxes */
+.project-box {
+  border: 1px solid #ddd;
+  margin-left: 0; /* Keep projects aligned left */
+  width:100%;
+}
+
+/* Adjustments for Child-Level Boxes */
+.sub-item-box {
+  margin-left: 20px; /* Indent children (Southie, etc.) */
+}
+
+/* Adjustments for Canteens */
+.canteen-box {
+  margin-left: 40px; /* Further indent canteens */
+}
+ul {
+  list-style: none; /* Removes default bullets */
+  padding: 0;
+  margin: 0;
+}
+
+
+
+.sub-item{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5px 10px;
+ 
+    cursor: pointer;
+    padding: 8px;
+    /* background:white; */
+    border: 1px solid #ddd;
+    margin: 4px 0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.save-button {
+  background-color: #7030a0;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100px;
+  height: 40px;
+}
+
+
+
+.breadcrumb-wrapper {
+  /* padding: 10px 20px; */
+  /* background-color: #f5f5f5; */
+  font-size: 14px;
+  border-bottom: 1px solid #ccc;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+}
+
+.breadcrumb-link {
+  color: black;
+  text-decoration: none;
+  margin-right: 5px;
+}
+.breadcrumb-link:hover {
+  color: #7030a0;
+  font-weight: bold;
+  
+}
+.breadcrumb-separator {
+  margin: 0 5px;
+  color: #666;
+}
+
+.breadcrumb-current {
+  color: #7030a0;
+  font-weight: bold;
+}

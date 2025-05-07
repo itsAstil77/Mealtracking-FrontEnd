@@ -1,0 +1,240 @@
+.body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+.roles-edit-container {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.roles-edit-header {
+    background-color: #e2e4e7;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 'RedHatDisplay-Regular';
+}
+
+.roles-edit-form {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.form-group label {
+    font-size: 13px;
+    margin-bottom: 5px;
+    color: #000;
+}
+
+.form-group input {
+    height: 30px;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'RedHatDisplay-Regular';
+}
+
+.container {
+    display: flex;
+    gap: 15px;
+    background-color: transparent;
+    border: none;
+    min-height: 700px;
+}
+
+.left-section {
+    width: 50%;
+    background-color: #fff;
+    border: 1px solid #d3d3d3;
+    border-radius: 8px;
+    padding: 15px;
+    box-sizing: border-box;
+    min-height: 500px;
+}
+
+.left-section p {
+    font-size: 14px;
+    font-weight: bold;
+    border-bottom: 1px solid #d3d3d3;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.project-list ul {
+    list-style-type: none;
+    padding-left: 15px;
+}
+
+.project-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    font-size: 17px;
+}
+
+.project-box .icons {
+    display: flex;
+    gap: 5px;
+}
+
+
+
+
+.project-box .icons img,
+.project-box span img {
+    width: 14px;
+    height: 14px;
+}
+
+.project-list ul ul {
+    margin-left: 15px;
+    padding-left: 15px;
+    border-left: 2px solid #d3d3d3;
+}
+
+.right-panel {
+    flex: 1;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.access-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.access-table th, .access-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+    font-family: 'RedHatDisplay-Regular';
+}
+
+.access-table th {
+    background-color: #e2e4e7;
+   
+}
+
+.checkbox-cell {
+    text-align: center;
+    width: 80px;
+}
+
+.access-table input[type="checkbox"] {
+    transform: scale(1.2);
+}
+
+.right-section {
+    flex: 1;
+    background-color: #fff;
+    border: 1px solid #d3d3d3; /* Reduce border thickness for better alignment */
+    border-radius: 2px;
+    padding: 15px;
+    box-sizing: border-box; /* Ensures border is included in width */
+    /* min-height: 500px;  */
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+}
+
+
+  
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.submit-btn {
+    padding:5px;
+    background-color: #7030a0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+    font-family: 'RedHatDisplay-Regular';
+}
+
+.submit-btn:hover {
+    background-color: lightgray;
+    color: #000;
+}
+
+
+
+
+
+
+/* Style for dropdown container */
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+/* Label styling */
+.form-group label {
+    font-size: 14px;
+   
+    margin-bottom: 5px;
+    color: #000; /* Black text */
+    font-family: 'RedHatDisplay-Regular';
+}
+
+/* Dropdown styling */
+.form-group select {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    color: #000; /* Black text */
+    cursor: pointer;
+    transition: border 0.3s ease;
+    height: 30px;
+    font-family: 'RedHatDisplay-Regular';
+}
+
+
+
+
+/* Disabled dropdown */
+.form-group select:disabled {
+    background-color: #f5f5f5;
+    color: #999;
+    cursor: not-allowed;
+}
+
+/* Style dropdown options */
+.form-group select option {
+    padding: 10px;
+    background: white;
+    color: #000; /* Black text */
+}
+
+/* Selected option styling */
+.form-group select option:checked {
+    background-color: #007bff;
+    color: white;
+}

@@ -1,0 +1,187 @@
+<!-- 
+    <div class="roles-edit-container">
+        <div class="roles-edit-header">Add Role</div>
+        <div class="roles-edit-form">
+            <div class="form-group">
+                <label for="roleName">Role Name</label>
+                <input type="text" id="roleName" value="SuperAdmin">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" id="description" value="SuperAdmin">
+            </div>
+        </div> 
+  
+ <div class="container">
+
+
+
+<div class="left-section">
+  <div class="project-list">  
+      <p>Location Hierarchy</p>
+      <ul>
+          <li *ngFor="let location of locations">
+              <div class="project-box">  
+                  <span (click)="toggleDropdown(location)">
+                      <img src="assets/dropdown.svg" [class.rotate]="location.expanded" alt="Dropdown">
+                  </span>
+                  {{ location.name }} 
+              </div>
+
+              <ul *ngIf="location.expanded">
+                  <li *ngFor="let canteen of location.canteens">
+                      <div   class="canteen-item" 
+                      [class.selected]="selectedCanteens.has(canteen.name)"
+                      (click)="selectCanteen(canteen)">
+                   
+                          <span (click)="selectCanteen(canteen)">
+                              <img src="assets/dropdown.svg" [class.rotate]="canteen.expanded" alt="Dropdown">
+                          </span>
+                          {{ canteen.name }}
+                          
+                          <span *ngIf="selectedCanteens === canteen.name"></span>
+                      </div>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+  </div>
+</div>
+
+      
+ <div class="right-section">
+            <table class="access-table">
+                <thead>
+                
+                    <tr>
+                        <th>
+                            <input type="checkbox" [(ngModel)]="selectAll" (change)="toggleSelectAll()" />
+                        </th>
+                        <th>Meal Type</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+
+                    
+                        
+                     
+                    </tr>
+                </thead>
+                <tbody>
+                
+                      <tr *ngFor="let meal of mealConfig">
+                        <td>
+                            <input type="checkbox" [(ngModel)]="meal.selected" (change)="toggleMealSelection()" />
+                        </td>
+                        <td>{{ meal.mealType }}</td>
+                        <td>{{ meal.startTime }}</td>
+                        <td>{{ meal.endTime }}</td>
+                      
+                    </tr>
+                  </tbody>
+            </table>
+
+            <div class="button-container">
+              <button class="save-button">Save</button>
+          </div>
+          
+
+
+        </div> 
+    
+ </div>
+</div> -->
+
+
+
+
+
+
+<!-- Breadcrumb Section -->
+<div class="breadcrumb-wrapper">
+    <nav class="breadcrumb">
+      <a routerLink="/administration" class="breadcrumb-link">Administration</a>
+      <span class="breadcrumb-separator">›</span>
+      <a routerLink="/devices" class="breadcrumb-link"[routerLink]="'/user-management'" >User</a>
+      <span class="breadcrumb-separator">›</span>
+      <a routerLink="/devices" class="breadcrumb-link"[routerLink]="'/extrasrole'" >Roles</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-current">Roles Add</span>
+    </nav>
+  </div>
+
+
+
+
+
+
+
+
+<div class="roles-edit-container">
+  <div class="roles-edit-header">Add Role</div>
+  <div class="roles-edit-form">
+      <div class="form-group">
+          <label for="roleName">Role Name</label>
+          <input type="text" id="roleName" [(ngModel)]="roleName">
+      </div>
+      <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" id="description" [(ngModel)]="description">
+      </div>
+  </div> 
+
+  <div class="container">
+      <div class="left-section">
+        <div class="project-list">  
+          <p>Location Hierarchy</p>
+          <ul>
+              <li *ngFor="let location of locations">
+                  <div class="project-box">  
+                      <span (click)="toggleDropdown(location)">
+                          <img src="assets/dropdown.svg" [class.rotate]="location.expanded">
+                      </span>
+                      {{ location.name }}
+                  </div>
+                  <ul *ngIf="location.expanded">
+                      <li *ngFor="let canteen of location.canteens">
+                          <div class="canteen-item" 
+                              [class.selected]="selectedCanteens.has(canteen.id)"
+                              (click)="selectCanteen(canteen)">
+                              {{ canteen.name }}
+                          </div>
+                      </li>
+                  </ul>
+              </li>
+          </ul>
+      </div>
+      </div>
+
+      <div class="right-section">
+          <table class="access-table">
+              <thead>
+                  <tr>
+                      <th>Select</th>
+                      <th>Meal Type</th>
+                      <th>Start Time</th>
+                      <th>End Time</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let meal of mealConfig">
+                      <td>
+                          <input type="checkbox" [(ngModel)]="meal.selected" (change)="toggleMealSelection(meal)">
+                      </td>
+                      <td>{{ meal.mealType }}</td>
+                      <td>{{ meal.startTime }}</td>
+                      <td>{{ meal.endTime }}</td>
+                  </tr>
+              </tbody>
+          </table>
+          <div class="button-container">
+            <button class="save-button" (click)="saveRole()">Save</button>
+        </div>
+      </div>
+  </div>
+
+ 
+</div>
+<router-outlet></router-outlet>

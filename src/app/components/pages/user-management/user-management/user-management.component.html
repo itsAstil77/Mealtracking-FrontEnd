@@ -1,0 +1,255 @@
+
+
+
+
+<!-- Simple Navbar -->
+<nav class="navbar">
+    <!-- Left Side -->
+    <div class="navbar-left">
+        <span class="navbar-title">UserManagement Users</span>
+    </div>
+
+ 
+
+    <!-- Right Side Icons (Show Only When Devices Page is Active) -->
+    <div class="navbar-right" >
+       
+        <button class="nav-button1" routerLink="/extrasrole" >Roles</button> 
+        <button class="nav-button1" routerLink="/rolesmanagement" >Roleaccess</button>  
+        <button class="nav-button" >Users</button>
+        <div class="tooltip-container">
+        <button class="icon-button"><img src="assets/refresh.png" alt="Refresh"></button>
+        <span class="tooltip-text">Refresh</span>
+        </div>
+        <div class="tooltip-container">
+        <button class="icon-button" ><img src="assets/add.png" (click)="openAddUserPopup()" alt="Add"></button>
+        <span class="tooltip-text">Add</span>
+        </div>
+        <div class="tooltip-container">
+        <button class="icon-button"><img src="assets/download.png" alt="Download"></button>
+        <span class="tooltip-text">Download</span>
+        </div>
+        <div class="tooltip-container">
+        <button class="icon-button"><img src="assets/page.png"></button>
+        <span class="tooltip-text">Pagination</span>
+        </div>
+    </div>
+</nav>
+
+
+
+<table class="company-table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Contact Number</th>
+            <th>Role Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.contactNo }}</td>
+            <td>{{ user.roleName }}</td>
+            <td>
+                <div class="tab">
+                <div class="tooltip-container">
+                    <img src="assets/edit.png" alt="Edit" (click)="openEditUserPopup(user)" class="tab-icon">
+                    <span class="tooltip-text">Download</span>
+                </div>
+                <div class="tooltip-container">   
+                    <img src="assets/delete.png" alt="Delete" (click)="openDeletePopup(user)" class="tab-icon">
+                    <span class="tooltip-text">Download</span>
+                </div>
+                </div>
+            </td>
+        </tr>
+        <tr class="pagination-row">
+            <td colspan="5">
+              <div class="pagination-container">
+                <label>Items per page:
+                  <select [(ngModel)]="userItemsPerPage" (change)="onUserItemsPerPageChange()">
+                    <option *ngFor="let size of userPageSizeOptions" [value]="size">{{ size }}</option>
+                  </select>
+                </label>
+          
+                <span class="range-info">{{ userStartItem }}–{{ userEndItem }} of {{ userTotalItems }}</span>
+          
+                <button (click)="prevUserPage()" [disabled]="userCurrentPage === 1" class="arrow-btn">⏴</button>
+                <button (click)="nextUserPage()" [disabled]="userEndItem >= userTotalItems" class="arrow-btn">⏵</button>
+              </div>
+            </td>
+          </tr>
+          
+    </tbody>
+</table>
+
+
+
+
+<div class="delete-modal" *ngIf="isDeletePopupOpen">
+    <div class="delete-modal-content">
+        <p>Are you sure you want to delete this user?</p>
+        <div class="delete-modal-buttons">
+            <button class="delete-yes-btn" (click)="deleteUser()">Yes</button>
+            <button class="delete-no-btn" (click)="closeDeletePopup()">No</button>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Add User Popup -->
+<div class="modal" *ngIf="isAddUserPopupOpen">
+    <div class="modal-content">
+        <p>Add User</p>
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" [(ngModel)]="newUser.username">
+                
+    </div>
+
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" [(ngModel)]="newUser.password">
+            
+</div>
+
+<div class="form-group">
+    <label>Confirm Password</label>
+    <input type="password" [(ngModel)]="newUser.ConfirmPassword">
+        
+</div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" [(ngModel)]="newUser.email" >
+                
+    </div>
+        <div class="form-group">
+            <label>Contact Number</label>
+            <input type="text" [(ngModel)]="newUser.contactNo" >
+                
+    </div>
+     
+  
+        <div class="form-group">
+            <label>Role</label>
+            <select [(ngModel)]="newUser.roleName" (click)="fetchRoles()">
+                <option *ngFor="let role of roles" [value]="role.roleName">
+                    {{ role.roleName }}
+                </option>
+            </select>
+        </div>
+
+  
+        
+        
+
+            <div class="modal-buttons">
+                <button  (click)="closeAddUserPopup()">Cancel</button>
+                <button (click)="saveUser()">Save</button>
+            </div>
+    
+    </div>
+</div>
+
+
+
+
+<!-- Edit User Popup -->
+<!-- <div class="modal" *ngIf="isEditUserPopupOpen">
+    <div class="modal-content">
+        <h2>Edit User</h2>
+        <form>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" [(ngModel)]="selectedUser.username" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" [(ngModel)]="selectedUser.email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label>Contact Number</label>
+                <input type="text" [(ngModel)]="selectedUser.contactNo" name="contactNo">
+            </div>
+
+            <div class="form-group">
+                <label>Role Name</label>
+                <input type="text" [(ngModel)]="selectedUser.roleName" name="roleName">
+            </div>
+
+            <div class="modal-buttons">
+                <button  (click)="closeEditUserPopup()">Cancel</button>
+                <button (click)="updateUser()">Save</button>
+            </div>
+        </form>
+    </div>
+</div> -->
+
+
+<!-- Edit User Popup -->
+<div class="modal" *ngIf="isEditUserPopupOpen">
+    <div class="modal-content">
+        <p>Edit User</p>
+        <form (ngSubmit)="updateUser()">  
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" [(ngModel)]="selectedUser.username" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" [(ngModel)]="selectedUser.password" name="password"> 
+            </div>
+
+        
+              
+
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" [(ngModel)]="selectedUser.ConfirmPassword" name="confirm password"> 
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" [(ngModel)]="selectedUser.email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label>Contact Number</label>
+                <input type="text" [(ngModel)]="selectedUser.contactNo" name="contactNo">
+            </div>
+
+          
+
+            <!-- <div class="form-group">
+                <label>Role Name</label>
+                <input type="text" [(ngModel)]="selectedUser.roleName" name="roleName">
+            </div> -->
+
+            <div class="form-group">
+                <label>Role Name</label>
+                <select [(ngModel)]="selectedUser.roleName" name="roleName" (click)="fetchRoles()">
+                    <option *ngFor="let role of roles" [value]="role.roleName">
+                        {{ role.roleName }}
+                    </option>
+                </select>
+            </div>
+
+         
+            <div class="modal-buttons">
+                <button type="button" (click)="closeEditUserPopup()">Cancel</button>
+                <button type="submit">Save</button>  
+            </div>
+        </form>
+    </div>
+</div> 
+
+
+<router-outlet></router-outlet>

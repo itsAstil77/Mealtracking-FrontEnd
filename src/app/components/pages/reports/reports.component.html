@@ -1,0 +1,383 @@
+<!-- Simple Navbar -->
+<nav class="navbar">
+    <!-- Left Side -->
+    <div class="navbar-left">
+        <span class="navbar-title">Reports</span>
+    </div>
+
+
+    <!-- <div class="navbar-center">
+      <label>
+        <input type="radio" name="reportType" value="report"  [(ngModel)]="selectedReportType"  (change)="onReportTypeChange()" checked/>
+        General Report
+      </label>
+      <label style="margin-left: 10px;">
+        <input type="radio" name="reportType" value="consolidated"  [(ngModel)]="selectedReportType"  (change)="onReportTypeChange()"/>
+        Consolidated Report
+      </label>
+    </div> -->
+
+    <div class="navbar-right" >
+        <div class="tooltip-container">  
+        <button class="icon-button"><img src="assets/refresh.png" alt="Refresh"></button>
+        <span class="tooltip-text">Refresh</span>
+        </div>
+        <div class="tooltip-container">
+        <button class="icon-button" ><img src="assets/add.png" routerLink="/addreport"  alt="Add"></button>
+      
+
+        <span class="tooltip-text">Add</span>
+        </div>
+        <div class="tooltip-container">
+        <button class="icon-button"><img src="assets/download.png" alt="Download"></button>
+        <span class="tooltip-text">Download</span>
+        </div>
+        <div class="tooltip-container">
+        <button class="icon-button"><img src="assets/page.png"></button>
+        <span class="tooltip-text">Pagination</span>
+        </div>
+    </div>
+
+ 
+
+</nav>
+
+
+<table class="company-table">
+  <thead>
+    <tr>
+      <th>Sl No</th>
+      <th>Report Name</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>
+        <a [routerLink]="['/addreport']" [queryParams]="{ type: 'Employee', name: 'Employee' }">Employee Report</a>
+      </td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" checked />
+          <span class="slider"></span>
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>
+        <a [routerLink]="['/addreport']" [queryParams]="{ type: 'Visitor', name: 'Visitor' }">Visitor Report</a>
+      </td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" checked />
+          <span class="slider"></span>
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>
+        <a [routerLink]="['/addreport']" [queryParams]="{ type: 'Contractor', name: 'Contractor' }">Contractor Report</a>
+      </td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" checked />
+          <span class="slider"></span>
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>
+        <a [routerLink]="['/addreport']" [queryParams]="{ type: 'Employee Consolidated', name: 'Employee Consolidated' }">Employee Consolidated Report</a>
+      </td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" checked />
+          <span class="slider"></span>
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>
+        <a [routerLink]="['/addreport']" [queryParams]="{ type: 'Visitor Consolidated', name: 'Visitor Consolidated' }">Visitor Consolidated Report</a>
+      </td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" checked />
+          <span class="slider"></span>
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>
+        <a [routerLink]="['/addreport']" [queryParams]="{ type: 'Contractor Consolidated', name: 'Contractor Consolidated' }">Contractor Consolidated Report</a>
+      </td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" checked />
+          <span class="slider"></span>
+        </label>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- <table class="company-table" *ngIf="selectedReportType === 'report'">
+    <thead>
+      <tr>
+        <th>Sl No</th>
+        <th>Report Name</th>
+        
+        <th>Diner Type</th>
+        <th>Meal Type</th>
+        <th>Canteen Name</th>
+        <th>Time Range</th>
+        
+        <th>Created On</th>
+        <th>Generated On</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+      
+    </thead>
+    <tbody>
+    
+        <tr *ngFor="let report of pagedReportList; let i = index">
+
+      
+        <td>{{report.slNo}}</td>
+        <td>
+            <a [routerLink]="['/report-summary', report.reportName]">{{ report.reportName }}</a>
+          </td>
+         
+          
+         
+          <td>{{ report.type }}</td>
+          <td>{{ report.mealType }}</td>
+          <td>{{ report.canteenName }}</td>
+          <td>{{ report.timeRange }}</td>
+          
+          <td>{{ report.createdOn | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ report.generatedOn | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ report.status  }}</td>
+        <td>
+            <div class="tab">
+            <div class="tooltip-container">
+                <img src="assets/edit.png" alt="Edit" class="tab-icon">
+                <span class="tooltip-text">Edit</span>
+             </div>
+            <div class="tooltip-container">
+                <img src="assets/delete.png" alt="Delete" class="tab-icon">
+                <span class="tooltip-text">Delete</span>
+            </div>
+            <div class="tooltip-container">
+                <img src="assets/down.png" alt="Delete"  (click)="downloadReport(report.reportName)" class="tab-icon">
+                <span class="tooltip-text">download</span>
+            </div>
+                
+            </div>
+        </td>
+      </tr>
+
+      <tr class="pagination-row">
+        <td colspan="11">
+          <div class="pagination-container">
+            <label>Items per page:
+              <select [(ngModel)]="reportItemsPerPage" (change)="onReportPageSizeChange()">
+                <option *ngFor="let size of reportPageSizes" [value]="size">{{ size }}</option>
+              </select>
+            </label>
+      
+            <span class="range-info">{{ reportStartIndex }}–{{ reportEndIndex }} of {{ reportTotalItems }}</span>
+      
+            <button (click)="goToPreviousReportPage()" [disabled]="reportCurrentPage === 1" class="arrow-btn">⏴</button>
+            <button (click)="goToNextReportPage()" [disabled]="reportEndIndex >= reportTotalItems" class="arrow-btn">⏵</button>
+          </div>
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+  
+Consolidated Report Table 
+<table class="company-table" *ngIf="selectedReportType === 'consolidated'">
+  <thead>
+    <tr>
+      <th>Sl No</th>
+      <th>Report Name</th>
+      <th>Person Type</th>
+      <th>Canteen Name</th>
+      <th>Time Range</th>
+      <th>Created On</th>
+      <th>Generated On</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+
+      <tr *ngFor="let report of pagedConsolidatedReportList; let i = index">
+        <td>{{ report.slNo }}</td>
+      <td>
+        <a [routerLink]="['/consolidated-report', report.reportName]">{{ report.reportName }}</a>
+      </td>
+     
+    
+      <td>{{ report.personType }}</td>
+      <td>{{ report.canteenName }}</td>
+      <td>{{ report.timeRange }}</td>
+      <td>{{ report.createdOn | date: 'yyyy-MM-dd' }}</td>
+      <td>{{ report.generatedOn | date: 'yyyy-MM-dd' }}</td>
+      <td>{{ report.status }}</td>
+      <td>
+        <div class="tab">
+          <div class="tooltip-container">
+            <img src="assets/edit.png" alt="Edit" class="tab-icon">
+            <span class="tooltip-text">Edit</span>
+         </div>
+        <div class="tooltip-container">
+            <img src="assets/delete.png" alt="Delete" class="tab-icon">
+            <span class="tooltip-text">Delete</span>
+        </div>
+          <div class="tooltip-container">
+            <img src="assets/down.png" alt="Download"  (click)="downloadReport(report.reportName)"  class="tab-icon">
+            <span class="tooltip-text">Download</span>
+          </div>
+        </div>
+      </td>
+    </tr>
+
+   
+    <tr class="pagination-row">
+      <td colspan="11">
+        <div class="pagination-container">
+          <label>Items per page:
+            <select [(ngModel)]="consolidatedItemsPerPage" (change)="onConsolidatedPageSizeChange()">
+              <option *ngFor="let size of consolidatedPageSizes" [value]="size">{{ size }}</option>
+            </select>
+          </label>
+
+          <span class="range-info">{{ consolidatedStartIndex }}–{{ consolidatedEndIndex }} of {{ consolidatedTotalItems }}</span>
+
+          <button (click)="goToPreviousConsolidatedPage()" [disabled]="consolidatedCurrentPage === 1" class="arrow-btn">⏴</button>
+          <button (click)="goToNextConsolidatedPage()" [disabled]="consolidatedEndIndex >= consolidatedTotalItems" class="arrow-btn">⏵</button>
+        </div>
+      </td>
+    </tr>
+  
+  </tbody>
+</table>
+
+
+
+   <div class="modal" *ngIf="isAddReport">
+    <div class="modal-content">
+      <p>Add Report</p>
+  
+      <div class="form-grid">
+        <div class="form-grid row-three">
+          <div class="form-group">
+            <label>Report Name:</label>
+            <input type="text" [(ngModel)]="reportName">
+          </div>
+  
+          <div class="form-group">
+            <label>Start Date:</label>
+            <input type="date" [(ngModel)]="startDate">
+          </div>
+  
+          <div class="form-group">
+            <label>End Date:</label>
+            <input type="date" [(ngModel)]="endDate">
+          </div>
+        </div>
+
+
+   <div class="form-group full-width">
+    <label>Select For Count Report:</label>
+    <div class="checkbox-group">
+    <label class="checkbox-label">
+      <input type="checkbox" [(ngModel)]="isCountChecked"  [disabled]="selectedTypes.size > 0 || selectedCanteens.size > 0 || selectedMeals.size > 0"> Count
+    </label>
+    </div>
+  </div>
+        <div class="form-group full-width">
+          <label>Select Type:</label>
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" (change)="toggleType('Employee', $event)"  [disabled]="isCountChecked">
+              Employee
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" (change)="toggleType('Visitor', $event)" [disabled]="isCountChecked">
+              Visitor
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" (change)="toggleType('Sub-Contractor', $event)" [disabled]="isCountChecked">
+              Contractor
+            </label>
+          </div>
+        </div>
+  
+        <div class="form-group full-width">
+          <label>Select Canteen:</label>
+          <div class="checkbox-group" *ngIf="canteenList.length > 0">
+            <label *ngFor="let canteen of canteenList" class="checkbox-label">
+              <input type="checkbox" (change)="toggleCanteen(canteen.id, $event)" [disabled]="isCountChecked">
+              {{ canteen.name }}
+            </label>
+          </div>
+          <div *ngIf="canteenList.length === 0">
+            Loading canteens...
+          </div>
+        </div>
+  
+        <div class="form-group full-width">
+          <label>Select Meal:</label>
+          <div class="checkbox-group" *ngIf="mealList.length > 0">
+            <label *ngFor="let meal of mealList" class="checkbox-label">
+              <input type="checkbox" (change)="toggleMeal(meal.id, $event)" [disabled]="isCountChecked">
+              {{ meal.mealType }}
+            </label>
+          </div>
+          <div *ngIf="mealList.length === 0">
+            Loading meals...
+          </div>
+        </div>
+
+      </div>
+  
+      <div class="modal-buttons">
+        <button (click)="isCountChecked ? applyCountReport() : applyReport()">Apply</button>
+        <button (click)="closePopup()">Close</button>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+
+
+
+ Custom Alert Modal 
+<div class="custom-alert-overlay" *ngIf="isAlertVisible">
+  <div class="custom-alert-box">
+    <h3>Meal Count</h3>
+    <pre>{{ alertMessage }}</pre>
+
+    <div class="modal-buttons">
+      <button (click)="isAlertVisible = false">OK</button>
+    </div>
+  </div>
+</div> -->
+
+  
+
+<router-outlet></router-outlet>

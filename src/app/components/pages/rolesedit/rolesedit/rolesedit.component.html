@@ -1,0 +1,87 @@
+
+<div class="roles-edit-container">
+    <div class="roles-edit-header">Edit Role</div>
+    <div class="roles-edit-form">
+        <div class="form-group">
+            <label for="roleName">Role Name</label>
+            <input type="text" id="roleName" [(ngModel)]="roleName">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" id="description" [(ngModel)]="description">
+        </div>
+    </div> 
+
+    <div class="container">
+        <div class="left-section">
+            <div class="project-list">  
+                <p>Location Hierarchy</p>
+
+                <ul>
+                    <li *ngFor="let location of locations" [class.selected-location]="location.expanded">
+                        <div class="project-box">  
+                            <span (click)="toggleDropdown(location)">
+                                <img src="assets/dropdown.svg" [class.rotate]="location.expanded">
+                            </span>
+                            {{ location.name }}
+                        </div>
+                        <ul *ngIf="location.expanded">
+                            <li *ngFor="let canteen of location.canteens">
+
+
+
+            <div class="canteen-item"  
+                              [class.selected]="selectedCanteens.has(canteen.id)"
+                         
+                              (click)="selectCanteen(canteen)">
+                            
+                              {{ canteen.name }}
+                          </div>
+
+                            </li>
+                        </ul>
+                    </li>
+                </ul>     
+            </div>
+        </div>
+      
+    <div class="right-section">
+            <table class="access-table">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Meal Type</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let meal of mealConfig">
+                        <td>
+                            <!-- <input type="checkbox" [(ngModel)]="meal.selected" (change)="toggleMealSelection(meal)"> -->
+                            <input type="checkbox" [(ngModel)]="meal.selected">
+
+                        </td>
+                        <td>{{ meal.mealType }}</td>
+                        <td>{{ meal.startTime }}</td>
+                        <td>{{ meal.endTime }}</td>
+                     
+                    </tr>
+                </tbody>
+            </table>
+            <div class="button-container">
+                <button class="save-button" (click)="updateRole()">Update</button>
+            </div>
+        </div>
+    </div>
+</div> 
+
+
+
+
+  <router-outlet></router-outlet>
+  
+
+
+
+

@@ -1,0 +1,45 @@
+/* Navbar */
+.navbar {
+    width: 100%;
+    height: 60px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    /* color: black; */
+    font-size: 20px;
+    
+}
+
+
+
+
+
+/* Left Side */
+.navbar-left {
+    font-size: 16px;
+}
+
+
+
+
+.navbar-right {
+    display: flex;
+    gap: 10px; /* Space between icons */
+}
+
+/* Buttons */
+.nav-button {
+    background-color: #7030a0;
+    color: white;
+    margin: 0 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 16px;
+    height: 35px;
+    width: 120px;
+    border:none;
+    font-weight: bolder;
+}
