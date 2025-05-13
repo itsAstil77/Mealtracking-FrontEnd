@@ -2,7 +2,7 @@
 
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component,  NgZone,  OnDestroy,  OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component,  NgZone,  OnDestroy,  OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ProjectService } from '../../services/project/project.service';
@@ -41,12 +41,12 @@ export class DashboardComponent implements OnInit,OnDestroy{
 
   constructor(private http: HttpClient, private projectService: ProjectService,
     private dashboardService: DashboardService,private alertService:AlertService,
-    private wsService: WebsocketService,private ngZone: NgZone) {}
+    private wsService: WebsocketService,private ngZone: NgZone,private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.fetchSummary().then(() => {
+    this.fetchSummary();
       this.listenToWebSocket(); // start listening only after data is loaded
-    });
+
     this.fetchLocations()
 
 
@@ -55,7 +55,8 @@ export class DashboardComponent implements OnInit,OnDestroy{
   listenToWebSocket(): void {
     this.subscription = this.wsService.getMessages().subscribe(msg => {
       this.ngZone.run(() => {
-        const index = this.dashboards.findIndex(d => d.dashboardid === msg.dashboardId);
+        const index = this.dashboards.findIndex(d => d.dashboardid === msg.dashboardid);
+        this.fetchSummary()
         if (index !== -1) {
           this.dashboards[index] = {
             ...this.dashboards[index],
@@ -64,7 +65,15 @@ export class DashboardComponent implements OnInit,OnDestroy{
             totalThisWeek: msg.totalThisWeek,
             totalThisMonth: msg.totalThisMonth
           };
+          // this.fetchSummary()
+        
+          if (this.selectedCanteen === msg.dashboardid) {
+            this.selectedData = { ...this.dashboards[index] };
+            this.cdr.detectChanges(); // ✅ triggers UI update
+          }
+          // this.fetchSummary()
         }
+        
       });
     });
   }
@@ -72,43 +81,26 @@ export class DashboardComponent implements OnInit,OnDestroy{
 
 
   ngOnDestroy(): void {
-   
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();  // Clean up WebSocket connection
+    }
   }
-
   
 
-// fetchSummary(){
-//   this.http.get<any[]>('http://172.16.100.66:5221/api/Dashboard/dashboard-mealtype-summary').subscribe(
-//     (res) => {
-//       this.dashboards = res.reverse();
-//       if (this.dashboards.length > 0) {
-//         this.selectedCanteen = this.dashboards[0].dashboardid;
-//       }
-//     },
-//     (err) => {
-//       console.error('Error loading dashboards', err);
-//     }
-//   );
-// }
-
-fetchSummary(): Promise<void> {
-  return new Promise((resolve, reject) => {
-    this.http.get<any[]>('http://172.16.100.66:5221/api/Dashboard/dashboard-mealtype-summary').subscribe(
-      (res) => {
-        this.dashboards = res.reverse();
-        if (this.dashboards.length > 0) {
-          this.selectedCanteen = this.dashboards[0].dashboardid;
-        }
-        resolve();
-      },
-      (err) => {
-        console.error('Error loading dashboards', err);
-        reject(err);
+fetchSummary(){
+  this.http.get<any[]>('http://172.16.100.66:5221/api/Dashboard/dashboard-mealtype-summary').subscribe(
+    (res) => {
+      this.dashboards = res.reverse();
+      if (this.dashboards.length > 0) {
+        this.selectedCanteen = this.dashboards[0].dashboardid;
       }
-    );
-  });
+    },
+    (err) => {
+      console.error('Error loading dashboards', err);
+    }
+  );
 }
+
 
 
 

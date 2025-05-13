@@ -474,6 +474,7 @@ ul {
     color: black;
     text-decoration: none;
     margin-right: 5px;
+    font-family: 'RedHatDisplay-Regular';
   }
   .breadcrumb-link:hover {
     color: #7030a0;
@@ -488,4 +489,5 @@ ul {
   .breadcrumb-current {
     color: #7030a0;
     font-weight: bold;
+    font-family: 'RedHatDisplay-Regular';
   }

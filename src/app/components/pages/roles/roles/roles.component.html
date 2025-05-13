@@ -1,8 +1,18 @@
-
+<div class="breadcrumb-wrapper">
+    <nav class="breadcrumb">
+      <a routerLink="/administration" class="breadcrumb-link">Administration</a>
+      <!-- <span class="breadcrumb-separator">›</span>
+      <a routerLink="/devices" class="breadcrumb-link"[routerLink]="'/user-management'" >User</a> -->
+      <span class="breadcrumb-separator">››</span>
+      <a routerLink="/rolesmanagement" class="breadcrumb-link"[routerLink]="'/rolesmanagement'" >Role-Access</a>
+      <span class="breadcrumb-separator">››</span>
+      <span class="breadcrumb-current">Update Role-Access</span>
+    </nav>
+  </div>
 <div class="body">
 
 <div class="roles-edit-container">
-    <div class="roles-edit-header">Edit Role-Access</div>
+    <div class="roles-edit-header">Update Role-Access</div>
     <div class="roles-edit-form">
         <div class="form-group">
             <label for="roleName">Role Name</label>

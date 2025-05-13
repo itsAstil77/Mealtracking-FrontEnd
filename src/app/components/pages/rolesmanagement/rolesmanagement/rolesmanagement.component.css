@@ -163,6 +163,19 @@ table {
 }
 
 
+.company-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.company-table td ul {
+  list-style: none;       /* remove default bullets */
+  padding: 0;
+  margin: 0 auto;         /* center the <ul> horizontally */
+  display: inline-block; /* treat <ul> as a block element */
+  text-align: center;     /* center the text inside <ul> */
+}
+ 
 /*Action icon design */
 .tab {
     display: flex;

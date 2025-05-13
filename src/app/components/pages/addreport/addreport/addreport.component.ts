@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { AlertService } from '../../../services/alert/alert.service';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ReportService } from '../../../services/report/report.service';
 
 interface ConsolidatedReportResponse {
@@ -16,7 +16,7 @@ interface ConsolidatedReportResponse {
 
 @Component({
   selector: 'app-addreport',
-  imports:[CommonModule,FormsModule],
+  imports:[CommonModule,FormsModule,RouterModule],
   templateUrl: './addreport.component.html',
   styleUrls: ['./addreport.component.css'],
   providers: [DatePipe]

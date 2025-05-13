@@ -64,23 +64,6 @@
                 <span class="menu-text" [class.hidden]="isSidebarCollapsed">Administration</span>
                 <!-- <span class="arrow" [class.rotate]="isAdminExpanded">&#x25BC;</span> -->
             </li> 
-        
-
-            <!-- <ul class="sub-menu" *ngIf="isAdminExpanded">
-            
-                <li class="sub-menu-item"routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                    <a routerLink="/configuration" routerLinkActive="active">Configuration</a>
-                </li>
-                <li class="sub-menu-item"routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                    <a routerLink="/license-management" routerLinkActive="active">License Management</a>
-                </li>
-                <li class="sub-menu-item"routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                    <a routerLink="/user-management" routerLinkActive="active">User Management</a>
-                </li>
-            </ul> -->
-
-
-            <!-- Moved Administrator submenu panel to right of sidebar -->
 <div class="admin-right-panel" *ngIf="isAdminExpanded"  [ngStyle]="{ left: isSidebarCollapsed ? '70px' : '250px' }">
 
   <div class="admin-title">

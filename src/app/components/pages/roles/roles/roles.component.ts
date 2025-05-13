@@ -8,7 +8,7 @@ import { AlertService } from '../../../services/alert/alert.service';
 
 @Component({
   selector: 'app-roles',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,RouterModule],
   templateUrl: './roles.component.html',
   styleUrl: './roles.component.css'
 })

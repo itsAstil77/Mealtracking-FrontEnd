@@ -2,9 +2,11 @@
 <div class="breadcrumb-wrapper">
   <nav class="breadcrumb">
     <a routerLink="/administration" class="breadcrumb-link">Administration</a>
-    <span class="breadcrumb-separator">›</span>
+    <span class="breadcrumb-separator">››</span>
+    <a routerLink="/devices" class="breadcrumb-link"[routerLink]="'/configuration'" [queryParams]="{ page: 'location' }">Location</a>
+    <span class="breadcrumb-separator">››</span>
     <a routerLink="/devices" class="breadcrumb-link"[routerLink]="'/configuration'" [queryParams]="{ page: 'devices' }">Devices</a>
-    <span class="breadcrumb-separator">›</span>
+    <span class="breadcrumb-separator">››</span>
     <span class="breadcrumb-current">Coupon</span>
   </nav>
 </div>

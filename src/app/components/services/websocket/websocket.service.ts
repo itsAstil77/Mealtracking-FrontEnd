@@ -7,43 +7,33 @@
 
 //   constructor() { }
 // }
-// websocket.service.ts
+// ws.service.ts
 import { Injectable } from '@angular/core';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 import { Observable, Subject } from 'rxjs';
+import { share } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebsocketService {
+
   private socket$!: WebSocketSubject<any>;
-  private readonly WS_ENDPOINT = 'ws://172.16.100.66:5221/ws/mealcount';
+  private WS_URL = 'ws://172.16.100.66:5221/ws/mealcount';
 
   constructor() {
     this.connect();
   }
 
-  private connect(): void {
-    if (!this.socket$ || this.socket$.closed) {
-      this.socket$ = webSocket(this.WS_ENDPOINT);
-    }
+  private connect() {
+    this.socket$ = webSocket(this.WS_URL);
   }
 
   public getMessages(): Observable<any> {
-    this.connect();
-    return this.socket$.asObservable();
+    return this.socket$.pipe(share()); // share ensures one connection is reused
   }
 
-  public sendMessage(msg: any): void {
-    this.socket$.next(msg);
-  }
-
-  public close(): void {
-    this.socket$.complete();
-  }
-
-  public isConnected(): boolean {
-    return this.socket$ && !this.socket$.closed;
+  public close() {
+    this.socket$.complete(); // Close when needed
   }
 }
-
